@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pranjal Srivastava — Software Developer Portfolio</title>
-  <meta name="description" content="Portfolio of Pranjal Srivastava — Software Developer (Java, Python, Spring Boot, AWS, ServiceNow). Projects, skills, certifications, and contact." />
+  <meta name="description" content="Portfolio of Pranjal Srivastava — Full-stack Software Developer (Java/Spring Boot, .NET/C#, JavaScript/React basics, ServiceNow). Projects, experience, skills, and contact." />
   <meta name="author" content="Pranjal Srivastava" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,29 +30,22 @@
     .badge{display:inline-flex; gap:8px; align-items:center; color:#0b0f17; background:linear-gradient(90deg,var(--brand),var(--accent)); font-weight:800; padding:8px 12px; border-radius:999px}
     .title{font-size:48px; line-height:1.05; margin:14px 0}
     .subtitle{color:var(--muted); font-size:18px}
-    .hero-card{background:var(--card); border:1px solid rgba(148,163,184,.15); border-radius:18px; padding:20px; box-shadow:var(--shadow)}
-    .grid{display:grid; gap:16px}
-    .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .profile{width:100%; aspect-ratio:1/1; border-radius:18px; object-fit:cover; border:1px solid rgba(148,163,184,.18); box-shadow:var(--shadow)}
     .section{padding:48px 0}
     .section h2{font-size:28px; margin:0 0 12px}
     .card{background:var(--card); border:1px solid rgba(148,163,184,.15); border-radius:16px; padding:18px; box-shadow:var(--shadow)}
-    .card h3{margin:0 0 6px}
-    .tag{display:inline-block; font-size:12px; color:#0b0f17; background:#c7f9ff; padding:4px 8px; border-radius:999px; margin:4px 6px 0 0}
-    .muted{color:var(--muted)}
+    .grid{display:grid; gap:16px}
+    .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
     .row{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
     .pill{border:1px solid rgba(148,163,184,.22); color:var(--text); padding:6px 10px; border-radius:999px; font-size:14px}
-    footer{padding:40px 0; color:var(--muted); border-top:1px solid rgba(148,163,184,.12)}
+    .muted{color:var(--muted)}
     .kicker{font-weight:700; color:#cbd5e1; letter-spacing:.16em; text-transform:uppercase; font-size:12px}
-    .profile{width:100%; aspect-ratio:1/1; border-radius:18px; object-fit:cover; border:1px solid rgba(148,163,184,.18); box-shadow:var(--shadow)}
     .timeline{position:relative; padding-left:18px}
     .timeline::before{content:""; position:absolute; left:6px; top:4px; bottom:4px; width:2px; background:linear-gradient(#334155,#475569)}
     .tl-item{position:relative; margin:0 0 18px}
     .tl-item::before{content:""; position:absolute; left:-12px; top:6px; width:10px; height:10px; border-radius:999px; background:linear-gradient(90deg,var(--brand),var(--accent)); box-shadow:0 0 0 3px var(--ring)}
-    .resume-btn{display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(148,163,184,.3); padding:10px 12px; border-radius:12px; font-weight:700; color:#fff}
-    .contact-form input, .contact-form textarea{width:100%; background:#0d1426; border:1px solid rgba(148,163,184,.25); border-radius:12px; padding:12px 12px; color:#fff}
-    .contact-form input:focus, .contact-form textarea:focus{outline:none; border-color: var(--brand); box-shadow:0 0 0 3px var(--ring)}
-    .contact-form button{background:linear-gradient(90deg,var(--brand),var(--accent)); border:none; color:#0b0f17; font-weight:800; padding:12px 14px; border-radius:12px}
+    footer{padding:40px 0; color:var(--muted); border-top:1px solid rgba(148,163,184,.12)}
     .small{font-size:13px}
     @media (max-width: 900px){
       .hero{grid-template-columns:1fr; padding-top:32px}
@@ -71,6 +64,7 @@
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
         <a href="#certs">Certifications</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -81,20 +75,25 @@
   <main id="home" class="container">
     <section class="hero">
       <div>
-        <span class="badge">Available for Full‑Time — Software Developer</span>
+        <span class="badge">Available for Full-Time — Software Developer</span>
         <h1 class="title">Pranjal Srivastava</h1>
-        <p class="subtitle">Software Developer skilled in Java, Spring Boot, Python, SQL, and ServiceNow — building reliable backend services and clean front‑end experiences. M.S. in Computer Science (Texas A&M University–Corpus Christi).</p>
+        <p class="subtitle">
+          Full-stack Software Developer with hands-on experience in enterprise web apps, ServiceNow platform work,
+          and data-driven services. I build scalable APIs and modular UIs in Java/Spring Boot, .NET/C#, and JavaScript
+          (React basics); automate ITSM processes on ServiceNow; and integrate cloud-backed solutions on AWS/Azure.
+          Strong in SQL design & reporting (SSRS/Power BI), CI-enabled quality, and change-controlled releases. 
+        </p>
         <div class="row" style="margin-top:16px">
-          <a class="resume-btn" href="#" id="resumeLink">Download Resume</a>
-          <a class="resume-btn" href="#contact">Contact Me</a>
+          <a class="pill" href="assets/Pranjal_Srivastava_Resume_Portfolio_Full.pdf" target="_blank" rel="noopener">Download Resume</a>
+          <a class="pill" href="#contact">Contact Me</a>
         </div>
         <div class="row" style="margin-top:10px">
-          <a class="pill" href="https://www.linkedin.com/in/pranjal-srivastava" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="pill" href="https://www.linkedin.com/in/pranjal-srivastava07/" target="_blank" rel="noopener">LinkedIn</a>
           <a class="pill" href="#projects">See Projects</a>
         </div>
       </div>
       <div>
-        <img class="profile" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop" alt="Profile placeholder" />
+        <img class="profile" src="assets/Portfolio_Image.png" alt="Pranjal Srivastava portrait" />
       </div>
     </section>
 
@@ -102,23 +101,28 @@
       <div class="grid cols-2">
         <div>
           <h2>About Me</h2>
-          <p class="muted">I enjoy shipping practical software — from secure Java/Spring microservices to helpful web apps and workflow tools. I’m comfortable across the stack and love clear, maintainable code, data‑driven decisions, and crisp UX.</p>
+          <p class="muted">
+            I enjoy shipping practical software—secure Java/Spring and .NET APIs, clean front-end experiences,
+            and ServiceNow workflows that automate real work. I’m comfortable switching contexts between feature
+            delivery, integration work, and operational support, partnering with stakeholders in Agile teams to land
+            reliable, secure, and usable software.
+          </p>
           <div class="card">
-            <div class="kicker">Education</div>
-            <p><strong>M.S., Computer Science</strong> — Texas A&M University–Corpus Christi (Jan 2022 – Dec 2023)</p>
-            <p><strong>B.Tech., Computer Science</strong> — SRM Institute of Science & Technology (Jul 2017 – May 2021)</p>
+            <div class="kicker">What I’m Looking For</div>
+            <p>Full-time Software Developer roles focused on backend APIs, data-heavy features, and polished UIs.</p>
+            <div class="row">
+              <span class="pill">Java & Spring</span>
+              <span class="pill">.NET / C#</span>
+              <span class="pill">ServiceNow</span>
+              <span class="pill">SQL • Reporting</span>
+              <span class="pill">AWS / Azure (basics)</span>
+            </div>
           </div>
         </div>
         <div class="card">
-          <div class="kicker">What I’m Looking For</div>
-          <p>Full‑time Software Developer roles where I can contribute to backend APIs, data‑heavy features, and frontend polish. I ramp fast, communicate clearly, and prioritize customer impact.</p>
-          <div class="row">
-            <span class="tag">Full‑time</span>
-            <span class="tag">Java & Spring</span>
-            <span class="tag">Python</span>
-            <span class="tag">SQL</span>
-            <span class="tag">ServiceNow</span>
-          </div>
+          <div class="kicker">Contact</div>
+          <p class="muted">Corpus Christi, TX • +1 (346) 375-2373 • <a href="mailto:pranjal6004@gmail.com">pranjal6004@gmail.com</a></p>
+          <p class="muted"><a href="https://www.linkedin.com/in/pranjal-srivastava07/" target="_blank" rel="noopener">linkedin.com/in/pranjal-srivastava07</a></p>
         </div>
       </div>
     </section>
@@ -128,27 +132,27 @@
       <div class="grid cols-3">
         <div class="card">
           <h3>Languages & Frameworks</h3>
-          <p class="muted">Java, Spring Boot, Python, JavaScript, SQL, C/C++, MATLAB</p>
+          <p class="muted">Java, Spring Boot, C#, .NET, Python, JavaScript, TypeScript, C/C++, React (basics), Glide APIs</p>
         </div>
         <div class="card">
-          <h3>APIs & Data</h3>
-          <p class="muted">REST APIs, JSON, JDBC/JPA, Data modeling, ETL basics</p>
+          <h3>ServiceNow</h3>
+          <p class="muted">App Engine Studio, Form Designer, tables/dictionary, views/related lists, client scripts, UI policies/actions, Script Includes, business rules, Flow Designer, ATF (basics)</p>
         </div>
         <div class="card">
-          <h3>Apps & Platforms</h3>
-          <p class="muted">AWS basics, ServiceNow (GlideRecord, App Engine Studio), Linux, Git</p>
+          <h3>Web & APIs</h3>
+          <p class="muted">HTML, CSS, responsive UI, accessibility, REST APIs, JSON/XML, Swagger/OpenAPI, input validation, error handling</p>
         </div>
         <div class="card">
-          <h3>Quality & Security</h3>
-          <p class="muted">Unit testing, CI basics, code reviews, OWASP awareness</p>
+          <h3>Data & SQL</h3>
+          <p class="muted">SQL Server, PostgreSQL, schema design, indexing, query tuning, reporting with SSRS, Power BI, Crystal (basics)</p>
         </div>
         <div class="card">
-          <h3>Dev Workflow</h3>
-          <p class="muted">Agile/Scrum, CLI, Bash scripting, issue tracking</p>
+          <h3>Cloud & DevOps</h3>
+          <p class="muted">AWS & Azure (basics), IIS, Docker, Git, GitHub Actions/Jenkins, env configs & secrets management</p>
         </div>
         <div class="card">
-          <h3>Soft Skills</h3>
-          <p class="muted">Clear communication, documentation, fast learning</p>
+          <h3>Quality, Process & Security</h3>
+          <p class="muted">Unit/integration tests (JUnit/Mockito/PyTest), debugging, regression checklists, code reviews, Agile/Scrum (Jira), RBAC, audit logging, least privilege, change control, documentation & runbooks</p>
         </div>
       </div>
     </section>
@@ -157,59 +161,70 @@
       <h2>Experience</h2>
       <div class="timeline">
         <div class="tl-item">
-          <h3><strong>Tinker Tech Logix</strong> — <em>Software Engineer</em> <span class="muted">(Apr 2024 – Aug 2025)</span></h3>
+          <h3><strong>Tinker Tech Logix</strong> — <em>Software Developer</em> <span class="muted">(Apr 2024 – Aug 2025)</span></h3>
           <ul class="muted">
-            <li>Built Java/Spring Boot APIs and improved response times through query optimization and caching.</li>
-            <li>Created React UI components for internal tools; integrated REST endpoints with form validation.</li>
-            <li>Automated build/test steps with Git and CI pipelines; wrote concise technical docs.</li>
+            <li>Built Java/Spring Boot and .NET APIs with React views; documented endpoints using Swagger/OpenAPI.</li>
+            <li>Designed RESTful APIs (CRUD, auth, pagination) and integrated 3rd-party services with robust error responses.</li>
+            <li>Wrote unit/integration tests (JUnit/Mockito, PyTest), monitored CI, and fixed regressions quickly.</li>
+            <li>Optimized SQL schemas & queries; tuned indexes/caching to reduce response times on high-volume screens.</li>
+            <li>Containerized services with Docker and set up CI/CD (GitHub Actions); documented run/build steps.</li>
+            <li>Delivered ERP-style modules (Admissions, Fees, Attendance, Exams, Results) with RBAC, validations, audit logging, CBCS workflows.</li>
+            <li>ServiceNow: Forms/catalog items with client scripts, UI policies, business rules; Flow Designer notifications; structured views/related lists.</li>
+            <li>Worked in Agile ceremonies; used PRs & code reviews; prepared release notes and rollout/rollback steps.</li>
           </ul>
         </div>
         <div class="tl-item">
-          <h3><strong>ECS</strong> — <em>Intern, Cloud Server & Data Management</em> <span class="muted">(Jun 2019 – Jul 2019)</span></h3>
+          <h3><strong>ECS</strong> — <em>Intern, Cloud Server & Data Management</em> <span class="muted">(May 2019 – Aug 2019)</span></h3>
           <ul class="muted">
-            <li>Implemented and managed cloud‑based server solutions; assisted with data migration strategies.</li>
-            <li>Optimized server performance and supported backup and recovery procedures.</li>
+            <li>Assisted installs, configuration, and upgrades for server-hosted apps; validated checklists and documented results.</li>
+            <li>Contributed to backup/restore procedures and verified integrity during drills.</li>
+            <li>Created simple scripts for system/network checks to speed cutovers & troubleshooting; improved runbooks and asset records.</li>
           </ul>
         </div>
       </div>
-      <p class="small muted">Note: Additional project and research experience below.</p>
+      <p class="small muted">More hands-on impact below in selected projects.</p>
     </section>
 
     <section id="projects" class="section">
       <h2>Projects</h2>
       <div class="grid cols-3">
         <article class="card">
-          <h3>Heart Failure Detection Using ECG</h3>
-          <p class="muted">ML pipeline for ECG classification; engineered features and evaluated models for accuracy.</p>
-          <div class="row small">
-            <span class="pill">Python</span><span class="pill">scikit‑learn</span><span class="pill">Signal Processing</span>
-          </div>
+          <h3>Dog Adoption Portal — ServiceNow</h3>
+          <p class="muted">Service Portal for dog profiles & adoption requests with validations and role-based visibility; Record Producers, reference fields, choice lists; Flow Designer notifications and status tracking; UI Policies for responsive behavior.</p>
+          <div class="row small"><span class="pill">ServiceNow</span><span class="pill">Flow Designer</span><span class="pill">UI Policies</span></div>
         </article>
         <article class="card">
-          <h3>DDoS Detection on SDN</h3>
-          <p class="muted">Traffic generation with Mininet/Ryu; trained models to detect attack patterns and reduce false positives.</p>
-          <div class="row small"><span class="pill">Python</span><span class="pill">SDN</span><span class="pill">ML</span></div>
+          <h3>Helpdesk Ticketing App — ServiceNow (ITSM)</h3>
+          <p class="muted">Submission, categorization, and resolution tracking with organized tables (Tickets/Departments/Technicians), auto-assignment via Business Rules & Flows, notifications, and dashboard summaries for SLA visibility.</p>
+          <div class="row small"><span class="pill">ServiceNow</span><span class="pill">Business Rules</span><span class="pill">Dashboards</span></div>
         </article>
         <article class="card">
-          <h3>Weather Forecasting (Deep Learning)</h3>
-          <p class="muted">Built DL model to predict short‑term weather using multi‑feature time series.</p>
-          <div class="row small"><span class="pill">Python</span><span class="pill">DL</span><span class="pill">Pandas</span></div>
+          <h3>Heart Failure Detection Using ECG — Python ML</h3>
+          <p class="muted">Signal processing & ML pipeline to identify arrhythmias; handled class imbalance & false positives; neural network classifier with documented evaluation and reproducible procedures.</p>
+          <div class="row small"><span class="pill">Python</span><span class="pill">ML</span><span class="pill">Signal Processing</span></div>
         </article>
         <article class="card">
-          <h3>Fake News Detection</h3>
-          <p class="muted">Classified news articles using NLP preprocessing and supervised learning.</p>
-          <div class="row small"><span class="pill">Python</span><span class="pill">NLP</span><span class="pill">sklearn</span></div>
+          <h3>DDoS Detection on SDN — Mininet / RYU / Python</h3>
+          <p class="muted">Built SDN topology; generated normal & DDoS traffic (iperf/hping3); collected controller logs and built analyzers; raised alarms and documented repeatable test procedures.</p>
+          <div class="row small"><span class="pill">Mininet</span><span class="pill">RYU</span><span class="pill">Python</span></div>
         </article>
         <article class="card">
-          <h3>ServiceNow — Dog Adoption Portal</h3>
-          <p class="muted">Custom app with records, workflows, and email notifications for adoption requests.</p>
-          <div class="row small"><span class="pill">ServiceNow</span><span class="pill">GlideRecord</span><span class="pill">Workflows</span></div>
+          <h3>Optimizations in Databases via DS & Algorithms</h3>
+          <p class="muted">Schema/index choices driven by access patterns; embedded specialized data structures to accelerate CRUD; tailored algorithms for storage paths; measured latency & complexity impacts.</p>
+          <div class="row small"><span class="pill">SQL</span><span class="pill">Data Structures</span><span class="pill">Performance</span></div>
         </article>
-        <article class="card">
-          <h3>ServiceNow — Helpdesk Ticketing</h3>
-          <p class="muted">Ticket intake, categorization, auto‑assignment, and resolution notifications.</p>
-          <div class="row small"><span class="pill">ServiceNow</span><span class="pill">App Engine Studio</span><span class="pill">CMDB (basic)</span></div>
-        </article>
+      </div>
+    </section>
+
+    <section id="education" class="section">
+      <h2>Education</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <p><strong>Texas A&M University–Corpus Christi</strong> — M.S., Computer Science <span class="muted">(2021–2023)</span></p>
+        </div>
+        <div class="card">
+          <p><strong>SRM Institute of Science and Technology</strong> — B.Tech., Computer Science <span class="muted">(2017–2021)</span></p>
+        </div>
       </div>
     </section>
 
@@ -218,15 +233,15 @@
       <div class="grid cols-2">
         <div class="card">
           <ul class="muted">
-            <li>micro1 — Certified Software Engineer (AI Interview), Sep 2025</li>
             <li>Programming in Python for Everyone</li>
             <li>Learn C++ Programming — Beginner to Advance — Deep Dive in C++</li>
+            <li>Complete ServiceNow Developer Course</li>
           </ul>
         </div>
         <div class="card">
           <ul class="muted">
-            <li>Nvidia Generative AI</li>
-            <li>Complete ServiceNow Developer Course (Udemy)</li>
+            <li>micro1 — Certified Software Engineer (AI Interview), Sep 2025</li>
+            <li>ChatGPT Prompt Engineering for Developers</li>
           </ul>
         </div>
       </div>
@@ -235,26 +250,27 @@
     <section id="contact" class="section">
       <h2>Contact</h2>
       <div class="grid cols-2">
-        <form class="card contact-form" action="https://formspree.io/f/your-id" method="POST">
+        <form class="card" action="https://formspree.io/f/your-id" method="POST">
           <label class="small muted" for="name">Name</label>
-          <input id="name" name="name" placeholder="Your name" required />
+          <input id="name" name="name" placeholder="Your name" required
+                 style="width:100%;background:#0d1426;border:1px solid rgba(148,163,184,.25);border-radius:12px;padding:12px;color:#fff">
           <label class="small muted" for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          <input id="email" name="email" type="email" placeholder="you@example.com" required
+                 style="width:100%;background:#0d1426;border:1px solid rgba(148,163,184,.25);border-radius:12px;padding:12px;color:#fff">
           <label class="small muted" for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Hi Pranjal, we’d like to talk about an opportunity…" required></textarea>
-          <button type="submit">Send Message</button>
-          <p class="small muted">Or email directly: <a href="mailto:pranjal6004@gmail.com">pranjal6004@gmail.com</a></p>
+          <textarea id="message" name="message" rows="5" placeholder="Hi Pranjal, we’d like to talk about an opportunity…"
+                    required style="width:100%;background:#0d1426;border:1px solid rgba(148,163,184,.25);border-radius:12px;padding:12px;color:#fff"></textarea>
+          <button type="submit" style="background:linear-gradient(90deg,var(--brand),var(--accent));border:none;color:#0b0f17;font-weight:800;padding:12px 14px;border-radius:12px">Send Message</button>
+          <p class="small muted" style="margin-top:8px">Or email directly: <a href="mailto:pranjal6004@gmail.com">pranjal6004@gmail.com</a></p>
         </form>
         <div class="card">
           <div class="kicker">Quick Links</div>
           <p class="muted">Prefer a quick scan? Grab my resume or connect:</p>
-          <p>
-            <a class="resume-btn" href="#" id="resumeLink2">Download Resume</a>
-          </p>
+          <p><a class="pill" href="assets/Pranjal_Srivastava_Resume_Portfolio_Full.pdf" target="_blank" rel="noopener">Download Resume</a></p>
           <div class="row">
-            <a class="pill" href="https://www.linkedin.com/in/pranjal-srivastava07" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="pill" href="https://www.linkedin.com/in/pranjal-srivastava07/" target="_blank" rel="noopener">LinkedIn</a>
           </div>
-          <p class="small muted" style="margin-top:16px">Phone: <a href="tel:+13463752373">+1 (346) 375‑2373</a></p>
+          <p class="small muted" style="margin-top:16px">Phone: <a href="tel:+13463752373">+1 (346) 375-2373</a></p>
         </div>
       </div>
     </section>
@@ -262,16 +278,24 @@
 
   <footer>
     <div class="container">
-      <p>© <span id="y"></span> Pranjal Srivastava — Built with HTML/CSS. Fast, responsive, and recruiter‑friendly.</p>
+      <p>© <span id="y"></span> Pranjal Srivastava — Built with HTML/CSS. Fast, responsive, and recruiter-friendly.</p>
     </div>
   </footer>
 
   <script>
-    // Year + resume placeholders
+    // Year
     document.getElementById('y').textContent = new Date().getFullYear();
-    const resumeURL = 'assets/Pranjal_Srivastava_Resume_Portfolio_Full.pdf'; // Replace with your actual resume path
-    document.getElementById('resumeLink').setAttribute('href', resumeURL);
-    document.getElementById('resumeLink2').setAttribute('href', resumeURL);
+
+    // Optional: verify resume link exists (friendly alert if missing)
+    (async () => {
+      const aTags = Array.from(document.querySelectorAll('a')).filter(a => a.href.includes('Pranjal_Srivastava_Resume_Portfolio_Full.pdf'));
+      try {
+        const res = await fetch('assets/Pranjal_Srivastava_Resume_Portfolio_Full.pdf', { method: 'HEAD' });
+        if (!res.ok) aTags.forEach(a => a.addEventListener('click', e => { e.preventDefault(); alert('Resume file not found yet. Please try again in a minute.'); }));
+      } catch {
+        aTags.forEach(a => a.addEventListener('click', e => { e.preventDefault(); alert('Resume file not found yet. Please try again later.'); }));
+      }
+    })();
   </script>
 </body>
 </html>
