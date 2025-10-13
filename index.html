@@ -17,6 +17,7 @@
     :root{
       --bg:#0b0f17; --card:#121827; --muted:#94a3b8; --text:#e5e7eb; --brand:#22d3ee; --accent:#a78bfa; --ring: rgba(34,211,238,0.35);
       --shadow: 0 10px 25px rgba(2,8,23,.35); --line: rgba(148,163,184,.12);
+      --header-h: 72px; /* header height */
     }
     [data-theme="light"]{
       --bg:#f7fafc; --card:#ffffff; --muted:#475569; --text:#0b0f17; --brand:#0ea5e9; --accent:#7c3aed; --ring: rgba(14,165,233,.25);
@@ -26,23 +27,39 @@
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:linear-gradient(180deg,var(--bg) 0%, var(--bg) 100%); color:var(--text)}
+
     a{color:var(--brand); text-decoration:none}
     .container{max-width:1100px; margin:0 auto; padding:0 20px}
 
+    /* HEADER + NAV (fixed + tidy) */
     header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(10px); background:color-mix(in srgb, var(--bg), transparent 60%); border-bottom:1px solid var(--line)}
-    .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      height:var(--header-h);
+    }
     .nav a.logo{font-weight:800; letter-spacing:.4px; color:var(--text)}
-    .nav-links{display:flex; gap:16px; flex-wrap:wrap; align-items:center}
+    .nav-links{
+      display:flex; align-items:center; gap:14px;
+      flex-wrap:nowrap; overflow-x:auto; white-space:nowrap;
+      scrollbar-width:none;
+    }
+    .nav-links::-webkit-scrollbar{display:none}
     .nav-links a{color:var(--muted); font-weight:600}
     .nav-links a:hover{color:var(--text)}
-    .cta-btn{background:linear-gradient(90deg,var(--brand),var(--accent)); color:#fff; font-weight:800; border:none; padding:10px 14px; border-radius:12px}
+    .cta-btn{background:linear-gradient(90deg,var(--brand),var(--accent)); color:#fff; font-weight:800; border:none; padding:10px 14px; border-radius:12px; flex:0 0 auto}
 
+    /* Ensure content never sits under sticky header */
+    main{padding-top:calc(var(--header-h) + 12px)}
+    section{scroll-margin-top:calc(var(--header-h) + 16px)}
+
+    /* THEME TOGGLE */
     .toggle{display:flex; align-items:center; gap:8px; border:1px solid var(--line); padding:6px 10px; border-radius:999px; cursor:pointer; color:var(--muted); user-select:none}
     .toggle input{appearance:none; width:34px; height:20px; border-radius:999px; background:var(--line); position:relative; outline:none; cursor:pointer}
     .toggle input::after{content:""; position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:50%; background:var(--text); transition:transform .2s ease}
     .toggle input:checked{background:linear-gradient(90deg,var(--brand),var(--accent))}
     .toggle input:checked::after{transform:translateX(14px)}
 
+    /* HERO */
     .hero{display:grid; grid-template-columns:1.15fr .85fr; gap:32px; padding:72px 0 36px; align-items:center}
     .badge{display:inline-flex; gap:8px; align-items:center; color:#0b0f17; background:linear-gradient(90deg,var(--brand),var(--accent)); font-weight:800; padding:8px 12px; border-radius:999px}
     .title{font-size:48px; line-height:1.05; margin:14px 0}
@@ -52,6 +69,7 @@
     .profile{position:relative; z-index:1; width:100%; aspect-ratio:1/1; border-radius:18px; object-fit:cover; border:1px solid var(--line); box-shadow:var(--shadow)}
     .hero-actions .pill{border:1px solid var(--line); color:var(--text); padding:6px 10px; border-radius:999px; font-size:14px}
 
+    /* SECTIONS + CARDS */
     .section{padding:48px 0}
     .section h2{font-size:28px; margin:0 0 12px}
     .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; box-shadow:var(--shadow)}
@@ -62,13 +80,15 @@
     .pill{border:1px solid var(--line); color:var(--text); padding:6px 10px; border-radius:999px; font-size:14px}
     .muted{color:var(--muted)}
     .kicker{font-weight:700; color:var(--muted); letter-spacing:.16em; text-transform:uppercase; font-size:12px}
+
+    /* TIMELINE */
     .timeline{position:relative; padding-left:18px}
     .timeline::before{content:""; position:absolute; left:6px; top:4px; bottom:4px; width:2px; background:linear-gradient(#334155,#475569)}
     [data-theme="light"] .timeline::before{background:linear-gradient(#cbd5e1,#94a3b8)}
     .tl-item{position:relative; margin:0 0 18px}
     .tl-item::before{content:""; position:absolute; left:-12px; top:6px; width:10px; height:10px; border-radius:999px; background:linear-gradient(90deg,var(--brand),var(--accent)); box-shadow:0 0 0 3px var(--ring)}
 
-    /* Project gallery */
+    /* PROJECTS */
     .tool-row{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:12px}
     .tool-row input[type="search"]{flex:1; min-width:240px; background:transparent; border:1px solid var(--line); color:var(--text); padding:10px 12px; border-radius:12px}
     .card.project{transition:transform .15s ease, box-shadow .15s ease}
@@ -77,28 +97,24 @@
     .thumb{aspect-ratio:16/9; width:100%; border-radius:12px; object-fit:cover; border:1px solid var(--line); margin-bottom:10px}
     .small{font-size:13px}
 
-    /* Modals */
+    /* MODALS */
     .modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.55); padding:20px}
     .modal[open]{display:flex}
     .modal-card{max-width:760px; width:100%; background:var(--card); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); padding:18px}
     .modal h3{margin-top:0}
     .modal .close{float:right; border:1px solid var(--line); border-radius:10px; padding:4px 10px; cursor:pointer; color:var(--muted)}
 
-    /* Scroll reveal */
+    /* SCROLL REVEAL */
     .reveal-on-scroll{opacity:0; transform:translateY(10px); transition:opacity .5s ease, transform .5s ease}
     .reveal-on-scroll.revealed{opacity:1; transform:none}
 
     footer{padding:40px 0; color:var(--muted); border-top:1px solid var(--line)}
 
-    /* Recruiter Mode */
-    .recruiter-compact .subtitle,
-    .recruiter-compact #about .card:first-of-type,
-    .recruiter-compact #skills,
-    .recruiter-compact #education,
-    .recruiter-compact #certs{display:none}
-    .recruiter-compact #projects .project:not(.top){display:none}
-    .recruiter-switch{display:flex; align-items:center; gap:8px; border:1px dashed var(--line); padding:8px 12px; border-radius:12px}
-
+    @media (max-width: 980px){
+      .nav{gap:8px}
+      .nav-links{max-width:100%}
+      .cta-btn{flex:0 0 auto}
+    }
     @media (max-width: 900px){
       .hero{grid-template-columns:1fr; padding-top:32px}
       .grid.cols-3{grid-template-columns:1fr}
@@ -120,13 +136,10 @@
         <a href="#certs">Certifications</a>
         <a href="#contact">Contact</a>
 
+        <!-- Theme toggle (optional) -->
         <label class="toggle" title="Toggle light/dark">
           <span>Theme</span>
           <input type="checkbox" id="themeToggle" aria-label="Toggle theme">
-        </label>
-
-        <label class="recruiter-switch">
-          <input type="checkbox" id="recruiterToggle" aria-label="Recruiter Mode"> Recruiter Mode
         </label>
 
         <a class="cta-btn" href="mailto:pranjal6004@gmail.com?subject=Interview%20%E2%80%94%20Software%20Developer&body=Hi%20Pranjal,%20">Hire Me</a>
@@ -230,8 +243,8 @@
       </div>
 
       <div class="grid cols-3" id="projectGrid">
-        <!-- ServiceNow Dog Adoption (TOP) -->
-        <article class="card project top reveal-on-scroll" data-tags="servicenow web">
+        <!-- ServiceNow Dog Adoption -->
+        <article class="card project reveal-on-scroll" data-tags="servicenow web">
           <img class="thumb" src="assets/Portfolio_Image.png" alt="Dog Adoption Portal mock" loading="lazy">
           <h3>Dog Adoption Portal — ServiceNow</h3>
           <p class="muted">Service Portal for profiles & adoption requests with validations and role-based visibility.</p>
@@ -241,8 +254,8 @@
           </div>
         </article>
 
-        <!-- ServiceNow Helpdesk (TOP) -->
-        <article class="card project top reveal-on-scroll" data-tags="servicenow itsm">
+        <!-- ServiceNow Helpdesk -->
+        <article class="card project reveal-on-scroll" data-tags="servicenow itsm">
           <img class="thumb" src="assets/Portfolio_Image.png" alt="Helpdesk Ticketing mock" loading="lazy">
           <h3>Helpdesk Ticketing App — ServiceNow</h3>
           <p class="muted">Submission, categorization, auto-assignment, notifications, and SLA dashboards.</p>
@@ -252,8 +265,8 @@
           </div>
         </article>
 
-        <!-- DDoS SDN (TOP) -->
-        <article class="card project top reveal-on-scroll" data-tags="ml python networking">
+        <!-- DDoS SDN -->
+        <article class="card project reveal-on-scroll" data-tags="ml python networking">
           <img class="thumb" src="assets/Portfolio_Image.png" alt="DDoS SDN mock" loading="lazy">
           <h3>DDoS Detection on SDN — Mininet / RYU / Python</h3>
           <p class="muted">SDN topology + traffic generation; trained models to detect attack patterns with fewer false positives.</p>
@@ -279,7 +292,7 @@
           <div class="row small"><span class="pill">SQL</span><span class="pill">Performance</span><span class="pill">Data Structures</span></div>
         </article>
 
-        <!-- Placeholder for .NET/API example -->
+        <!-- API example -->
         <article class="card project reveal-on-scroll" data-tags="dotnet java api">
           <img class="thumb" src="assets/Portfolio_Image.png" alt="API project mock" loading="lazy">
           <h3>API Integrations — .NET / Java</h3>
@@ -329,7 +342,7 @@
                     required style="width:100%;background:transparent;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--text)"></textarea>
 
           <input type="hidden" name="_subject" value="New message from your portfolio" />
-          <input type="hidden" name="_next" value="https://pranjalmax.github.io/pranjal-portfolio/#contact"" />
+          <input type="hidden" name="_next" value="https://pranjalmax.github.io/pranjal-portfolio/#contact" />
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
           <button type="submit" id="sendBtn"
@@ -407,12 +420,6 @@
       localStorage.setItem('theme-pref', next);
     });
 
-    // RECRUITER MODE
-    const recruiterToggle = document.getElementById('recruiterToggle');
-    recruiterToggle.addEventListener('change', () => {
-      document.body.classList.toggle('recruiter-compact', recruiterToggle.checked);
-    });
-
     // SCROLL REVEAL
     const revealEls = document.querySelectorAll('.reveal-on-scroll');
     const io = new IntersectionObserver(entries => {
@@ -452,28 +459,29 @@
     document.querySelectorAll('.modal .close').forEach(b => b.addEventListener('click', () => closeModal(b.dataset.close)));
     document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.removeAttribute('open'); }));
 
-    // CONFETTI (tiny, no deps)
-    function confettiBurst(x = window.innerWidth/2, y = window.innerHeight/2){
-      const colors = [getComputedStyle(document.documentElement).getPropertyValue('--brand').trim(), getComputedStyle(document.documentElement).getPropertyValue('--accent').trim(), '#ffffff'];
-      const count = 24;
-      for(let i=0;i<count;i++){
-        const d = document.createElement('div');
-        d.style.position='fixed'; d.style.left=x+'px'; d.style.top=y+'px';
-        d.style.width='6px'; d.style.height='6px'; d.style.borderRadius='2px';
-        d.style.background=colors[i%colors.length]; d.style.pointerEvents='none'; d.style.zIndex=9999;
-        document.body.appendChild(d);
-        const ang = Math.random()*Math.PI*2; const vel = 3+Math.random()*6; const dx = Math.cos(ang)*vel; const dy = Math.sin(ang)*vel;
-        const rot = (Math.random()*360)+'deg';
-        d.animate([{transform:`translate(0,0) rotate(0)`}, {transform:`translate(${dx*30}px, ${dy*30}px) rotate(${rot})`, opacity:0}], {duration:800+Math.random()*400, easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=()=>d.remove();
-      }
-    }
-
-    // CONTACT FORM AJAX (replace action with your Formspree endpoint)
+    // CONTACT FORM AJAX (Formspree)
     (function(){
       const form = document.getElementById('contactForm');
       const statusEl = document.getElementById('formStatus');
       const sendBtn = document.getElementById('sendBtn');
       if (!form) return;
+
+      // tiny confetti (no deps)
+      function confettiBurst(x = window.innerWidth/2, y = window.innerHeight/2){
+        const styles = getComputedStyle(document.documentElement);
+        const colors = [styles.getPropertyValue('--brand').trim(), styles.getPropertyValue('--accent').trim(), '#ffffff'];
+        const count = 24;
+        for(let i=0;i<count;i++){
+          const d = document.createElement('div');
+          d.style.position='fixed'; d.style.left=x+'px'; d.style.top=y+'px';
+          d.style.width='6px'; d.style.height='6px'; d.style.borderRadius='2px';
+          d.style.background=colors[i%colors.length]; d.style.pointerEvents='none'; d.style.zIndex=9999;
+          document.body.appendChild(d);
+          const ang = Math.random()*Math.PI*2; const vel = 3+Math.random()*6; const dx = Math.cos(ang)*vel; const dy = Math.sin(ang)*vel;
+          const rot = (Math.random()*360)+'deg';
+          d.animate([{transform:`translate(0,0) rotate(0)`}, {transform:`translate(${dx*30}px, ${dy*30}px) rotate(${rot})`, opacity:0}], {duration:800+Math.random()*400, easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=()=>d.remove();
+        }
+      }
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault(); statusEl.textContent = '';
@@ -486,7 +494,7 @@
           if (res.ok) {
             form.reset();
             statusEl.textContent = '✅ Thanks! Your message has been sent.';
-            confettiBurst(rect.left + rect.width/2, rect.top + window.scrollY); // subtle confetti at button
+            confettiBurst(rect.left + rect.width/2, rect.top + window.scrollY);
           } else {
             const err = await res.json().catch(() => ({}));
             statusEl.textContent = err?.errors?.[0]?.message || '⚠️ Could not send. Please try again.';
