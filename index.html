@@ -1,52 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pranjal Srivastava — Software Developer Portfolio</title>
-  <meta name="description" content="Portfolio of Pranjal Srivastava — Full-stack Software Developer (Java/Spring Boot, .NET/C#, JavaScript/React basics, ServiceNow). Projects, experience, skills, and contact." />
+  <meta name="description" content="Portfolio of Pranjal Srivastava — Software Developer (Java/Spring Boot, .NET/C#, ServiceNow, SQL). Projects, skills, experience, and contact." />
   <meta name="author" content="Pranjal Srivastava" />
+
+  <!-- Performance: font preloads -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#0b0f17; --card:#121827; --muted:#94a3b8; --text:#e5e7eb; --brand:#22d3ee; --accent:#a78bfa; --ring: rgba(34,211,238,0.35);
-      --shadow: 0 10px 25px rgba(2,8,23,.35);
+      --shadow: 0 10px 25px rgba(2,8,23,.35); --line: rgba(148,163,184,.12);
     }
+    [data-theme="light"]{
+      --bg:#f7fafc; --card:#ffffff; --muted:#475569; --text:#0b0f17; --brand:#0ea5e9; --accent:#7c3aed; --ring: rgba(14,165,233,.25);
+      --shadow: 0 8px 18px rgba(2,8,23,.12); --line: rgba(2,8,23,.08);
+    }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:linear-gradient(180deg,#0b0f17 0%, #0d1322 100%); color:var(--text)}
+    body{margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:linear-gradient(180deg,var(--bg) 0%, var(--bg) 100%); color:var(--text)}
     a{color:var(--brand); text-decoration:none}
     .container{max-width:1100px; margin:0 auto; padding:0 20px}
-    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(10px); background:rgba(11,15,23,.6); border-bottom:1px solid rgba(148,163,184,.12)}
+
+    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(10px); background:color-mix(in srgb, var(--bg), transparent 60%); border-bottom:1px solid var(--line)}
     .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
-    .nav a.logo{font-weight:800; letter-spacing:.4px; color:#fff}
-    .nav-links{display:flex; gap:18px; flex-wrap:wrap}
+    .nav a.logo{font-weight:800; letter-spacing:.4px; color:var(--text)}
+    .nav-links{display:flex; gap:16px; flex-wrap:wrap; align-items:center}
     .nav-links a{color:var(--muted); font-weight:600}
-    .nav-links a:hover{color:#fff}
-    .cta-btn{background:linear-gradient(90deg,var(--brand),var(--accent)); color:#000; font-weight:800; border:none; padding:10px 14px; border-radius:12px}
-    .hero{display:grid; grid-template-columns:1.15fr .85fr; gap:32px; padding:72px 0 36px}
+    .nav-links a:hover{color:var(--text)}
+    .cta-btn{background:linear-gradient(90deg,var(--brand),var(--accent)); color:#fff; font-weight:800; border:none; padding:10px 14px; border-radius:12px}
+
+    .toggle{display:flex; align-items:center; gap:8px; border:1px solid var(--line); padding:6px 10px; border-radius:999px; cursor:pointer; color:var(--muted); user-select:none}
+    .toggle input{appearance:none; width:34px; height:20px; border-radius:999px; background:var(--line); position:relative; outline:none; cursor:pointer}
+    .toggle input::after{content:""; position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:50%; background:var(--text); transition:transform .2s ease}
+    .toggle input:checked{background:linear-gradient(90deg,var(--brand),var(--accent))}
+    .toggle input:checked::after{transform:translateX(14px)}
+
+    .hero{display:grid; grid-template-columns:1.15fr .85fr; gap:32px; padding:72px 0 36px; align-items:center}
     .badge{display:inline-flex; gap:8px; align-items:center; color:#0b0f17; background:linear-gradient(90deg,var(--brand),var(--accent)); font-weight:800; padding:8px 12px; border-radius:999px}
     .title{font-size:48px; line-height:1.05; margin:14px 0}
     .subtitle{color:var(--muted); font-size:18px}
-    .profile{width:100%; aspect-ratio:1/1; border-radius:18px; object-fit:cover; border:1px solid rgba(148,163,184,.18); box-shadow:var(--shadow)}
+    .profile-wrap{position:relative}
+    .glow{position:absolute; inset:auto; width:85%; height:85%; left:7.5%; top:7.5%; border-radius:999px; filter:blur(48px); background:radial-gradient(50% 50% at 50% 50%, color-mix(in srgb, var(--brand), transparent 40%) 0%, transparent 70%); pointer-events:none; z-index:0}
+    .profile{position:relative; z-index:1; width:100%; aspect-ratio:1/1; border-radius:18px; object-fit:cover; border:1px solid var(--line); box-shadow:var(--shadow)}
+    .hero-actions .pill{border:1px solid var(--line); color:var(--text); padding:6px 10px; border-radius:999px; font-size:14px}
+
     .section{padding:48px 0}
     .section h2{font-size:28px; margin:0 0 12px}
-    .card{background:var(--card); border:1px solid rgba(148,163,184,.15); border-radius:16px; padding:18px; box-shadow:var(--shadow)}
+    .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; box-shadow:var(--shadow)}
     .grid{display:grid; gap:16px}
     .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
     .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .row{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
-    .pill{border:1px solid rgba(148,163,184,.22); color:var(--text); padding:6px 10px; border-radius:999px; font-size:14px}
+    .row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .pill{border:1px solid var(--line); color:var(--text); padding:6px 10px; border-radius:999px; font-size:14px}
     .muted{color:var(--muted)}
-    .kicker{font-weight:700; color:#cbd5e1; letter-spacing:.16em; text-transform:uppercase; font-size:12px}
+    .kicker{font-weight:700; color:var(--muted); letter-spacing:.16em; text-transform:uppercase; font-size:12px}
     .timeline{position:relative; padding-left:18px}
     .timeline::before{content:""; position:absolute; left:6px; top:4px; bottom:4px; width:2px; background:linear-gradient(#334155,#475569)}
+    [data-theme="light"] .timeline::before{background:linear-gradient(#cbd5e1,#94a3b8)}
     .tl-item{position:relative; margin:0 0 18px}
     .tl-item::before{content:""; position:absolute; left:-12px; top:6px; width:10px; height:10px; border-radius:999px; background:linear-gradient(90deg,var(--brand),var(--accent)); box-shadow:0 0 0 3px var(--ring)}
-    footer{padding:40px 0; color:var(--muted); border-top:1px solid rgba(148,163,184,.12)}
+
+    /* Project gallery */
+    .tool-row{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:12px}
+    .tool-row input[type="search"]{flex:1; min-width:240px; background:transparent; border:1px solid var(--line); color:var(--text); padding:10px 12px; border-radius:12px}
+    .card.project{transition:transform .15s ease, box-shadow .15s ease}
+    .card.project:hover{transform:translateY(-3px); box-shadow:0 14px 32px rgba(2,8,23,.25)}
+    [data-theme="light"] .card.project:hover{box-shadow:0 12px 26px rgba(2,8,23,.12)}
+    .thumb{aspect-ratio:16/9; width:100%; border-radius:12px; object-fit:cover; border:1px solid var(--line); margin-bottom:10px}
     .small{font-size:13px}
+
+    /* Modals */
+    .modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.55); padding:20px}
+    .modal[open]{display:flex}
+    .modal-card{max-width:760px; width:100%; background:var(--card); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); padding:18px}
+    .modal h3{margin-top:0}
+    .modal .close{float:right; border:1px solid var(--line); border-radius:10px; padding:4px 10px; cursor:pointer; color:var(--muted)}
+
+    /* Scroll reveal */
+    .reveal-on-scroll{opacity:0; transform:translateY(10px); transition:opacity .5s ease, transform .5s ease}
+    .reveal-on-scroll.revealed{opacity:1; transform:none}
+
+    footer{padding:40px 0; color:var(--muted); border-top:1px solid var(--line)}
+
+    /* Recruiter Mode */
+    .recruiter-compact .subtitle,
+    .recruiter-compact #about .card:first-of-type,
+    .recruiter-compact #skills,
+    .recruiter-compact #education,
+    .recruiter-compact #certs{display:none}
+    .recruiter-compact #projects .project:not(.top){display:none}
+    .recruiter-switch{display:flex; align-items:center; gap:8px; border:1px dashed var(--line); padding:8px 12px; border-radius:12px}
+
     @media (max-width: 900px){
       .hero{grid-template-columns:1fr; padding-top:32px}
       .grid.cols-3{grid-template-columns:1fr}
@@ -67,45 +119,49 @@
         <a href="#education">Education</a>
         <a href="#certs">Certifications</a>
         <a href="#contact">Contact</a>
+
+        <label class="toggle" title="Toggle light/dark">
+          <span>Theme</span>
+          <input type="checkbox" id="themeToggle" aria-label="Toggle theme">
+        </label>
+
+        <label class="recruiter-switch">
+          <input type="checkbox" id="recruiterToggle" aria-label="Recruiter Mode"> Recruiter Mode
+        </label>
+
+        <a class="cta-btn" href="mailto:pranjal6004@gmail.com?subject=Interview%20%E2%80%94%20Software%20Developer&body=Hi%20Pranjal,%20">Hire Me</a>
       </nav>
-      <a class="cta-btn" href="#contact">Hire Me</a>
     </div>
   </header>
 
   <main id="home" class="container">
-    <section class="hero">
+    <section class="hero reveal-on-scroll">
       <div>
         <span class="badge">Available for Full-Time — Software Developer</span>
         <h1 class="title">Pranjal Srivastava</h1>
         <p class="subtitle">
-          Full-stack Software Developer with hands-on experience in enterprise web apps, ServiceNow platform work,
-          and data-driven services. I build scalable APIs and modular UIs in Java/Spring Boot, .NET/C#, and JavaScript
-          (React basics); automate ITSM processes on ServiceNow; and integrate cloud-backed solutions on AWS/Azure.
-          Strong in SQL design & reporting (SSRS/Power BI), CI-enabled quality, and change-controlled releases. 
+          Software Developer with hands-on experience across Java/Spring Boot, .NET/C#, ServiceNow, and SQL.
+          I ship clean backend APIs, pragmatic UIs, and automated workflows—focused on reliability, clarity, and impact.
         </p>
-        <div class="row" style="margin-top:16px">
+        <div class="row hero-actions" style="margin-top:16px">
           <a class="pill" href="assets/Pranjal_Srivastava_Resume_Portfolio_Full.pdf" target="_blank" rel="noopener">Download Resume</a>
-          <a class="pill" href="#contact">Contact Me</a>
-        </div>
-        <div class="row" style="margin-top:10px">
           <a class="pill" href="https://www.linkedin.com/in/pranjal-srivastava07/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="pill" href="#projects">See Projects</a>
+          <a class="pill" href="#contact">Contact</a>
         </div>
       </div>
-      <div>
-        <img class="profile" src="assets/Portfolio_Image.png" alt="Pranjal Srivastava portrait" />
+      <div class="profile-wrap">
+        <span class="glow" aria-hidden="true"></span>
+        <img class="profile" src="assets/Portfolio_Image.png" alt="Pranjal Srivastava portrait" loading="eager" />
       </div>
     </section>
 
     <section id="about" class="section">
       <div class="grid cols-2">
-        <div>
+        <div class="reveal-on-scroll">
           <h2>About Me</h2>
           <p class="muted">
-            I enjoy shipping practical software—secure Java/Spring and .NET APIs, clean front-end experiences,
-            and ServiceNow workflows that automate real work. I’m comfortable switching contexts between feature
-            delivery, integration work, and operational support, partnering with stakeholders in Agile teams to land
-            reliable, secure, and usable software.
+            I enjoy shipping practical software—secure APIs, clean front-end experiences, and ServiceNow flows that automate real work.
+            Comfortable moving between feature delivery, integration, and ops in Agile teams to land reliable, usable software.
           </p>
           <div class="card">
             <div class="kicker">What I’m Looking For</div>
@@ -114,12 +170,12 @@
               <span class="pill">Java & Spring</span>
               <span class="pill">.NET / C#</span>
               <span class="pill">ServiceNow</span>
-              <span class="pill">SQL • Reporting</span>
-              <span class="pill">AWS / Azure (basics)</span>
+              <span class="pill">SQL</span>
+              <span class="pill">AWS/Azure (basics)</span>
             </div>
           </div>
         </div>
-        <div class="card">
+        <div class="card reveal-on-scroll">
           <div class="kicker">Contact</div>
           <p class="muted">Corpus Christi, TX • +1 (346) 375-2373 • <a href="mailto:pranjal6004@gmail.com">pranjal6004@gmail.com</a></p>
           <p class="muted"><a href="https://www.linkedin.com/in/pranjal-srivastava07/" target="_blank" rel="noopener">linkedin.com/in/pranjal-srivastava07</a></p>
@@ -127,58 +183,34 @@
       </div>
     </section>
 
-    <section id="skills" class="section">
+    <section id="skills" class="section reveal-on-scroll">
       <h2>Core Skills</h2>
       <div class="grid cols-3">
-        <div class="card">
-          <h3>Languages & Frameworks</h3>
-          <p class="muted">Java, Spring Boot, C#, .NET, Python, JavaScript, TypeScript, C/C++, React (basics), Glide APIs</p>
-        </div>
-        <div class="card">
-          <h3>ServiceNow</h3>
-          <p class="muted">App Engine Studio, Form Designer, tables/dictionary, views/related lists, client scripts, UI policies/actions, Script Includes, business rules, Flow Designer, ATF (basics)</p>
-        </div>
-        <div class="card">
-          <h3>Web & APIs</h3>
-          <p class="muted">HTML, CSS, responsive UI, accessibility, REST APIs, JSON/XML, Swagger/OpenAPI, input validation, error handling</p>
-        </div>
-        <div class="card">
-          <h3>Data & SQL</h3>
-          <p class="muted">SQL Server, PostgreSQL, schema design, indexing, query tuning, reporting with SSRS, Power BI, Crystal (basics)</p>
-        </div>
-        <div class="card">
-          <h3>Cloud & DevOps</h3>
-          <p class="muted">AWS & Azure (basics), IIS, Docker, Git, GitHub Actions/Jenkins, env configs & secrets management</p>
-        </div>
-        <div class="card">
-          <h3>Quality, Process & Security</h3>
-          <p class="muted">Unit/integration tests (JUnit/Mockito/PyTest), debugging, regression checklists, code reviews, Agile/Scrum (Jira), RBAC, audit logging, least privilege, change control, documentation & runbooks</p>
-        </div>
+        <div class="card"><h3>Languages & Frameworks</h3><p class="muted">Java, Spring Boot, C#, .NET, Python, JavaScript/TypeScript, C/C++, React (basics)</p></div>
+        <div class="card"><h3>ServiceNow</h3><p class="muted">App Engine, forms/catalog, client scripts, UI policies, Business Rules, Flow Designer, ATF (basics)</p></div>
+        <div class="card"><h3>Web & APIs</h3><p class="muted">HTML/CSS, responsive UI, REST, JSON/XML, Swagger/OpenAPI</p></div>
+        <div class="card"><h3>Data & SQL</h3><p class="muted">SQL Server/Postgres, schema design, indexing, SSRS/Power BI</p></div>
+        <div class="card"><h3>Cloud & DevOps</h3><p class="muted">AWS/Azure basics, Docker, Git, CI/CD (GitHub Actions/Jenkins)</p></div>
+        <div class="card"><h3>Quality & Process</h3><p class="muted">Unit/integration tests, debugging, code reviews, Agile, RBAC</p></div>
       </div>
     </section>
 
-    <section id="experience" class="section">
+    <section id="experience" class="section reveal-on-scroll">
       <h2>Experience</h2>
       <div class="timeline">
         <div class="tl-item">
           <h3><strong>Tinker Tech Logix</strong> — <em>Software Developer</em> <span class="muted">(Apr 2024 – Aug 2025)</span></h3>
           <ul class="muted">
-            <li>Built Java/Spring Boot and .NET APIs with React views; documented endpoints using Swagger/OpenAPI.</li>
-            <li>Designed RESTful APIs (CRUD, auth, pagination) and integrated 3rd-party services with robust error responses.</li>
-            <li>Wrote unit/integration tests (JUnit/Mockito, PyTest), monitored CI, and fixed regressions quickly.</li>
-            <li>Optimized SQL schemas & queries; tuned indexes/caching to reduce response times on high-volume screens.</li>
-            <li>Containerized services with Docker and set up CI/CD (GitHub Actions); documented run/build steps.</li>
-            <li>Delivered ERP-style modules (Admissions, Fees, Attendance, Exams, Results) with RBAC, validations, audit logging, CBCS workflows.</li>
-            <li>ServiceNow: Forms/catalog items with client scripts, UI policies, business rules; Flow Designer notifications; structured views/related lists.</li>
-            <li>Worked in Agile ceremonies; used PRs & code reviews; prepared release notes and rollout/rollback steps.</li>
+            <li>Built Java/Spring Boot & .NET APIs with React views; documented endpoints via Swagger/OpenAPI.</li>
+            <li>Optimized SQL schemas/queries; improved response times with indexing and caching.</li>
+            <li>ServiceNow: forms/catalog items, client scripts, UI policies, Business Rules, Flow Designer notifications.</li>
           </ul>
         </div>
         <div class="tl-item">
-          <h3><strong>ECS</strong> — <em>Intern, Cloud Server & Data Management</em> <span class="muted">(May 2019 – Aug 2019)</span></h3>
+          <h3><strong>ECS</strong> — <em>Intern, Cloud Server & Data Management</em> <span class="muted">(Jun 2019 – Jul 2019)</span></h3>
           <ul class="muted">
-            <li>Assisted installs, configuration, and upgrades for server-hosted apps; validated checklists and documented results.</li>
-            <li>Contributed to backup/restore procedures and verified integrity during drills.</li>
-            <li>Created simple scripts for system/network checks to speed cutovers & troubleshooting; improved runbooks and asset records.</li>
+            <li>Assisted server app installs/upgrades; improved runbooks and backup/restore procedures.</li>
+            <li>Automated checks with simple scripts for faster cutovers & troubleshooting.</li>
           </ul>
         </div>
       </div>
@@ -186,83 +218,127 @@
     </section>
 
     <section id="projects" class="section">
-      <h2>Projects</h2>
-      <div class="grid cols-3">
-        <article class="card">
+      <h2 class="reveal-on-scroll">Projects</h2>
+
+      <div class="tool-row reveal-on-scroll" aria-label="Project filters">
+        <button class="pill" data-filter="all">All</button>
+        <button class="pill" data-filter="java">Java</button>
+        <button class="pill" data-filter="dotnet">.NET</button>
+        <button class="pill" data-filter="servicenow">ServiceNow</button>
+        <button class="pill" data-filter="ml">ML</button>
+        <input type="search" id="projSearch" placeholder="Search projects..." aria-label="Search projects">
+      </div>
+
+      <div class="grid cols-3" id="projectGrid">
+        <!-- ServiceNow Dog Adoption (TOP) -->
+        <article class="card project top reveal-on-scroll" data-tags="servicenow web">
+          <img class="thumb" src="assets/Portfolio_Image.png" alt="Dog Adoption Portal mock" loading="lazy">
           <h3>Dog Adoption Portal — ServiceNow</h3>
-          <p class="muted">Service Portal for dog profiles & adoption requests with validations and role-based visibility; Record Producers, reference fields, choice lists; Flow Designer notifications and status tracking; UI Policies for responsive behavior.</p>
+          <p class="muted">Service Portal for profiles & adoption requests with validations and role-based visibility.</p>
           <div class="row small"><span class="pill">ServiceNow</span><span class="pill">Flow Designer</span><span class="pill">UI Policies</span></div>
+          <div class="row" style="margin-top:8px">
+            <button class="pill open-modal" data-modal="modal-dog">Case study</button>
+          </div>
         </article>
-        <article class="card">
-          <h3>Helpdesk Ticketing App — ServiceNow (ITSM)</h3>
-          <p class="muted">Submission, categorization, and resolution tracking with organized tables (Tickets/Departments/Technicians), auto-assignment via Business Rules & Flows, notifications, and dashboard summaries for SLA visibility.</p>
+
+        <!-- ServiceNow Helpdesk (TOP) -->
+        <article class="card project top reveal-on-scroll" data-tags="servicenow itsm">
+          <img class="thumb" src="assets/Portfolio_Image.png" alt="Helpdesk Ticketing mock" loading="lazy">
+          <h3>Helpdesk Ticketing App — ServiceNow</h3>
+          <p class="muted">Submission, categorization, auto-assignment, notifications, and SLA dashboards.</p>
           <div class="row small"><span class="pill">ServiceNow</span><span class="pill">Business Rules</span><span class="pill">Dashboards</span></div>
+          <div class="row" style="margin-top:8px">
+            <button class="pill open-modal" data-modal="modal-helpdesk">Case study</button>
+          </div>
         </article>
-        <article class="card">
+
+        <!-- DDoS SDN (TOP) -->
+        <article class="card project top reveal-on-scroll" data-tags="ml python networking">
+          <img class="thumb" src="assets/Portfolio_Image.png" alt="DDoS SDN mock" loading="lazy">
+          <h3>DDoS Detection on SDN — Mininet / RYU / Python</h3>
+          <p class="muted">SDN topology + traffic generation; trained models to detect attack patterns with fewer false positives.</p>
+          <div class="row small"><span class="pill">Mininet</span><span class="pill">RYU</span><span class="pill">Python</span></div>
+          <div class="row" style="margin-top:8px">
+            <button class="pill open-modal" data-modal="modal-sdn">Case study</button>
+          </div>
+        </article>
+
+        <!-- Heart Failure Detection -->
+        <article class="card project reveal-on-scroll" data-tags="ml python">
+          <img class="thumb" src="assets/Portfolio_Image.png" alt="ECG project mock" loading="lazy">
           <h3>Heart Failure Detection Using ECG — Python ML</h3>
-          <p class="muted">Signal processing & ML pipeline to identify arrhythmias; handled class imbalance & false positives; neural network classifier with documented evaluation and reproducible procedures.</p>
+          <p class="muted">Signal processing & ML pipeline to identify arrhythmias with reproducible evaluation.</p>
           <div class="row small"><span class="pill">Python</span><span class="pill">ML</span><span class="pill">Signal Processing</span></div>
         </article>
-        <article class="card">
-          <h3>DDoS Detection on SDN — Mininet / RYU / Python</h3>
-          <p class="muted">Built SDN topology; generated normal & DDoS traffic (iperf/hping3); collected controller logs and built analyzers; raised alarms and documented repeatable test procedures.</p>
-          <div class="row small"><span class="pill">Mininet</span><span class="pill">RYU</span><span class="pill">Python</span></div>
-        </article>
-        <article class="card">
+
+        <!-- DB Optimizations -->
+        <article class="card project reveal-on-scroll" data-tags="java dotnet sql">
+          <img class="thumb" src="assets/Portfolio_Image.png" alt="Database project mock" loading="lazy">
           <h3>Optimizations in Databases via DS & Algorithms</h3>
-          <p class="muted">Schema/index choices driven by access patterns; embedded specialized data structures to accelerate CRUD; tailored algorithms for storage paths; measured latency & complexity impacts.</p>
-          <div class="row small"><span class="pill">SQL</span><span class="pill">Data Structures</span><span class="pill">Performance</span></div>
+          <p class="muted">Schema/index choices and data structures tuned to access patterns; measurable latency gains.</p>
+          <div class="row small"><span class="pill">SQL</span><span class="pill">Performance</span><span class="pill">Data Structures</span></div>
+        </article>
+
+        <!-- Placeholder for .NET/API example -->
+        <article class="card project reveal-on-scroll" data-tags="dotnet java api">
+          <img class="thumb" src="assets/Portfolio_Image.png" alt="API project mock" loading="lazy">
+          <h3>API Integrations — .NET / Java</h3>
+          <p class="muted">CRUD + auth + pagination; robust error handling and documented with OpenAPI.</p>
+          <div class="row small"><span class="pill">.NET</span><span class="pill">Java</span><span class="pill">REST</span></div>
         </article>
       </div>
     </section>
 
-    <section id="education" class="section">
+    <section id="education" class="section reveal-on-scroll">
       <h2>Education</h2>
       <div class="grid cols-2">
-        <div class="card">
-          <p><strong>Texas A&M University–Corpus Christi</strong> — M.S., Computer Science <span class="muted">(2021–2023)</span></p>
-        </div>
-        <div class="card">
-          <p><strong>SRM Institute of Science and Technology</strong> — B.Tech., Computer Science <span class="muted">(2017–2021)</span></p>
-        </div>
+        <div class="card"><p><strong>Texas A&M University–Corpus Christi</strong> — M.S., Computer Science <span class="muted">(2021–2023)</span></p></div>
+        <div class="card"><p><strong>SRM Institute of Science and Technology</strong> — B.Tech., Computer Science <span class="muted">(2017–2021)</span></p></div>
       </div>
     </section>
 
-    <section id="certs" class="section">
+    <section id="certs" class="section reveal-on-scroll">
       <h2>Certifications</h2>
       <div class="grid cols-2">
-        <div class="card">
-          <ul class="muted">
-            <li>Programming in Python for Everyone</li>
-            <li>Learn C++ Programming — Beginner to Advance — Deep Dive in C++</li>
-            <li>Complete ServiceNow Developer Course</li>
-          </ul>
-        </div>
-        <div class="card">
-          <ul class="muted">
-            <li>micro1 — Certified Software Engineer (AI Interview), Sep 2025</li>
-            <li>ChatGPT Prompt Engineering for Developers</li>
-          </ul>
-        </div>
+        <div class="card"><ul class="muted">
+          <li>micro1 — Certified Software Engineer (AI Interview), Sep 2025</li>
+          <li>Programming in Python for Everyone</li>
+          <li>Learn C++ Programming — Beginner to Advance — Deep Dive in C++</li>
+        </ul></div>
+        <div class="card"><ul class="muted">
+          <li>Nvidia Generative AI</li>
+          <li>Complete ServiceNow Developer Course (Udemy)</li>
+        </ul></div>
       </div>
     </section>
 
-    <section id="contact" class="section">
+    <section id="contact" class="section reveal-on-scroll">
       <h2>Contact</h2>
       <div class="grid cols-2">
-        <form class="card" action="https://formspree.io/f/mnnggnvp" method="POST">
+        <form class="card" action="https://formspree.io/f/mnnggnvp" method="POST" id="contactForm">
           <label class="small muted" for="name">Name</label>
           <input id="name" name="name" placeholder="Your name" required
-                 style="width:100%;background:#0d1426;border:1px solid rgba(148,163,184,.25);border-radius:12px;padding:12px;color:#fff">
+                 style="width:100%;background:transparent;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--text)">
+
           <label class="small muted" for="email">Email</label>
           <input id="email" name="email" type="email" placeholder="you@example.com" required
-                 style="width:100%;background:#0d1426;border:1px solid rgba(148,163,184,.25);border-radius:12px;padding:12px;color:#fff">
+                 style="width:100%;background:transparent;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--text)">
+
           <label class="small muted" for="message">Message</label>
           <textarea id="message" name="message" rows="5" placeholder="Hi Pranjal, we’d like to talk about an opportunity…"
-                    required style="width:100%;background:#0d1426;border:1px solid rgba(148,163,184,.25);border-radius:12px;padding:12px;color:#fff"></textarea>
-          <button type="submit" style="background:linear-gradient(90deg,var(--brand),var(--accent));border:none;color:#0b0f17;font-weight:800;padding:12px 14px;border-radius:12px">Send Message</button>
+                    required style="width:100%;background:transparent;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--text)"></textarea>
+
+          <input type="hidden" name="_subject" value="New message from your portfolio" />
+          <input type="hidden" name="_next" value="https://pranjalmax.github.io/pranjal-portfolio/#contact"" />
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+          <button type="submit" id="sendBtn"
+                  style="background:linear-gradient(90deg,var(--brand),var(--accent));border:none;color:#fff;font-weight:800;padding:12px 14px;border-radius:12px">Send Message</button>
+
+          <p id="formStatus" class="small muted" style="margin-top:8px;"></p>
           <p class="small muted" style="margin-top:8px">Or email directly: <a href="mailto:pranjal6004@gmail.com">pranjal6004@gmail.com</a></p>
         </form>
+
         <div class="card">
           <div class="kicker">Quick Links</div>
           <p class="muted">Prefer a quick scan? Grab my resume or connect:</p>
@@ -276,9 +352,43 @@
     </section>
   </main>
 
+  <!-- Case Study Modals -->
+  <dialog class="modal" id="modal-dog" aria-label="Dog Adoption Portal Case Study">
+    <div class="modal-card">
+      <button class="close" data-close="modal-dog">Close</button>
+      <h3>Dog Adoption Portal — ServiceNow</h3>
+      <p><strong>Problem:</strong> Manual adoptions led to missing info and slow responses.</p>
+      <p><strong>Solution:</strong> Service Portal with Record Producers, client scripts, UI policies, reference fields, and Flow Designer notifications.</p>
+      <p><strong>Impact:</strong> Clear intake, faster approvals, consistent status tracking; admin views via related lists and filters.</p>
+      <div class="row small"><span class="pill">ServiceNow</span><span class="pill">Flow Designer</span><span class="pill">UI Policies</span></div>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="modal-helpdesk" aria-label="Helpdesk Ticketing Case Study">
+    <div class="modal-card">
+      <button class="close" data-close="modal-helpdesk">Close</button>
+      <h3>Helpdesk Ticketing App — ServiceNow (ITSM)</h3>
+      <p><strong>Problem:</strong> Unstructured intake and long resolution cycles.</p>
+      <p><strong>Solution:</strong> Organized tables (Tickets/Departments/Technicians), Business Rules for auto-assignment, email notifications, and dashboards.</p>
+      <p><strong>Impact:</strong> Faster TTR, clearer ownership, SLA visibility; repeatable intake with validations.</p>
+      <div class="row small"><span class="pill">ServiceNow</span><span class="pill">Business Rules</span><span class="pill">Dashboards</span></div>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="modal-sdn" aria-label="DDoS SDN Case Study">
+    <div class="modal-card">
+      <button class="close" data-close="modal-sdn">Close</button>
+      <h3>DDoS Detection on SDN — Mininet / RYU / Python</h3>
+      <p><strong>Problem:</strong> Detect attack patterns early with fewer false positives.</p>
+      <p><strong>Solution:</strong> SDN topology with normal vs. attack traffic generation; controller logs feeding an ML analyzer.</p>
+      <p><strong>Impact:</strong> Early detection and better precision/recall; documented repeatable tests & metrics.</p>
+      <div class="row small"><span class="pill">Mininet</span><span class="pill">RYU</span><span class="pill">Python</span></div>
+    </div>
+  </dialog>
+
   <footer>
     <div class="container">
-      <p>© <span id="y"></span> Pranjal Srivastava — Built with HTML/CSS. Fast, responsive, and recruiter-friendly.</p>
+      <p>© <span id="y"></span> Pranjal Srivastava — Built for speed, clarity, and recruiter-friendliness.</p>
     </div>
   </footer>
 
@@ -286,57 +396,117 @@
     // Year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Optional: verify resume link exists (friendly alert if missing)
+    // THEME TOGGLE (persist)
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme-pref');
+    if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+    themeToggle.checked = document.documentElement.getAttribute('data-theme') === 'light';
+    themeToggle.addEventListener('change', () => {
+      const next = themeToggle.checked ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme-pref', next);
+    });
+
+    // RECRUITER MODE
+    const recruiterToggle = document.getElementById('recruiterToggle');
+    recruiterToggle.addEventListener('change', () => {
+      document.body.classList.toggle('recruiter-compact', recruiterToggle.checked);
+    });
+
+    // SCROLL REVEAL
+    const revealEls = document.querySelectorAll('.reveal-on-scroll');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); });
+    }, {threshold:.1});
+    revealEls.forEach(el => io.observe(el));
+
+    // PROJECT FILTERS + SEARCH
+    const grid = document.getElementById('projectGrid');
+    const cards = Array.from(grid.querySelectorAll('.project'));
+    const search = document.getElementById('projSearch');
+    const filterBtns = Array.from(document.querySelectorAll('[data-filter]'));
+    let activeFilter = 'all';
+
+    function applyFilters(){
+      const q = (search.value || '').toLowerCase().trim();
+      cards.forEach(c => {
+        const tags = (c.getAttribute('data-tags') || '').toLowerCase();
+        const text = c.textContent.toLowerCase();
+        const matchTag = activeFilter === 'all' || tags.includes(activeFilter);
+        const matchText = !q || text.includes(q);
+        c.style.display = (matchTag && matchText) ? '' : 'none';
+      });
+    }
+    filterBtns.forEach(b => b.addEventListener('click', () => {
+      activeFilter = b.dataset.filter;
+      filterBtns.forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      applyFilters();
+    }));
+    search.addEventListener('input', applyFilters);
+
+    // MODALS
+    function openModal(id){ document.getElementById(id).setAttribute('open',''); }
+    function closeModal(id){ document.getElementById(id).removeAttribute('open'); }
+    document.querySelectorAll('.open-modal').forEach(btn => btn.addEventListener('click', () => openModal(btn.dataset.modal)));
+    document.querySelectorAll('.modal .close').forEach(b => b.addEventListener('click', () => closeModal(b.dataset.close)));
+    document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.removeAttribute('open'); }));
+
+    // CONFETTI (tiny, no deps)
+    function confettiBurst(x = window.innerWidth/2, y = window.innerHeight/2){
+      const colors = [getComputedStyle(document.documentElement).getPropertyValue('--brand').trim(), getComputedStyle(document.documentElement).getPropertyValue('--accent').trim(), '#ffffff'];
+      const count = 24;
+      for(let i=0;i<count;i++){
+        const d = document.createElement('div');
+        d.style.position='fixed'; d.style.left=x+'px'; d.style.top=y+'px';
+        d.style.width='6px'; d.style.height='6px'; d.style.borderRadius='2px';
+        d.style.background=colors[i%colors.length]; d.style.pointerEvents='none'; d.style.zIndex=9999;
+        document.body.appendChild(d);
+        const ang = Math.random()*Math.PI*2; const vel = 3+Math.random()*6; const dx = Math.cos(ang)*vel; const dy = Math.sin(ang)*vel;
+        const rot = (Math.random()*360)+'deg';
+        d.animate([{transform:`translate(0,0) rotate(0)`}, {transform:`translate(${dx*30}px, ${dy*30}px) rotate(${rot})`, opacity:0}], {duration:800+Math.random()*400, easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=()=>d.remove();
+      }
+    }
+
+    // CONTACT FORM AJAX (replace action with your Formspree endpoint)
+    (function(){
+      const form = document.getElementById('contactForm');
+      const statusEl = document.getElementById('formStatus');
+      const sendBtn = document.getElementById('sendBtn');
+      if (!form) return;
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault(); statusEl.textContent = '';
+        const rect = sendBtn.getBoundingClientRect();
+        sendBtn.disabled = true; const originalText = sendBtn.textContent; sendBtn.textContent = 'Sending…';
+
+        try {
+          const data = new FormData(form);
+          const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+          if (res.ok) {
+            form.reset();
+            statusEl.textContent = '✅ Thanks! Your message has been sent.';
+            confettiBurst(rect.left + rect.width/2, rect.top + window.scrollY); // subtle confetti at button
+          } else {
+            const err = await res.json().catch(() => ({}));
+            statusEl.textContent = err?.errors?.[0]?.message || '⚠️ Could not send. Please try again.';
+          }
+        } catch {
+          statusEl.textContent = '⚠️ Network error. Please try again.';
+        } finally {
+          sendBtn.disabled = false; sendBtn.textContent = originalText;
+        }
+      });
+    })();
+
+    // OPTIONAL: Friendly resume check (non-blocking)
     (async () => {
-      const aTags = Array.from(document.querySelectorAll('a')).filter(a => a.href.includes('Pranjal_Srivastava_Resume_Portfolio_Full.pdf'));
+      const links = Array.from(document.querySelectorAll('a')).filter(a => a.href.includes('Pranjal_Srivastava_Resume_Portfolio_Full.pdf'));
       try {
         const res = await fetch('assets/Pranjal_Srivastava_Resume_Portfolio_Full.pdf', { method: 'HEAD' });
-        if (!res.ok) aTags.forEach(a => a.addEventListener('click', e => { e.preventDefault(); alert('Resume file not found yet. Please try again in a minute.'); }));
-      } catch {
-        aTags.forEach(a => a.addEventListener('click', e => { e.preventDefault(); alert('Resume file not found yet. Please try again later.'); }));
-      }
+        if (!res.ok) links.forEach(a => a.addEventListener('click', e => { e.preventDefault(); alert('Resume file not found yet. Try again in a minute.'); }));
+      } catch {}
     })();
   </script>
-  <script>
-(function(){
-  const form = document.getElementById('contactForm');
-  const statusEl = document.getElementById('formStatus');
-  const sendBtn = document.getElementById('sendBtn');
-
-  if (!form) return;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    statusEl.textContent = '';
-    sendBtn.disabled = true;
-    const originalText = sendBtn.textContent;
-    sendBtn.textContent = 'Sending…';
-
-    try {
-      const data = new FormData(form);
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (res.ok) {
-        form.reset();
-        statusEl.textContent = '✅ Thanks! Your message has been sent.';
-      } else {
-        // Formspree returns JSON with errors on 400/422
-        const err = await res.json().catch(() => ({}));
-        statusEl.textContent = err?.errors?.[0]?.message || '⚠️ Could not send. Please try again.';
-      }
-    } catch {
-      statusEl.textContent = '⚠️ Network error. Please check your connection and try again.';
-    } finally {
-      sendBtn.disabled = false;
-      sendBtn.textContent = originalText;
-    }
-  });
-})();
-</script>
-
 </body>
 </html>
