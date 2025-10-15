@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thanks — Pranjal Srivastava</title>
+  <meta name="description" content="Thanks for your message. I’ll get back to you shortly.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0b0f17">
+  <style>
+    :root{--bg:#0b0f17;--card:#121827;--text:#e5e7eb;--muted:#94a3b8;--line:rgba(148,163,184,.12)}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    .wrap{min-height:100vh;display:grid;place-items:center;padding:24px}
+    .card{max-width:720px;width:100%;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;text-align:center;box-shadow:0 10px 25px rgba(2,8,23,.35)}
+    h1{margin:0 0 8px;font-size:28px}
+    p{margin:8px 0;color:var(--muted)}
+    .row{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    a.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:800}
+    a.primary{background:linear-gradient(90deg,#22d3ee,#a78bfa);color:#0b0f17}
+    a.ghost{border:1px solid var(--line);color:var(--text)}
+    .small{font-size:13px;color:var(--muted);margin-top:12px}
+  </style>
+  <!-- Optional: auto-redirect back to contact after 6s -->
+  <script>
+    setTimeout(() => { window.location.href = "./#contact"; }, 6000);
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" role="status" aria-live="polite">
+      <h1>Thanks! 🎉</h1>
+      <p>Your message was sent successfully.</p>
+      <p>I’ll get back to you shortly.</p>
+      <div class="row">
+        <a class="btn primary" href="./">← Back to portfolio</a>
+        <a class="btn ghost" href="mailto:pranjal6004@gmail.com">Email me directly</a>
+      </div>
+      <p class="small">You’ll be redirected back to the contact section in a few seconds.</p>
+    </div>
+  </div>
+</body>
+</html>
