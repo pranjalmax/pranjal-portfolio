@@ -795,5 +795,91 @@
       } catch {}
     })();
   </script>
+  <!-- Floating Chat Widget -->
+<div id="ps-chat" style="position:fixed;right:16px;bottom:16px;z-index:70;">
+  <button id="ps-chat-toggle" aria-label="Open chat"
+    style="width:56px;height:56px;border-radius:50%;border:1px solid var(--line);
+           background:linear-gradient(90deg,var(--brand),var(--accent));
+           color:#0b0f17;font-weight:800;box-shadow:0 8px 22px rgba(2,8,23,.35);">
+    AI
+  </button>
+
+  <div id="ps-chat-box" aria-live="polite"
+    style="display:none;position:absolute;right:0;bottom:70px;width:320px;max-height:60vh;overflow:hidden;
+           background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 28px rgba(2,8,23,.35);">
+    <div style="padding:12px 14px;border-bottom:1px solid var(--line);font-weight:700;">Ask about Pranjal</div>
+
+    <div id="ps-chat-messages"
+         style="padding:12px;display:flex;flex-direction:column;gap:10px;max-height:42vh;overflow:auto;">
+      <div style="align-self:flex-start;background:rgba(148,163,184,.12);border:1px solid var(--line);
+                  padding:8px 10px;border-radius:12px;">
+        Hi! I can answer questions about Pranjal’s experience, skills, and projects.
+      </div>
+    </div>
+
+    <form id="ps-chat-form" style="display:flex;gap:8px;padding:10px;border-top:1px solid var(--line);">
+      <input id="ps-chat-input" name="q" autocomplete="off"
+             placeholder="Ask about experience, skills…"
+             style="flex:1;background:transparent;border:1px solid var(--line);
+                    border-radius:12px;padding:10px;color:var(--text)">
+      <button style="background:linear-gradient(90deg,var(--brand),var(--accent));
+                     border:none;color:#0b0f17;font-weight:800;padding:10px 12px;border-radius:12px">
+        Send
+      </button>
+    </form>
+  </div>
+</div>
+  <script>
+  // === Your deployed API URL ===
+  const CHAT_API_URL = "https://pranjal-chat-api.vercel.app/api/chat";
+
+  (function(){
+    const toggle = document.getElementById('ps-chat-toggle');
+    const box = document.getElementById('ps-chat-box');
+    const form = document.getElementById('ps-chat-form');
+    const input = document.getElementById('ps-chat-input');
+    const msgs = document.getElementById('ps-chat-messages');
+
+    toggle.addEventListener('click', () => {
+      const open = box.style.display !== 'none';
+      box.style.display = open ? 'none' : 'block';
+      if (!open) setTimeout(() => input.focus(), 200);
+    });
+
+    function bubble(text, who){
+      const div = document.createElement('div');
+      div.style.alignSelf = who === 'user' ? 'flex-end' : 'flex-start';
+      div.style.background = who === 'user'
+        ? 'linear-gradient(90deg,var(--brand),var(--accent))'
+        : 'rgba(148,163,184,.12)';
+      div.style.color = who === 'user' ? '#0b0f17' : 'var(--text)';
+      div.style.border = who === 'user' ? '1px solid transparent' : '1px solid var(--line)';
+      div.style.padding = '8px 10px';
+      div.style.borderRadius = '12px';
+      div.textContent = text;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const q = input.value.trim();
+      if (!q) return;
+      bubble(q, 'user');
+      input.value = '';
+      try{
+        const r = await fetch(CHAT_API_URL, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ message: q })
+        });
+        const data = await r.json();
+        bubble(data.answer || 'Sorry, no answer.', 'bot');
+      } catch(e){
+        bubble('Network error. Please try again.', 'bot');
+      }
+    });
+  })();
+</script>
 </body>
 </html>
