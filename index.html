@@ -15,8 +15,6 @@
 
   <!-- Favicon / app icons -->
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="alternate icon" href="assets/favicon.png">
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
   <!-- Social preview -->
   <meta property="og:title" content="Pranjal Srivastava — Software Developer">
@@ -34,33 +32,6 @@
 
   <!-- Preload hero image -->
   <link rel="preload" as="image" href="assets/Portfolio_Image.png" imagesrcset="assets/Portfolio_Image.png 1x" imagesizes="(max-width: 900px) 100vw, 50vw">
-
-  <!-- Structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Pranjal Srivastava",
-    "url": "https://pranjalmax.github.io/pranjal-portfolio/",
-    "image": "https://pranjalmax.github.io/pranjal-portfolio/assets/Portfolio_Image.png",
-    "email": "mailto:pranjal6004@gmail.com",
-    "telephone": "+13463752373",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "1802 Ennis Joslin Rd, Apt 633",
-      "addressLocality": "Corpus Christi",
-      "addressRegion": "Texas",
-      "postalCode": "78412",
-      "addressCountry": "US"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/in/pranjal-srivastava07/",
-      "https://www.instagram.com/pranjal.srivastava.7"
-    ],
-    "jobTitle": "Software Developer",
-    "knowsAbout": ["Java","Spring Boot",".NET","C#","ServiceNow","SQL","REST APIs","NLP","Time-series","Mininet","RYU"]
-  }
-  </script>
 
   <style>
     :root{
@@ -87,7 +58,7 @@
     .nav-links::-webkit-scrollbar{display:none}
     .nav-links a{color:var(--muted); font-weight:600}
     .nav-links a:hover{color:var(--text)}
-    .cta-btn{background:linear-gradient(90deg,var(--brand),var(--accent)); color:#fff; font-weight:800; border:none; padding:10px 14px; border-radius:12px; flex:0 0 auto}
+    .cta-btn{background:linear-gradient(90deg,var(--brand),var(--accent)); color:#0b0f17; font-weight:800; border:none; padding:10px 14px; border-radius:12px; flex:0 0 auto}
 
     /* Ensure content never sits under sticky header */
     main{padding-top:calc(var(--header-h) + 12px)}
@@ -148,13 +119,6 @@
     .btn-case:hover{ filter:brightness(1.05); transform:translateY(-1px) }
     .btn-case svg{ width:16px; height:16px }
 
-    /* TIMELINE */
-    .timeline{position:relative; padding-left:18px}
-    .timeline::before{content:""; position:absolute; left:6px; top:4px; bottom:4px; width:2px; background:linear-gradient(#334155,#475569)}
-    [data-theme="light"] .timeline::before{background:linear-gradient(#cbd5e1,#94a3b8)}
-    .tl-item{position:relative; margin:0 0 18px}
-    .tl-item::before{content:""; position:absolute; left:-12px; top:6px; width:10px; height:10px; border-radius:999px; background:linear-gradient(90deg,var(--brand),var(--accent)); box-shadow:0 0 0 3px var(--ring)}
-
     /* PROJECTS */
     .tool-row{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:12px}
     .tool-row input[type="search"]{flex:1; min-width:240px; background:transparent; border:1px solid var(--line); color:var(--text); padding:10px 12px; border-radius:12px}
@@ -184,30 +148,36 @@
     }
     .cta-btn:focus-visible, .pill:focus-visible, .btn-case:focus-visible{ outline-offset: 3px }
 
-    @media (max-width: 980px){
-      .nav{gap:8px}
-      .nav-links{max-width:100%}
-      .cta-btn{flex:0 0 auto}
+    /* Back-to-top */
+    .to-top{
+      position: fixed; right: 16px; bottom: 90px; z-index: 60; width: 42px; height: 42px;
+      border-radius: 10px; border:1px solid var(--line); background: var(--card);
+      color: var(--text); box-shadow: var(--shadow); opacity: 0; pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease; transform: translateY(6px);
     }
-    @media (max-width: 900px){
-      .hero{grid-template-columns:1fr; padding-top:32px}
-      .grid.cols-3{grid-template-columns:1fr}
-      .grid.cols-2{grid-template-columns:1fr}
-      .title{font-size:36px}
-    }
+    .to-top.show{ opacity: 1; pointer-events: auto; transform: none; }
 
-    /* Skip link */
-    .skip-link{
-      position: absolute; left: 12px; top: -40px; z-index: 1000;
-      background: var(--card); color: var(--text); padding: 8px 12px; border-radius: 10px;
-      border: 1px solid var(--line); transition: top .2s ease;
+    /* Mobile sticky CTA bar */
+    @media (max-width: 900px){
+      .mobile-cta{
+        position: fixed; left: 14px; right: 110px; bottom: 14px; z-index: 60;
+        display: inline-flex; justify-content:center; align-items:center;
+        height: 46px; border-radius: 12px;
+        background: linear-gradient(90deg,var(--brand),var(--accent));
+        color:#0b0f17; font-weight:800; box-shadow: 0 8px 22px rgba(2,8,23,.35);
+      }
+      .mobile-cta.ghost{
+        right: 14px; left: auto; width: 110px;
+        background: transparent; color: var(--text);
+        border:1px solid var(--line);
+      }
+      .to-top{ bottom: 76px; } /* keep above CTAs */
     }
-    .skip-link:focus{ top: 12px; }
   </style>
 </head>
 <body>
   <!-- Accessibility: skip to content -->
-  <a class="skip-link" href="#home">Skip to content</a>
+  <a class="skip-link" href="#home" style="position:absolute;left:12px;top:-40px;z-index:1000;background:var(--card);color:var(--text);padding:8px 12px;border-radius:10px;border:1px solid var(--line);transition:top .2s ease;">Skip to content</a>
 
   <header>
     <div class="container nav">
@@ -227,7 +197,11 @@
           <input type="checkbox" id="themeToggle" aria-label="Toggle theme">
         </label>
 
-        <a class="cta-btn" href="mailto:pranjal6004@gmail.com?subject=Interview%20%E2%80%94%20Software%20Developer&body=Hi%20Pranjal,%20">Hire Me</a>
+        <!-- Updated Hire Me: scroll to Contact -->
+        <a class="cta-btn" id="hireBtn" href="#contact"
+           data-mailto="mailto:pranjal6004@gmail.com?subject=Interview%20—%20Software%20Developer&body=Hi%20Pranjal,%20">
+          Hire Me
+        </a>
       </nav>
     </div>
   </header>
@@ -373,7 +347,7 @@
       <div class="grid cols-3" id="projectGrid">
         <!-- 1) ServiceNow Dog Adoption -->
         <article class="card project reveal-on-scroll" data-tags="servicenow web">
-          <img class="thumb" src="assets/Image_dog.png" alt="Dog Adoption Portal mock" loading="lazy">
+          <img class="thumb" src="assets/Image_dog.png" alt="Dog Adoption ServiceNow portal UI" loading="lazy">
           <h3>Dog Adoption Portal — ServiceNow</h3>
           <p class="muted">App Engine app with <strong>Dogs</strong> & <strong>Adoption Centers</strong>; Service Portal Record Producer, reference links, validations, and optional email notifications.</p>
           <div class="row small"><span class="pill">ServiceNow</span><span class="pill">Flow Designer</span><span class="pill">UI Policies</span></div>
@@ -387,7 +361,7 @@
 
         <!-- 2) ServiceNow Helpdesk -->
         <article class="card project reveal-on-scroll" data-tags="servicenow itsm">
-          <img class="thumb" src="assets/Image_helpdesk.png" alt="Helpdesk Ticketing mock" loading="lazy">
+          <img class="thumb" src="assets/Image_helpdesk.png" alt="Helpdesk ticketing Kanban board" loading="lazy">
           <h3>Helpdesk Ticketing App — ServiceNow</h3>
           <p class="muted">Custom tables (Tickets/Departments/Technicians), Business Rules for auto-assign, email notifications, SLAs and dashboards for visibility.</p>
           <div class="row small"><span class="pill">ServiceNow</span><span class="pill">Business Rules</span><span class="pill">Dashboards</span></div>
@@ -401,7 +375,7 @@
 
         <!-- 3) DDoS SDN -->
         <article class="card project reveal-on-scroll" data-tags="ml python networking">
-          <img class="thumb" src="assets/image_ddos.png" alt="DDoS SDN mock" loading="lazy">
+          <img class="thumb" src="assets/image_ddos.png" alt="SDN topology with DDoS alert visualization" loading="lazy">
           <h3>DDoS Detection on SDN — Mininet / RYU / Python</h3>
           <p class="muted">Built SDN topology; generated normal vs attack traffic (iperf/hping3); controller logs (RYU) fed an ML detector to flag anomalies.</p>
           <div class="row small"><span class="pill">Mininet</span><span class="pill">RYU</span><span class="pill">Python</span></div>
@@ -415,7 +389,7 @@
 
         <!-- 4) Heart Failure Detection -->
         <article class="card project reveal-on-scroll" data-tags="ml python">
-          <img class="thumb" src="assets/Image_heart.png" alt="ECG project mock" loading="lazy">
+          <img class="thumb" src="assets/Image_heart.png" alt="ECG electrodes and waveform monitor" loading="lazy">
           <h3>Heart Failure Detection Using ECG — Python ML</h3>
           <p class="muted">End-to-end pipeline: ECG signal processing → features → classifiers; evaluated with precision/recall/F1; published results.</p>
           <div class="row small"><span class="pill">Python</span><span class="pill">ML</span><span class="pill">Signal Processing</span></div>
@@ -429,7 +403,7 @@
 
         <!-- 5) DB Optimizations -->
         <article class="card project reveal-on-scroll" data-tags="java dotnet sql">
-          <img class="thumb" src="assets/Image_database.png" alt="Database project mock" loading="lazy">
+          <img class="thumb" src="assets/Image_database.png" alt="Database performance optimization concept" loading="lazy">
           <h3>Optimizations in Databases via DS & Algorithms</h3>
           <p class="muted">Matched data structures to access patterns; tuned schemas and indexes; measured latency improvements on critical paths.</p>
           <div class="row small"><span class="pill">SQL</span><span class="pill">Performance</span><span class="pill">Data Structures</span></div>
@@ -437,7 +411,7 @@
 
         <!-- 6) Fake News Detection -->
         <article class="card project reveal-on-scroll" data-tags="ml python nlp">
-          <img class="thumb" src="assets/Image_fakenews.png" alt="Fake News Detection project" loading="lazy">
+          <img class="thumb" src="assets/Image_fakenews.png" alt="Fake news detection with NLP/ML visual" loading="lazy">
           <h3>Fake News Detection — Python / ML</h3>
           <p class="muted">NLP pipeline with text cleaning, TF-IDF/embeddings, and classifiers to flag misinformation; compared models and metrics.</p>
           <div class="row small"><span class="pill">Python</span><span class="pill">NLP</span><span class="pill">Classification</span></div>
@@ -451,7 +425,7 @@
 
         <!-- 7) Weather Forecasting (Deep Learning) -->
         <article class="card project reveal-on-scroll" data-tags="ml python timeseries deep learning">
-          <img class="thumb" src="assets/Image_weather.png" alt="Weather Forecasting project" loading="lazy">
+          <img class="thumb" src="assets/Image_weather.png" alt="Deep-learning weather forecasting visual" loading="lazy">
           <h3>Weather Forecasting — Deep Learning</h3>
           <p class="muted">Time-series model (RNN/CNN hybrid) on historical weather to predict short-term conditions; evaluated with MAE/RMSE.</p>
           <div class="row small"><span class="pill">Python</span><span class="pill">Deep Learning</span><span class="pill">Time-Series</span></div>
@@ -505,17 +479,18 @@
                     required style="width:100%;background:transparent;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--text)"></textarea>
 
           <input type="hidden" name="_subject" value="New message from your portfolio" />
-          <input type="hidden" name="_next" value="https://pranjalmax.github.io/pranjal-portfolio/#contact" />
+          <!-- Updated success redirect -->
+          <input type="hidden" name="_next" value="https://pranjalmax.github.io/pranjal-portfolio/thanks.html" />
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
           <button type="submit" id="sendBtn"
-                  style="background:linear-gradient(90deg,var(--brand),var(--accent));border:none;color:#fff;font-weight:800;padding:12px 14px;border-radius:12px">Send Message</button>
+                  style="background:linear-gradient(90deg,var(--brand),var(--accent));border:none;color:#0b0f17;font-weight:800;padding:12px 14px;border-radius:12px">Send Message</button>
 
           <p id="formStatus" class="small muted" style="margin-top:8px;"></p>
           <p class="small muted" style="margin-top:8px">Or email directly: <a href="mailto:pranjal6004@gmail.com">pranjal6004@gmail.com</a></p>
         </form>
 
-        <!-- CONTACT DETAILS (same polished layout) -->
+        <!-- CONTACT DETAILS -->
         <div class="card">
           <div class="kicker">Contact Details</div>
           <div class="contact-list" style="margin-top:6px">
@@ -594,7 +569,7 @@
   <dialog class="modal" id="modal-sdn" aria-label="DDoS SDN Case Study">
     <div class="modal-card">
       <button class="close" data-close="modal-sdn">Close</button>
-      <h3>DDoS Detection on SDN — Mininet / RYU / Python</h3>
+    <h3>DDoS Detection on SDN — Mininet / RYU / Python</h3>
       <p><strong>Problem:</strong> Detect attack patterns early with fewer false positives in SDN networks.</p>
       <p><strong>Solution:</strong> Emulated topology in Mininet; generated normal vs. attack traffic (iperf/hping3); captured controller logs via RYU; trained ML classifier on engineered features.</p>
       <p><strong>Impact:</strong> Earlier anomaly detection with improved precision/recall over baselines; reproducible experiments.</p>
@@ -641,6 +616,13 @@
     </div>
   </footer>
 
+  <!-- Back-to-top button -->
+  <button id="toTop" class="to-top" aria-label="Back to top">↑</button>
+
+  <!-- Sticky mobile CTA (<=900px) -->
+  <a href="#contact" class="mobile-cta" id="mobileHire" aria-label="Hire Pranjal">Hire Me</a>
+  <a href="assets/Pranjal_Srivastava_Resume_Portfolio_Full.pdf" class="mobile-cta ghost" target="_blank" rel="noopener" aria-label="Download resume">Resume</a>
+
   <script>
     // Year
     document.getElementById('y').textContent = new Date().getFullYear();
@@ -670,7 +652,7 @@
     const filterBtns = Array.from(document.querySelectorAll('[data-filter]'));
     let activeFilter = 'all';
 
-    // Visually mark the default filter as active on load
+    // Default 'All' active
     const allBtn = filterBtns.find(b => b.dataset.filter === 'all');
     if (allBtn) allBtn.classList.add('active');
 
@@ -691,7 +673,6 @@
       b.classList.add('active');
       applyFilters();
     }));
-
     search.addEventListener('input', applyFilters);
 
     // MODALS
@@ -763,6 +744,28 @@
         }catch{ /* ignore */ }
       });
     });
+
+    // Back to top
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 600) toTop.classList.add('show'); else toTop.classList.remove('show');
+    });
+    toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+    // “Hire Me” → smooth scroll to Contact + focus (desktop nav + mobile sticky)
+    (function(){
+      const targets = [document.getElementById('hireBtn'), document.getElementById('mobileHire')].filter(Boolean);
+      const formSection = document.getElementById('contact');
+      const nameField = document.getElementById('name');
+      targets.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; // allow new-tab/mail if added later
+          e.preventDefault();
+          formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          setTimeout(() => nameField?.focus({ preventScroll: true }), 600);
+        });
+      });
+    })();
 
     // OPTIONAL: Friendly resume check (non-blocking)
     (async () => {
