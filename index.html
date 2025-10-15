@@ -714,11 +714,17 @@
         try {
           const data = new FormData(form);
           const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
-          if (res.ok) {
-            form.reset();
-            statusEl.textContent = '✅ Thanks! Your message has been sent.';
-            confettiBurst(rect.left + rect.width/2, rect.top + window.scrollY);
-          } else {
+         if (res.ok) {
+  // Optional: tiny celebration + brief confirmation
+          statusEl.textContent = '✅ Thanks! Your message has been sent.';
+          confettiBurst(rect.left + rect.width/2, rect.top + window.scrollY);
+
+  // Redirect to your thanks page (reads the hidden _next input)
+          const next = form.querySelector('input[name="_next"]')?.value || 'thanks.html';
+          setTimeout(() => { window.location.href = next; }, 600); // short pause to show the message
+          return; // stop here so the finally{} still re-enables the button
+            }
+         else {
             const err = await res.json().catch(() => ({}));
             statusEl.textContent = err?.errors?.[0]?.message || '⚠️ Could not send. Please try again.';
           }
