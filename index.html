@@ -58,7 +58,7 @@
       "https://www.instagram.com/pranjal.srivastava.7"
     ],
     "jobTitle": "Software Developer",
-    "knowsAbout": ["Java","Spring Boot",".NET","C#","ServiceNow","SQL","REST APIs"]
+    "knowsAbout": ["Java","Spring Boot",".NET","C#","ServiceNow","SQL","REST APIs","NLP","Time-series","Mininet","RYU"]
   }
   </script>
 
@@ -119,9 +119,9 @@
     .row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
     .muted{color:var(--muted)}
     .kicker{font-weight:700; color:var(--muted); letter-spacing:.16em; text-transform:uppercase; font-size:12px}
-    .card .kicker{ margin-bottom:10px; display:block; } /* spacing below card titles */
+    .card .kicker{ margin-bottom:10px; display:block; }
 
-    /* === CONTACT CARD LAYOUT === */
+    /* CONTACT CARD LAYOUT */
     .contact-list{ display:grid; grid-template-columns:max-content 1fr; column-gap:12px; row-gap:10px; align-items:start; }
     .contact-list .label{ color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.08em; font-size:12px; line-height:1.2; padding-top:2px; }
     .contact-list a{ word-break:break-word; }
@@ -130,11 +130,23 @@
     .contact-row .copy{ margin-left:8px; padding:4px 8px; border:1px solid var(--line); border-radius:8px; background:transparent; color:var(--text); cursor:pointer; font-size:12px; line-height:1; }
     .contact-row .copy:hover{ border-color: color-mix(in srgb, var(--brand), #fff 15%); }
 
-    /* === PATCH: Pills (chips/buttons) === */
+    /* Pills (tags/filters) */
     .pill{ display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; font-size:14px; border:1px solid var(--line); background:transparent; color:var(--text); text-decoration:none; line-height:1; }
     button.pill{ appearance:none; -webkit-appearance:none; cursor:pointer; }
     .pill:hover{ border-color: color-mix(in srgb, var(--brand), #fff 15%); }
     .pill.active{ background: linear-gradient(90deg, var(--brand), var(--accent)); color:#0b0f17; border-color: transparent; }
+
+    /* Case study buttons — clearly different, filled style */
+    .btn-case{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:12px; font-weight:700;
+      border:1px solid transparent;
+      color:#0b0f17; background:linear-gradient(90deg,var(--brand),var(--accent));
+      box-shadow: 0 6px 16px rgba(2,8,23,.25);
+      cursor:pointer;
+    }
+    .btn-case:hover{ filter:brightness(1.05); transform:translateY(-1px) }
+    .btn-case svg{ width:16px; height:16px }
 
     /* TIMELINE */
     .timeline{position:relative; padding-left:18px}
@@ -170,7 +182,7 @@
       outline: 2px solid color-mix(in srgb, var(--brand), #fff 20%);
       outline-offset: 2px; border-radius: 10px;
     }
-    .cta-btn:focus-visible, .pill:focus-visible{ outline-offset: 3px }
+    .cta-btn:focus-visible, .pill:focus-visible, .btn-case:focus-visible{ outline-offset: 3px }
 
     @media (max-width: 980px){
       .nav{gap:8px}
@@ -226,8 +238,8 @@
         <span class="badge">Available for Full-Time — Software Developer</span>
         <h1 class="title">Pranjal Srivastava</h1>
         <p class="subtitle">
-          Software Developer with hands-on experience across Java/Spring Boot, .NET/C#, ServiceNow, and SQL.
-          I ship clean backend APIs, pragmatic UIs, and automated workflows—focused on reliability, clarity, and impact.
+          Software Developer focused on backend APIs, ServiceNow automation, and SQL performance.
+          I build clean REST services, automate ITSM, and ship reliably with CI/CD.
         </p>
         <div class="row hero-actions" style="margin-top:16px">
           <a class="pill" href="assets/Pranjal_Srivastava_Resume_Portfolio_Full.pdf" target="_blank" rel="noopener">Download Resume</a>
@@ -246,8 +258,9 @@
         <div class="reveal-on-scroll">
           <h2>About Me</h2>
           <p class="muted">
-            I enjoy shipping practical software—secure APIs, clean front-end experiences, and ServiceNow flows that automate real work.
-            Comfortable moving between feature delivery, integration, and ops in Agile teams to land reliable, usable software.
+            I design and ship practical software—Java/Spring Boot and .NET APIs with strong error handling,
+            ServiceNow apps that remove manual steps, and SQL schemas tuned for real usage. I work iteratively
+            in Agile teams, add tests where they matter, and document what I build so others can run it confidently.
           </p>
           <div class="card">
             <div class="kicker">What I’m Looking For</div>
@@ -312,12 +325,12 @@
     <section id="skills" class="section reveal-on-scroll">
       <h2>Core Skills</h2>
       <div class="grid cols-3">
-        <div class="card"><h3>Languages & Frameworks</h3><p class="muted">Java, Spring Boot, C#, .NET, Python, JavaScript/TypeScript, C/C++, React (basics)</p></div>
-        <div class="card"><h3>ServiceNow</h3><p class="muted">App Engine, forms/catalog, client scripts, UI policies, Business Rules, Flow Designer, ATF (basics)</p></div>
-        <div class="card"><h3>Web & APIs</h3><p class="muted">HTML/CSS, responsive UI, REST, JSON/XML, Swagger/OpenAPI</p></div>
-        <div class="card"><h3>Data & SQL</h3><p class="muted">SQL Server/Postgres, schema design, indexing, SSRS/Power BI</p></div>
-        <div class="card"><h3>Cloud & DevOps</h3><p class="muted">AWS/Azure basics, Docker, Git, CI/CD (GitHub Actions/Jenkins)</p></div>
-        <div class="card"><h3>Quality & Process</h3><p class="muted">Unit/integration tests, debugging, code reviews, Agile, RBAC</p></div>
+        <div class="card"><h3>APIs & Web</h3><p class="muted">Java, Spring Boot, .NET/C#, REST, JSON/XML, Swagger/OpenAPI, Postman/Insomnia</p></div>
+        <div class="card"><h3>ServiceNow</h3><p class="muted">App Engine Studio, Service Portal, Record Producers, Client Scripts, UI Policies, Business Rules, Flow Designer, Events/Notifications, ACLs/RBAC</p></div>
+        <div class="card"><h3>Data & SQL</h3><p class="muted">SQL Server/Postgres, schema design, indexing, performance tuning, SSRS/Power BI</p></div>
+        <div class="card"><h3>ML & Analytics</h3><p class="muted">Python, NLP (TF-IDF/embeddings, classifiers), Time-series (RNN/CNN), model eval (ROC-AUC, F1, MAE/RMSE)</p></div>
+        <div class="card"><h3>Networking/SDN</h3><p class="muted">Mininet, RYU controller, traffic gen (iperf/hping3), anomaly detection</p></div>
+        <div class="card"><h3>DevOps</h3><p class="muted">Git/GitHub, CI/CD (GitHub Actions/Jenkins), Docker, basic AWS/Azure</p></div>
       </div>
     </section>
 
@@ -327,16 +340,18 @@
         <div class="tl-item">
           <h3><strong>Tinker Tech Logix</strong> — <em>Software Developer</em> <span class="muted">(Apr 2024 – Aug 2025)</span></h3>
           <ul class="muted">
-            <li>Built Java/Spring Boot & .NET APIs with React views; documented endpoints via Swagger/OpenAPI.</li>
-            <li>Optimized SQL schemas/queries; improved response times with indexing and caching.</li>
-            <li>ServiceNow: forms/catalog items, client scripts, UI policies, Business Rules, Flow Designer notifications.</li>
+            <li>Designed RESTful APIs in <strong>Java/Spring Boot</strong> & <strong>.NET</strong>; documented endpoints with <strong>OpenAPI/Swagger</strong> and exercised via Postman/Insomnia.</li>
+            <li>Improved reliability and query time by tuning <strong>SQL schemas/indexes</strong>; added caching for high-traffic endpoints.</li>
+            <li>Built <strong>ServiceNow</strong> features: Record Producers, UI Policies, Client Scripts, Business Rules, Flow Designer notifications; implemented <strong>RBAC</strong> and audit-friendly patterns.</li>
+            <li>Wrote <strong>unit/integration tests</strong> and wired lightweight <strong>CI/CD</strong> in GitHub Actions; supported staged deployments and health checks.</li>
+            <li>Collaborated via PRs/code reviews, managed conflicts, and shipped in short Agile iterations with user-focused testing.</li>
           </ul>
         </div>
         <div class="tl-item">
           <h3><strong>ECS</strong> — <em>Intern, Cloud Server & Data Management</em> <span class="muted">(Jun 2019 – Jul 2019)</span></h3>
           <ul class="muted">
-            <li>Assisted server app installs/upgrades; improved runbooks and backup/restore procedures.</li>
-            <li>Automated checks with simple scripts for faster cutovers & troubleshooting.</li>
+            <li>Assisted server app installs/upgrades and basic cloud migration tasks; contributed to backup/restore runbooks.</li>
+            <li>Automated environment checks and routine tasks with small scripts for faster cutovers and troubleshooting.</li>
           </ul>
         </div>
       </div>
@@ -356,61 +371,96 @@
       </div>
 
       <div class="grid cols-3" id="projectGrid">
-        <!-- ServiceNow Dog Adoption -->
+        <!-- 1) ServiceNow Dog Adoption -->
         <article class="card project reveal-on-scroll" data-tags="servicenow web">
           <img class="thumb" src="assets/Portfolio_Image.png" alt="Dog Adoption Portal mock" loading="lazy">
           <h3>Dog Adoption Portal — ServiceNow</h3>
-          <p class="muted">Service Portal for profiles & adoption requests with validations and role-based visibility.</p>
+          <p class="muted">App Engine app with <strong>Dogs</strong> & <strong>Adoption Centers</strong>; Service Portal Record Producer, reference links, validations, and optional email notifications.</p>
           <div class="row small"><span class="pill">ServiceNow</span><span class="pill">Flow Designer</span><span class="pill">UI Policies</span></div>
           <div class="row" style="margin-top:8px">
-            <button class="pill open-modal" data-modal="modal-dog">Case study</button>
+            <button class="btn-case open-modal" data-modal="modal-dog" aria-label="Open Dog Adoption case study">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Case study
+            </button>
           </div>
         </article>
 
-        <!-- ServiceNow Helpdesk -->
+        <!-- 2) ServiceNow Helpdesk -->
         <article class="card project reveal-on-scroll" data-tags="servicenow itsm">
           <img class="thumb" src="assets/Portfolio_Image.png" alt="Helpdesk Ticketing mock" loading="lazy">
           <h3>Helpdesk Ticketing App — ServiceNow</h3>
-          <p class="muted">Submission, categorization, auto-assignment, notifications, and SLA dashboards.</p>
+          <p class="muted">Custom tables (Tickets/Departments/Technicians), Business Rules for auto-assign, email notifications, SLAs and dashboards for visibility.</p>
           <div class="row small"><span class="pill">ServiceNow</span><span class="pill">Business Rules</span><span class="pill">Dashboards</span></div>
           <div class="row" style="margin-top:8px">
-            <button class="pill open-modal" data-modal="modal-helpdesk">Case study</button>
+            <button class="btn-case open-modal" data-modal="modal-helpdesk" aria-label="Open Helpdesk case study">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Case study
+            </button>
           </div>
         </article>
 
-        <!-- DDoS SDN -->
+        <!-- 3) DDoS SDN -->
         <article class="card project reveal-on-scroll" data-tags="ml python networking">
           <img class="thumb" src="assets/Portfolio_Image.png" alt="DDoS SDN mock" loading="lazy">
           <h3>DDoS Detection on SDN — Mininet / RYU / Python</h3>
-          <p class="muted">SDN topology + traffic generation; trained models to detect attack patterns with fewer false positives.</p>
+          <p class="muted">Built SDN topology; generated normal vs attack traffic (iperf/hping3); controller logs (RYU) fed an ML detector to flag anomalies.</p>
           <div class="row small"><span class="pill">Mininet</span><span class="pill">RYU</span><span class="pill">Python</span></div>
           <div class="row" style="margin-top:8px">
-            <button class="pill open-modal" data-modal="modal-sdn">Case study</button>
+            <button class="btn-case open-modal" data-modal="modal-sdn" aria-label="Open DDoS case study">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Case study
+            </button>
           </div>
         </article>
 
-        <!-- Heart Failure Detection -->
+        <!-- 4) Heart Failure Detection -->
         <article class="card project reveal-on-scroll" data-tags="ml python">
           <img class="thumb" src="assets/Portfolio_Image.png" alt="ECG project mock" loading="lazy">
           <h3>Heart Failure Detection Using ECG — Python ML</h3>
-          <p class="muted">Signal processing & ML pipeline to identify arrhythmias with reproducible evaluation.</p>
+          <p class="muted">End-to-end pipeline: ECG signal processing → features → classifiers; evaluated with precision/recall/F1; published results.</p>
           <div class="row small"><span class="pill">Python</span><span class="pill">ML</span><span class="pill">Signal Processing</span></div>
+          <div class="row" style="margin-top:8px">
+            <button class="btn-case open-modal" data-modal="modal-ecg" aria-label="Open ECG case study">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Case study
+            </button>
+          </div>
         </article>
 
-        <!-- DB Optimizations -->
+        <!-- 5) DB Optimizations -->
         <article class="card project reveal-on-scroll" data-tags="java dotnet sql">
           <img class="thumb" src="assets/Portfolio_Image.png" alt="Database project mock" loading="lazy">
           <h3>Optimizations in Databases via DS & Algorithms</h3>
-          <p class="muted">Schema/index choices and data structures tuned to access patterns; measurable latency gains.</p>
+          <p class="muted">Matched data structures to access patterns; tuned schemas and indexes; measured latency improvements on critical paths.</p>
           <div class="row small"><span class="pill">SQL</span><span class="pill">Performance</span><span class="pill">Data Structures</span></div>
         </article>
 
-        <!-- API example -->
-        <article class="card project reveal-on-scroll" data-tags="dotnet java api">
-          <img class="thumb" src="assets/Portfolio_Image.png" alt="API project mock" loading="lazy">
-          <h3>API Integrations — .NET / Java</h3>
-          <p class="muted">CRUD + auth + pagination; robust error handling and documented with OpenAPI.</p>
-          <div class="row small"><span class="pill">.NET</span><span class="pill">Java</span><span class="pill">REST</span></div>
+        <!-- 6) Fake News Detection -->
+        <article class="card project reveal-on-scroll" data-tags="ml python nlp">
+          <img class="thumb" src="assets/Portfolio_Image.png" alt="Fake News Detection project" loading="lazy">
+          <h3>Fake News Detection — Python / ML</h3>
+          <p class="muted">NLP pipeline with text cleaning, TF-IDF/embeddings, and classifiers to flag misinformation; compared models and metrics.</p>
+          <div class="row small"><span class="pill">Python</span><span class="pill">NLP</span><span class="pill">Classification</span></div>
+          <div class="row" style="margin-top:8px">
+            <button class="btn-case open-modal" data-modal="modal-fakenews" aria-label="Open Fake News case study">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Case study
+            </button>
+          </div>
+        </article>
+
+        <!-- 7) Weather Forecasting (Deep Learning) -->
+        <article class="card project reveal-on-scroll" data-tags="ml python timeseries deep learning">
+          <img class="thumb" src="assets/Portfolio_Image.png" alt="Weather Forecasting project" loading="lazy">
+          <h3>Weather Forecasting — Deep Learning</h3>
+          <p class="muted">Time-series model (RNN/CNN hybrid) on historical weather to predict short-term conditions; evaluated with MAE/RMSE.</p>
+          <div class="row small"><span class="pill">Python</span><span class="pill">Deep Learning</span><span class="pill">Time-Series</span></div>
+          <div class="row" style="margin-top:8px">
+            <button class="btn-case open-modal" data-modal="modal-weather" aria-label="Open Weather case study">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Case study
+            </button>
+          </div>
         </article>
       </div>
     </section>
@@ -432,8 +482,8 @@
           <li>Learn C++ Programming — Beginner to Advance — Deep Dive in C++</li>
         </ul></div>
         <div class="card"><ul class="muted">
-          <li>Nvidia Generative AI</li>
           <li>Complete ServiceNow Developer Course (Udemy)</li>
+          <li>ChatGPT Prompt Engineering for Developers</li>
         </ul></div>
       </div>
     </section>
@@ -523,9 +573,9 @@
     <div class="modal-card">
       <button class="close" data-close="modal-dog">Close</button>
       <h3>Dog Adoption Portal — ServiceNow</h3>
-      <p><strong>Problem:</strong> Manual adoptions led to missing info and slow responses.</p>
-      <p><strong>Solution:</strong> Service Portal with Record Producers, client scripts, UI policies, reference fields, and Flow Designer notifications.</p>
-      <p><strong>Impact:</strong> Clear intake, faster approvals, consistent status tracking; admin views via related lists and filters.</p>
+      <p><strong>Problem:</strong> Manual intake led to missing info and slow follow-ups.</p>
+      <p><strong>Solution:</strong> App Engine app with <em>Dogs</em> & <em>Adoption Centers</em> tables, Service Portal Record Producer (server-side mapping), reference linkage, required fields, and optional email notifications via Flow Designer.</p>
+      <p><strong>Impact:</strong> Standardized intake, role-based visibility, and faster decisions; foundation for dashboards and an “Adopt” approval flow.</p>
       <div class="row small"><span class="pill">ServiceNow</span><span class="pill">Flow Designer</span><span class="pill">UI Policies</span></div>
     </div>
   </dialog>
@@ -535,8 +585,8 @@
       <button class="close" data-close="modal-helpdesk">Close</button>
       <h3>Helpdesk Ticketing App — ServiceNow (ITSM)</h3>
       <p><strong>Problem:</strong> Unstructured intake and long resolution cycles.</p>
-      <p><strong>Solution:</strong> Organized tables (Tickets/Departments/Technicians), Business Rules for auto-assignment, email notifications, and dashboards.</p>
-      <p><strong>Impact:</strong> Faster TTR, clearer ownership, SLA visibility; repeatable intake with validations.</p>
+      <p><strong>Solution:</strong> Organized tables (Tickets/Departments/Technicians), Business Rules for auto-assign, email notifications, SLAs; Service Portal for submission and status.</p>
+      <p><strong>Impact:</strong> Faster TTR, better routing/ownership, SLA visibility; repeatable intake with validations.</p>
       <div class="row small"><span class="pill">ServiceNow</span><span class="pill">Business Rules</span><span class="pill">Dashboards</span></div>
     </div>
   </dialog>
@@ -545,10 +595,43 @@
     <div class="modal-card">
       <button class="close" data-close="modal-sdn">Close</button>
       <h3>DDoS Detection on SDN — Mininet / RYU / Python</h3>
-      <p><strong>Problem:</strong> Detect attack patterns early with fewer false positives.</p>
-      <p><strong>Solution:</strong> SDN topology with normal vs. attack traffic generation; controller logs feeding an ML analyzer.</p>
-      <p><strong>Impact:</strong> Early detection and better precision/recall; documented repeatable tests & metrics.</p>
+      <p><strong>Problem:</strong> Detect attack patterns early with fewer false positives in SDN networks.</p>
+      <p><strong>Solution:</strong> Emulated topology in Mininet; generated normal vs. attack traffic (iperf/hping3); captured controller logs via RYU; trained ML classifier on engineered features.</p>
+      <p><strong>Impact:</strong> Earlier anomaly detection with improved precision/recall over baselines; reproducible experiments.</p>
       <div class="row small"><span class="pill">Mininet</span><span class="pill">RYU</span><span class="pill">Python</span></div>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="modal-ecg" aria-label="Heart Failure Detection Case Study">
+    <div class="modal-card">
+      <button class="close" data-close="modal-ecg">Close</button>
+      <h3>Heart Failure Detection Using ECG — Python ML</h3>
+      <p><strong>Problem:</strong> Identify cardiac conditions from ECG signals with reliable evaluation.</p>
+      <p><strong>Solution:</strong> Signal processing pipeline, feature extraction, multiple classifiers; handled class imbalance; evaluated with precision/recall/F1 and confusion matrix.</p>
+      <p><strong>Impact:</strong> Clearer pipeline and metrics; results accepted/published, demonstrating feasibility.</p>
+      <div class="row small"><span class="pill">Python</span><span class="pill">ML</span><span class="pill">Signal Processing</span></div>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="modal-fakenews" aria-label="Fake News Detection Case Study">
+    <div class="modal-card">
+      <button class="close" data-close="modal-fakenews">Close</button>
+      <h3>Fake News Detection — Python / ML</h3>
+      <p><strong>Problem:</strong> Identify misleading/false articles from raw text.</p>
+      <p><strong>Solution:</strong> Preprocessing (tokenization, stop-words, lemmatization); features via TF-IDF/embeddings; trained and compared classifiers (LogReg/SVM/NN) with ROC-AUC and F1.</p>
+      <p><strong>Impact:</strong> Better precision/recall vs. baselines; reproducible pipeline with clear evaluation.</p>
+      <div class="row small"><span class="pill">Python</span><span class="pill">NLP</span><span class="pill">Classification</span></div>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="modal-weather" aria-label="Weather Forecasting Case Study">
+    <div class="modal-card">
+      <button class="close" data-close="modal-weather">Close</button>
+      <h3>Weather Forecasting — Deep Learning</h3>
+      <p><strong>Problem:</strong> Predict near-term weather metrics from historical observations.</p>
+      <p><strong>Solution:</strong> Feature engineering (lags, rolling stats); RNN/CNN architecture with proper validation and early stopping; evaluated MAE/RMSE.</p>
+      <p><strong>Impact:</strong> Reduced error vs. baselines; reproducible training/evaluation scripts.</p>
+      <div class="row small"><span class="pill">Python</span><span class="pill">Deep Learning</span><span class="pill">Time-Series</span></div>
     </div>
   </dialog>
 
