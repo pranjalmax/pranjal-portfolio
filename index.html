@@ -592,6 +592,14 @@
           <input type="hidden" name="_subject" value="New message from your portfolio" />
           <input type="hidden" name="_next" value="https://pranjalmax.github.io/pranjal-portfolio/thanks.html" />
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+          <!-- Attribution (auto-filled by JS) -->
+          <input type="hidden" name="utm_source" id="utm_source">
+          <input type="hidden" name="utm_medium" id="utm_medium">
+          <input type="hidden" name="utm_campaign" id="utm_campaign">
+          <input type="hidden" name="ref" id="ref">
+          <input type="hidden" name="referrer_path" id="referrer_path">
+          <input type="hidden" name="landing_ts" id="landing_ts">
+
 
           <button type="submit" id="sendBtn"
                   style="background:linear-gradient(90deg,var(--brand),var(--accent));border:none;color:#0b0f17;font-weight:800;padding:12px 14px;border-radius:12px">Send Message</button>
@@ -798,7 +806,59 @@
       document.querySelectorAll('.modal .close').forEach(b => b.addEventListener('click', () => closeModal(b.dataset.close)));
       document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.removeAttribute('open'); }));
     })();
+    
+     (function(){
+      const ATTR_KEY = "ps_attribution_v1";
+      const PROFILE_KEY = "ps_form_profile_v1";
 
+      const params = new URLSearchParams(location.search);
+      const now = new Date().toISOString();
+
+      let attr = null;
+      try { attr = JSON.parse(localStorage.getItem(ATTR_KEY)); } catch {}
+      if (!attr) {
+        attr = {
+          utm_source: params.get("utm_source") || params.get("source") || "",
+          utm_medium: params.get("utm_medium") || "",
+          utm_campaign: params.get("utm_campaign") || "",
+          ref: params.get("ref") || document.referrer || "",
+          referrer_path: location.pathname + location.search,
+          landing_ts: now
+        };
+        try { localStorage.setItem(ATTR_KEY, JSON.stringify(attr)); } catch {}
+      }
+
+      function fillHidden(){
+        const set = (id, v) => { const el = document.getElementById(id); if (el) el.value = v || ""; };
+        set("utm_source", attr.utm_source);
+        set("utm_medium", attr.utm_medium);
+        set("utm_campaign", attr.utm_campaign);
+        set("ref", attr.ref);
+        set("referrer_path", attr.referrer_path);
+        set("landing_ts", attr.landing_ts);
+      }
+      fillHidden();
+
+      const nameEl = document.getElementById("name");
+      const emailEl = document.getElementById("email");
+
+      try {
+        const saved = JSON.parse(localStorage.getItem(PROFILE_KEY) || "{}");
+        if (saved.name && nameEl) nameEl.value = saved.name;
+        if (saved.email && emailEl) emailEl.value = saved.email;
+      } catch {}
+
+      function saveProfile(){
+        try {
+          const payload = { name: nameEl?.value?.trim() || "", email: emailEl?.value?.trim() || "" };
+          localStorage.setItem(PROFILE_KEY, JSON.stringify(payload));
+        } catch {}
+      }
+      ["change","blur","keyup"].forEach(ev => {
+        nameEl?.addEventListener(ev, saveProfile);
+        emailEl?.addEventListener(ev, saveProfile);
+      });
+    })();
     // CONTACT FORM AJAX (manual redirect to thanks page)
     (function(){
       const form = document.getElementById('contactForm');
