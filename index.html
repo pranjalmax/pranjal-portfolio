@@ -500,7 +500,7 @@
       <div class="edu-list">
         <!-- TAMU-CC -->
         <div class="edu-item">
-          <img class="logo" src="assets/image_tamucc.png" alt="Texas A&M University–Corpus Christi logo" loading="lazy" decoding="async" width="56" height="56">
+          <img class="logo" src="assets/image_tamucc.jpeg" alt="Texas A&M University–Corpus Christi logo" loading="lazy" decoding="async" width="56" height="56">
           <div class="edu-lines">
             <div class="edu-title">Texas A&M University–Corpus Christi</div>
             <div class="edu-sub">Master of Science in Computer Science (2021–2023)</div>
@@ -509,7 +509,7 @@
 
         <!-- SRM -->
         <div class="edu-item">
-          <img class="logo" src="assets/image_srm.png" alt="SRM Institute of Science and Technology logo" loading="lazy" decoding="async" width="56" height="56">
+          <img class="logo" src="assets/image_srm.jpeg" alt="SRM Institute of Science and Technology logo" loading="lazy" decoding="async" width="56" height="56">
           <div class="edu-lines">
             <div class="edu-title">SRM Institute of Science and Technology</div>
             <div class="edu-sub">Bachelor of Technology in Computer Science and Engineering (2017–2021)</div>
@@ -841,7 +841,7 @@
       const links = Array.from(document.querySelectorAll('a')).filter(a => a.href.includes('Pranjal_Srivastava_Resume_Portfolio_Full.pdf'));
       try {
         const res = await fetch('assets/Pranjal_Srivastava_Resume_Portfolio_Full.pdf', { method: 'HEAD' });
-        if (!res.ok) links.forEach(a => a.addEventListener('click', e => { e.preventDefault(); alert('Resume file not found yet. Try again in a minute.'); }));
+        if (!res.ok) links.forEach(a => a.addEventListener('click', e => { e.preventDefault(); alert('Resume file not found yet. Try again in a minute.'); })); 
       } catch {}
     })();
   </script>
