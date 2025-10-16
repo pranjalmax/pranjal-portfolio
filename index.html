@@ -194,6 +194,40 @@
     @media (prefers-reduced-motion: reduce){
       * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     }
+
+    /* --- Education list (NEW) --- */
+    .edu-list{ display:grid; gap:12px; }
+    .edu-item{
+      display:grid; grid-template-columns:56px 1fr; gap:12px; align-items:center;
+      background:var(--card); border:1px solid var(--line);
+      border-radius:16px; padding:14px; box-shadow:var(--shadow);
+    }
+    .edu-item img.logo{
+      width:56px; height:56px; border-radius:10px; object-fit:cover;
+      border:1px solid var(--line); background:#0a0a0a;
+    }
+    .edu-item .edu-lines{ line-height:1.25 }
+    .edu-item .edu-title{ font-weight:700; }
+    .edu-item .edu-sub{ color:var(--muted); }
+
+    /* --- Make "Hire Me" text clearly visible --- */
+    .cta-btn, .mobile-cta{
+      color:#0b0f17 !important;
+      text-shadow:0 1px 0 rgba(255,255,255,.35);
+    }
+    .cta-btn:visited{ color:#0b0f17 !important; }
+
+    /* --- Dark-mode modal contrast improvements --- */
+    .modal[open]{ backdrop-filter: blur(3px); }
+    .modal-card{
+      background: color-mix(in srgb, var(--card), #fff 8%);
+      border-color: color-mix(in srgb, var(--line), #fff 30%);
+      box-shadow: 0 24px 50px rgba(2,8,23,.6);
+    }
+    .modal .close{
+      color: var(--text);
+      border-color: color-mix(in srgb, var(--line), #fff 20%);
+    }
   </style>
 </head>
 <body>
@@ -460,11 +494,27 @@
       </div>
     </section>
 
+    <!-- UPDATED EDUCATION SECTION -->
     <section id="education" class="section reveal-on-scroll">
       <h2>Education</h2>
-      <div class="grid cols-2">
-        <div class="card"><p><strong>Texas A&M University–Corpus Christi</strong> — M.S., Computer Science <span class="muted">(2021–2023)</span></p></div>
-        <div class="card"><p><strong>SRM Institute of Science and Technology</strong> — B.Tech., Computer Science <span class="muted">(2017–2021)</span></p></div>
+      <div class="edu-list">
+        <!-- TAMU-CC -->
+        <div class="edu-item">
+          <img class="logo" src="assets/image_tamucc.png" alt="Texas A&M University–Corpus Christi logo" loading="lazy" decoding="async" width="56" height="56">
+          <div class="edu-lines">
+            <div class="edu-title">Texas A&M University–Corpus Christi</div>
+            <div class="edu-sub">Master of Science in Computer Science (2021–2023)</div>
+          </div>
+        </div>
+
+        <!-- SRM -->
+        <div class="edu-item">
+          <img class="logo" src="assets/image_srm.png" alt="SRM Institute of Science and Technology logo" loading="lazy" decoding="async" width="56" height="56">
+          <div class="edu-lines">
+            <div class="edu-title">SRM Institute of Science and Technology</div>
+            <div class="edu-sub">Bachelor of Technology in Computer Science and Engineering (2017–2021)</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -607,7 +657,7 @@
     </div>
   </dialog>
 
-  <dialog class="modal" id="modal-fakenews" aria-label="Fake News Detection Case Study">
+  <dialog class="modal" id="modal-fakenews" aria-label="Fake News Case Study">
     <div class="modal-card">
       <button class="close" data-close="modal-fakenews">Close</button>
       <h3>Fake News Detection — Python / ML</h3>
