@@ -1096,5 +1096,13 @@
     });
   })();
   </script>
+  <script>
+  // Register Service Worker (GitHub Pages needs absolute scope matching)
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/pranjal-portfolio/service-worker.js").catch(() => {});
+    });
+  }
+</script>
 </body>
 </html>
