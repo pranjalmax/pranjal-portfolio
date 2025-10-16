@@ -95,6 +95,7 @@
     .profile-wrap{position:relative}
     .glow{position:absolute; inset:auto; width:85%; height:85%; left:7.5%; top:7.5%; border-radius:999px; filter:blur(48px); background:radial-gradient(50% 50% at 50% 50%, color-mix(in srgb, var(--brand), transparent 40%) 0%, transparent 70%); pointer-events:none; z-index:0}
     .profile{position:relative; z-index:1; width:100%; aspect-ratio:1/1; border-radius:18px; object-fit:cover; border:1px solid var(--line); box-shadow:var(--shadow)}
+    .profile{width:100%; height:auto} /* lock layout */
 
     /* SECTIONS + CARDS */
     .section{padding:48px 0}
@@ -142,6 +143,7 @@
     .card.project:hover{transform:translateY(-3px); box-shadow:0 14px 32px rgba(2,8,23,.25)}
     [data-theme="light"] .card.project:hover{box-shadow:0 12px 26px rgba(2,8,23,.12)}
     .thumb{aspect-ratio:16/9; width:100%; border-radius:12px; object-fit:cover; border:1px solid var(--line); margin-bottom:10px}
+    .thumb{width:100%; height:auto} /* lock layout */
     .small{font-size:13px}
 
     /* MODALS */
@@ -195,7 +197,7 @@
       * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     }
 
-    /* --- Education list (NEW) --- */
+    /* --- Education list (already added) --- */
     .edu-list{ display:grid; gap:12px; }
     .edu-item{
       display:grid; grid-template-columns:56px 1fr; gap:12px; align-items:center;
@@ -210,14 +212,14 @@
     .edu-item .edu-title{ font-weight:700; }
     .edu-item .edu-sub{ color:var(--muted); }
 
-    /* --- Make "Hire Me" text clearly visible --- */
+    /* --- Make "Hire Me" text clearly visible (already added) --- */
     .cta-btn, .mobile-cta{
       color:#0b0f17 !important;
       text-shadow:0 1px 0 rgba(255,255,255,.35);
     }
     .cta-btn:visited{ color:#0b0f17 !important; }
 
-    /* --- Dark-mode modal contrast improvements --- */
+    /* --- Dark-mode modal contrast improvements (already added) --- */
     .modal[open]{ backdrop-filter: blur(3px); }
     .modal-card{
       background: color-mix(in srgb, var(--card), #fff 8%);
@@ -228,6 +230,44 @@
       color: var(--text);
       border-color: color-mix(in srgb, var(--line), #fff 20%);
     }
+
+    /* --- Perf/CLS: below-the-fold lazy render --- */
+    #skills, #experience, #projects, #education, #certs, #contact {
+      content-visibility:auto;
+      contain-intrinsic-size: 1px 800px; /* reserve space to prevent CLS */
+    }
+
+    /* --- Chat UX styles --- */
+    #ps-quick-chips { display:flex; gap:8px; flex-wrap:wrap; padding:8px 10px; border-bottom:1px solid var(--line); }
+    #ps-quick-chips button{
+      padding:6px 10px; border-radius:999px; border:1px solid var(--line);
+      background:transparent; color:var(--text); font-size:12px; cursor:pointer;
+    }
+    #ps-quick-chips button:hover{ border-color: color-mix(in srgb, var(--brand), #fff 15%); }
+    .msg{
+      max-width:85%; line-height:1.35;
+      word-wrap:break-word; overflow-wrap:anywhere;
+    }
+    .msg.user{
+      align-self:flex-end;
+      background:linear-gradient(90deg,var(--brand),var(--accent));
+      color:#0b0f17; border:1px solid transparent;
+    }
+    .msg.bot{
+      align-self:flex-start;
+      background:rgba(148,163,184,.12);
+      color:var(--text); border:1px solid var(--line);
+    }
+    .msg, .typing{
+      padding:8px 10px; border-radius:12px;
+    }
+    .typing{ align-self:flex-start; display:inline-flex; gap:4px; color:var(--muted); }
+    .dot{ width:6px; height:6px; border-radius:50%; background:currentColor; opacity:.7; animation:blink 1.2s infinite ease-in-out; }
+    .dot:nth-child(2){ animation-delay:.15s } .dot:nth-child(3){ animation-delay:.3s }
+    @keyframes blink{ 0%,80%,100%{ opacity:.2 } 40%{ opacity:1 } }
+
+    /* prevent CLS inside chat box */
+    #ps-chat-messages{ contain: content; }
   </style>
 </head>
 <body>
@@ -278,7 +318,7 @@
       </div>
       <div class="profile-wrap">
         <span class="glow" aria-hidden="true"></span>
-        <img class="profile" src="assets/Portfolio_Image.png" alt="Pranjal Srivastava portrait" loading="eager" fetchpriority="high" />
+        <img class="profile" src="assets/Portfolio_Image.png" alt="Pranjal Srivastava portrait" loading="eager" fetchpriority="high" decoding="async" width="600" height="600" />
       </div>
     </section>
 
@@ -402,7 +442,7 @@
       <div class="grid cols-3" id="projectGrid">
         <!-- 1) ServiceNow Dog Adoption -->
         <article class="card project reveal-on-scroll" data-tags="servicenow web">
-          <img class="thumb" src="assets/Image_dog.png" alt="Dog Adoption ServiceNow portal UI" loading="lazy">
+          <img class="thumb" src="assets/Image_dog.png" alt="Dog Adoption ServiceNow portal UI" loading="lazy" decoding="async" width="640" height="360">
           <h3>Dog Adoption Portal — ServiceNow</h3>
           <p class="muted">App Engine app with <strong>Dogs</strong> & <strong>Adoption Centers</strong>; Service Portal Record Producer, reference links, validations, and optional email notifications.</p>
           <div class="row small"><span class="pill">ServiceNow</span><span class="pill">Flow Designer</span><span class="pill">UI Policies</span></div>
@@ -416,7 +456,7 @@
 
         <!-- 2) ServiceNow Helpdesk -->
         <article class="card project reveal-on-scroll" data-tags="servicenow itsm">
-          <img class="thumb" src="assets/Image_helpdesk.png" alt="Helpdesk ticketing Kanban board" loading="lazy">
+          <img class="thumb" src="assets/Image_helpdesk.png" alt="Helpdesk ticketing Kanban board" loading="lazy" decoding="async" width="640" height="360">
           <h3>Helpdesk Ticketing App — ServiceNow</h3>
           <p class="muted">Custom tables (Tickets/Departments/Technicians), Business Rules for auto-assign, email notifications, SLAs and dashboards for visibility.</p>
           <div class="row small"><span class="pill">ServiceNow</span><span class="pill">Business Rules</span><span class="pill">Dashboards</span></div>
@@ -430,7 +470,7 @@
 
         <!-- 3) DDoS SDN -->
         <article class="card project reveal-on-scroll" data-tags="ml python networking">
-          <img class="thumb" src="assets/image_ddos.png" alt="SDN topology with DDoS alert visualization" loading="lazy">
+          <img class="thumb" src="assets/image_ddos.png" alt="SDN topology with DDoS alert visualization" loading="lazy" decoding="async" width="640" height="360">
           <h3>DDoS Detection on SDN — Mininet / RYU / Python</h3>
           <p class="muted">Built SDN topology; generated normal vs attack traffic (iperf/hping3); controller logs (RYU) fed an ML detector to flag anomalies.</p>
           <div class="row small"><span class="pill">Mininet</span><span class="pill">RYU</span><span class="pill">Python</span></div>
@@ -444,7 +484,7 @@
 
         <!-- 4) Heart Failure Detection -->
         <article class="card project reveal-on-scroll" data-tags="ml python">
-          <img class="thumb" src="assets/Image_heart.png" alt="ECG electrodes and waveform monitor" loading="lazy">
+          <img class="thumb" src="assets/Image_heart.png" alt="ECG electrodes and waveform monitor" loading="lazy" decoding="async" width="640" height="360">
           <h3>Heart Failure Detection Using ECG — Python ML</h3>
           <p class="muted">End-to-end pipeline: ECG signal processing → features → classifiers; evaluated with precision/recall/F1; published results.</p>
           <div class="row small"><span class="pill">Python</span><span class="pill">ML</span><span class="pill">Signal Processing</span></div>
@@ -458,7 +498,7 @@
 
         <!-- 5) DB Optimizations -->
         <article class="card project reveal-on-scroll" data-tags="java dotnet sql">
-          <img class="thumb" src="assets/Image_database.png" alt="Database performance optimization concept" loading="lazy">
+          <img class="thumb" src="assets/Image_database.png" alt="Database performance optimization concept" loading="lazy" decoding="async" width="640" height="360">
           <h3>Optimizations in Databases via DS & Algorithms</h3>
           <p class="muted">Matched data structures to access patterns; tuned schemas and indexes; measured latency improvements on critical paths.</p>
           <div class="row small"><span class="pill">SQL</span><span class="pill">Performance</span><span class="pill">Data Structures</span></div>
@@ -466,7 +506,7 @@
 
         <!-- 6) Fake News Detection -->
         <article class="card project reveal-on-scroll" data-tags="ml python nlp">
-          <img class="thumb" src="assets/Image_fakenews.png" alt="Fake news detection with NLP/ML visual" loading="lazy">
+          <img class="thumb" src="assets/Image_fakenews.png" alt="Fake news detection with NLP/ML visual" loading="lazy" decoding="async" width="640" height="360">
           <h3>Fake News Detection — Python / ML</h3>
           <p class="muted">NLP pipeline with text cleaning, TF-IDF/embeddings, and classifiers to flag misinformation; compared models and metrics.</p>
           <div class="row small"><span class="pill">Python</span><span class="pill">NLP</span><span class="pill">Classification</span></div>
@@ -480,7 +520,7 @@
 
         <!-- 7) Weather Forecasting (Deep Learning) -->
         <article class="card project reveal-on-scroll" data-tags="ml python timeseries deep learning">
-          <img class="thumb" src="assets/Image_weather.png" alt="Deep-learning weather forecasting visual" loading="lazy">
+          <img class="thumb" src="assets/Image_weather.png" alt="Deep-learning weather forecasting visual" loading="lazy" decoding="async" width="640" height="360">
           <h3>Weather Forecasting — Deep Learning</h3>
           <p class="muted">Time-series model (RNN/CNN hybrid) on historical weather to predict short-term conditions; evaluated with MAE/RMSE.</p>
           <div class="row small"><span class="pill">Python</span><span class="pill">Deep Learning</span><span class="pill">Time-Series</span></div>
@@ -693,6 +733,9 @@
   <a href="assets/Pranjal_Srivastava_Resume_Portfolio_Full.pdf" class="mobile-cta ghost" target="_blank" rel="noopener" aria-label="Download resume">Resume</a>
 
   <script>
+    // Helper: requestIdleCallback fallback
+    window._ric = window.requestIdleCallback || function(cb){ return setTimeout(() => cb({timeRemaining:()=>0})); };
+
     // Year
     document.getElementById('y').textContent = new Date().getFullYear();
 
@@ -707,48 +750,54 @@
       localStorage.setItem('theme-pref', next);
     });
 
-    // SCROLL REVEAL
-    const revealEls = document.querySelectorAll('.reveal-on-scroll');
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); });
-    }, {threshold:.1});
-    revealEls.forEach(el => io.observe(el));
+    // SCROLL REVEAL (defer non-critical init)
+    _ric(() => {
+      const revealEls = document.querySelectorAll('.reveal-on-scroll');
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); });
+      }, {threshold:.1});
+      revealEls.forEach(el => io.observe(el));
+    });
 
     // PROJECT FILTERS + SEARCH
-    const grid = document.getElementById('projectGrid');
-    const cards = Array.from(grid.querySelectorAll('.project'));
-    const search = document.getElementById('projSearch');
-    const filterBtns = Array.from(document.querySelectorAll('[data-filter]'));
-    let activeFilter = 'all';
+    (function(){
+      const grid = document.getElementById('projectGrid');
+      const cards = Array.from(grid.querySelectorAll('.project'));
+      const search = document.getElementById('projSearch');
+      const filterBtns = Array.from(document.querySelectorAll('[data-filter]'));
+      let activeFilter = 'all';
 
-    const allBtn = filterBtns.find(b => b.dataset.filter === 'all');
-    if (allBtn) allBtn.classList.add('active');
+      const allBtn = filterBtns.find(b => b.dataset.filter === 'all');
+      if (allBtn) allBtn.classList.add('active');
 
-    function applyFilters(){
-      const q = (search.value || '').toLowerCase().trim();
-      cards.forEach(c => {
-        const tags = (c.getAttribute('data-tags') || '').toLowerCase();
-        const text = c.textContent.toLowerCase();
-        const matchTag = activeFilter === 'all' || tags.includes(activeFilter);
-        const matchText = !q || text.includes(q);
-        c.style.display = (matchTag && matchText) ? '' : 'none';
-      });
-    }
+      function applyFilters(){
+        const q = (search.value || '').toLowerCase().trim();
+        cards.forEach(c => {
+          const tags = (c.getAttribute('data-tags') || '').toLowerCase();
+          const text = c.textContent.toLowerCase();
+          const matchTag = activeFilter === 'all' || tags.includes(activeFilter);
+          const matchText = !q || text.includes(q);
+          c.style.display = (matchTag && matchText) ? '' : 'none';
+        });
+      }
 
-    filterBtns.forEach(b => b.addEventListener('click', () => {
-      activeFilter = b.dataset.filter;
-      filterBtns.forEach(x => x.classList.remove('active'));
-      b.classList.add('active');
-      applyFilters();
-    }));
-    search.addEventListener('input', applyFilters);
+      filterBtns.forEach(b => b.addEventListener('click', () => {
+        activeFilter = b.dataset.filter;
+        filterBtns.forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        applyFilters();
+      }));
+      search.addEventListener('input', applyFilters);
+    })();
 
     // MODALS
-    function openModal(id){ document.getElementById(id).setAttribute('open',''); }
-    function closeModal(id){ document.getElementById(id).removeAttribute('open'); }
-    document.querySelectorAll('.open-modal').forEach(btn => btn.addEventListener('click', () => openModal(btn.dataset.modal)));
-    document.querySelectorAll('.modal .close').forEach(b => b.addEventListener('click', () => closeModal(b.dataset.close)));
-    document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.removeAttribute('open'); }));
+    (function(){
+      function openModal(id){ document.getElementById(id).setAttribute('open',''); }
+      function closeModal(id){ document.getElementById(id).removeAttribute('open'); }
+      document.querySelectorAll('.open-modal').forEach(btn => btn.addEventListener('click', () => openModal(btn.dataset.modal)));
+      document.querySelectorAll('.modal .close').forEach(b => b.addEventListener('click', () => closeModal(b.dataset.close)));
+      document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.removeAttribute('open'); }));
+    })();
 
     // CONTACT FORM AJAX (manual redirect to thanks page)
     (function(){
@@ -845,42 +894,49 @@
       } catch {}
     })();
   </script>
+
   <!-- Floating Chat Widget -->
-<div id="ps-chat" style="position:fixed;right:16px;bottom:16px;z-index:70;">
-  <button id="ps-chat-toggle" aria-label="Open chat"
-    style="width:56px;height:56px;border-radius:50%;border:1px solid var(--line);
-           background:linear-gradient(90deg,var(--brand),var(--accent));
-           color:#0b0f17;font-weight:800;box-shadow:0 8px 22px rgba(2,8,23,.35);">
-    AI
-  </button>
+  <div id="ps-chat" style="position:fixed;right:16px;bottom:16px;z-index:70;">
+    <button id="ps-chat-toggle" aria-label="Open chat"
+      style="width:56px;height:56px;border-radius:50%;border:1px solid var(--line);
+             background:linear-gradient(90deg,var(--brand),var(--accent));
+             color:#0b0f17;font-weight:800;box-shadow:0 8px 22px rgba(2,8,23,.35);">
+      AI
+    </button>
 
-  <div id="ps-chat-box" aria-live="polite"
-    style="display:none;position:absolute;right:0;bottom:70px;width:320px;max-height:60vh;overflow:hidden;
-           background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 28px rgba(2,8,23,.35);">
-    <div style="padding:12px 14px;border-bottom:1px solid var(--line);font-weight:700;">Ask about Pranjal</div>
+    <div id="ps-chat-box" aria-live="polite"
+      style="display:none;position:absolute;right:0;bottom:70px;width:320px;max-height:65vh;overflow:hidden;
+             background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 28px rgba(2,8,23,.35);">
+      <div style="padding:12px 14px;border-bottom:1px solid var(--line);font-weight:700;">Ask about Pranjal</div>
 
-    <div id="ps-chat-messages"
-         style="padding:12px;display:flex;flex-direction:column;gap:10px;max-height:42vh;overflow:auto;">
-      <div style="align-self:flex-start;background:rgba(148,163,184,.12);border:1px solid var(--line);
-                  padding:8px 10px;border-radius:12px;">
-        Hi! I can answer questions about Pranjal’s experience, skills, and projects.
+      <!-- Quick prompt chips -->
+      <div id="ps-quick-chips" role="toolbar" aria-label="Quick prompts"></div>
+
+      <div id="ps-chat-messages"
+           style="padding:12px;display:flex;flex-direction:column;gap:10px;max-height:42vh;overflow:auto;">
+        <div class="msg bot" style="align-self:flex-start;">
+          Hi! I can answer questions about Pranjal’s experience, skills, and projects.
+        </div>
       </div>
-    </div>
 
-    <form id="ps-chat-form" style="display:flex;gap:8px;padding:10px;border-top:1px solid var(--line);">
-      <input id="ps-chat-input" name="q" autocomplete="off"
-             placeholder="Ask about experience, skills…"
-             style="flex:1;background:transparent;border:1px solid var(--line);
-                    border-radius:12px;padding:10px;color:var(--text)">
-      <button style="background:linear-gradient(90deg,var(--brand),var(--accent));
-                     border:none;color:#0b0f17;font-weight:800;padding:10px 12px;border-radius:12px">
-        Send
-      </button>
-    </form>
+      <form id="ps-chat-form" style="display:flex;gap:8px;padding:10px;border-top:1px solid var(--line);align-items:flex-end;">
+        <textarea id="ps-chat-input" name="q" autocomplete="off" rows="1"
+               placeholder="Ask about experience, skills… (Enter to send, Shift+Enter = newline)"
+               style="flex:1;resize:none;background:transparent;border:1px solid var(--line);
+                      border-radius:12px;padding:10px;color:var(--text)"></textarea>
+        <button id="ps-chat-send" style="background:linear-gradient(90deg,var(--brand),var(--accent));
+                       border:none;color:#0b0f17;font-weight:800;padding:10px 12px;border-radius:12px">
+          Send
+        </button>
+        <button id="ps-chat-cancel" type="button" style="display:none;border:1px solid var(--line);background:transparent;color:var(--text);padding:10px 12px;border-radius:12px">
+          Cancel
+        </button>
+      </form>
+    </div>
   </div>
-</div>
+
   <script>
-  // === Your deployed API URL ===
+  // === Deployed API URL ===
   const CHAT_API_URL = "https://pranjal-chat-api.vercel.app/api/chat";
 
   (function(){
@@ -888,48 +944,157 @@
     const box = document.getElementById('ps-chat-box');
     const form = document.getElementById('ps-chat-form');
     const input = document.getElementById('ps-chat-input');
+    const sendBtn = document.getElementById('ps-chat-send');
+    const cancelBtn = document.getElementById('ps-chat-cancel');
     const msgs = document.getElementById('ps-chat-messages');
+    const chipsBar = document.getElementById('ps-quick-chips');
 
+    // Quick prompts + recent
+    const QUICK = [
+      "Summarize Pranjal’s projects",
+      "ServiceNow skills and experience",
+      ".NET / C# API experience",
+      "Java & Spring Boot highlights",
+      "What’s the resume link?",
+      "How to contact Pranjal?"
+    ];
+    const RECENT_KEY = "ps-chat-recent-q";
+    function loadRecent(){ try{return JSON.parse(localStorage.getItem(RECENT_KEY)||"[]");}catch{ return [] } }
+    function saveRecent(q){
+      const arr = loadRecent().filter(x => x !== q);
+      arr.unshift(q);
+      localStorage.setItem(RECENT_KEY, JSON.stringify(arr.slice(0,3)));
+    }
+    function renderChips(){
+      chipsBar.innerHTML = "";
+      const recent = loadRecent();
+      [...recent, ...QUICK].slice(0,6).forEach(text => {
+        const b = document.createElement('button');
+        b.type = "button"; b.textContent = text;
+        b.addEventListener('click', () => {
+          input.value = text;
+          // Send immediately on chip click
+          form.dispatchEvent(new Event('submit'));
+        });
+        chipsBar.appendChild(b);
+      });
+    }
+    renderChips();
+
+    // Open/close
     toggle.addEventListener('click', () => {
       const open = box.style.display !== 'none';
       box.style.display = open ? 'none' : 'block';
       if (!open) setTimeout(() => input.focus(), 200);
     });
 
+    // Resize textarea automatically
+    function autoResize(){
+      input.style.height = 'auto';
+      input.style.height = Math.min(120, input.scrollHeight) + 'px';
+    }
+    input.addEventListener('input', autoResize);
+
+    // Keyboard: Enter sends; Shift+Enter = newline
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        form.dispatchEvent(new Event('submit'));
+      }
+    });
+
     function bubble(text, who){
       const div = document.createElement('div');
-      div.style.alignSelf = who === 'user' ? 'flex-end' : 'flex-start';
-      div.style.background = who === 'user'
-        ? 'linear-gradient(90deg,var(--brand),var(--accent))'
-        : 'rgba(148,163,184,.12)';
-      div.style.color = who === 'user' ? '#0b0f17' : 'var(--text)';
-      div.style.border = who === 'user' ? '1px solid transparent' : '1px solid var(--line)';
-      div.style.padding = '8px 10px';
-      div.style.borderRadius = '12px';
+      div.className = `msg ${who}`;
       div.textContent = text;
       msgs.appendChild(div);
       msgs.scrollTop = msgs.scrollHeight;
+      return div;
     }
 
+    // Typing indicator
+    let typingEl = null;
+    function showTyping(){
+      if (typingEl) return;
+      typingEl = document.createElement('div');
+      typingEl.className = 'typing';
+      typingEl.setAttribute('aria-live','polite');
+      typingEl.innerHTML = '<span>Pranjal is typing</span> <span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+      msgs.appendChild(typingEl);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+    function hideTyping(){
+      if (typingEl){ typingEl.remove(); typingEl = null; }
+    }
+
+    // In-flight state
+    let inflight = null; // {controller, id}
+    function setBusy(b){
+      sendBtn.disabled = b;
+      cancelBtn.style.display = b ? 'inline-block' : 'none';
+    }
+
+    // Optimistic user bubble + cancel/ignore late
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const q = input.value.trim();
-      if (!q) return;
+      if (!q || inflight) return;
+
+      // optimistic bubble
       bubble(q, 'user');
-      input.value = '';
+      saveRecent(q); renderChips();
+
+      // prepare request
+      input.value = ''; autoResize();
+      setBusy(true); showTyping();
+      const controller = new AbortController();
+      const reqId = Date.now().toString(36) + Math.random().toString(36).slice(2,6);
+      inflight = { controller, id: reqId };
+
+      // Cancel handler
+      cancelBtn.onclick = () => {
+        try { controller.abort(); } catch {}
+        setBusy(false); hideTyping(); inflight = null;
+      };
+
+      // (Optional) pass brief local history (last 3 exchanges) to server
+      const history = Array.from(msgs.querySelectorAll('.msg')).slice(-6).map(n => ({
+        role: n.classList.contains('user') ? 'user' : 'assistant',
+        content: n.textContent
+      }));
+
       try{
         const r = await fetch(CHAT_API_URL, {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({ message: q })
+          body: JSON.stringify({ message: q, history }),
+          signal: controller.signal
         });
-        const data = await r.json();
-        bubble(data.answer || 'Sorry, no answer.', 'bot');
-      } catch(e){
-        bubble('Network error. Please try again.', 'bot');
+
+        // If another request replaced this one, ignore late response
+        if (!inflight || inflight.id !== reqId) return;
+
+        let data = null;
+        try { data = await r.json(); } catch {}
+        hideTyping();
+        setBusy(false);
+        inflight = null;
+
+        if (r.ok && data && (data.answer || data.error)) {
+          bubble(data.answer || 'Sorry, no answer.', 'bot');
+        } else {
+          bubble('⚠️ Unexpected response. Please try again.', 'bot');
+        }
+      } catch(err){
+        if (err.name === 'AbortError') {
+          // user cancelled: ignore
+        } else {
+          hideTyping(); setBusy(false); inflight = null;
+          bubble('Network error. Please try again.', 'bot');
+        }
       }
     });
   })();
-</script>
+  </script>
 </body>
 </html>
