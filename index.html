@@ -163,7 +163,7 @@
     .to-top{
       position: fixed; right: 16px; bottom: 90px; z-index: 60; width: 42px; height: 42px;
       border-radius: 10px; border:1px solid var(--line); background: var(--card);
-      color: var(--text); box-shadow: var(--shadow); opacity: 0; pointer-events: none;
+      color: var(--text); box-shadow:var(--shadow); opacity: 0; pointer-events: none;
       transition: opacity .2s ease, transform .2s ease; transform: translateY(6px);
     }
     .to-top.show{ opacity: 1; pointer-events: auto; transform: none; }
@@ -197,7 +197,7 @@
       * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     }
 
-    /* --- Education list (already added) --- */
+    /* --- Education list --- */
     .edu-list{ display:grid; gap:12px; }
     .edu-item{
       display:grid; grid-template-columns:56px 1fr; gap:12px; align-items:center;
@@ -212,14 +212,14 @@
     .edu-item .edu-title{ font-weight:700; }
     .edu-item .edu-sub{ color:var(--muted); }
 
-    /* --- Make "Hire Me" text clearly visible (already added) --- */
+    /* --- Make "Hire Me" text clearly visible --- */
     .cta-btn, .mobile-cta{
       color:#0b0f17 !important;
       text-shadow:0 1px 0 rgba(255,255,255,.35);
     }
     .cta-btn:visited{ color:#0b0f17 !important; }
 
-    /* --- Dark-mode modal contrast improvements (already added) --- */
+    /* --- Dark-mode modal contrast improvements --- */
     .modal[open]{ backdrop-filter: blur(3px); }
     .modal-card{
       background: color-mix(in srgb, var(--card), #fff 8%);
@@ -236,38 +236,6 @@
       content-visibility:auto;
       contain-intrinsic-size: 1px 800px; /* reserve space to prevent CLS */
     }
-
-    /* --- Chat UX styles --- */
-    #ps-quick-chips { display:flex; gap:8px; flex-wrap:wrap; padding:8px 10px; border-bottom:1px solid var(--line); }
-    #ps-quick-chips button{
-      padding:6px 10px; border-radius:999px; border:1px solid var(--line);
-      background:transparent; color:var(--text); font-size:12px; cursor:pointer;
-    }
-    #ps-quick-chips button:hover{ border-color: color-mix(in srgb, var(--brand), #fff 15%); }
-    .msg{
-      max-width:85%; line-height:1.35;
-      word-wrap:break-word; overflow-wrap:anywhere;
-    }
-    .msg.user{
-      align-self:flex-end;
-      background:linear-gradient(90deg,var(--brand),var(--accent));
-      color:#0b0f17; border:1px solid transparent;
-    }
-    .msg.bot{
-      align-self:flex-start;
-      background:rgba(148,163,184,.12);
-      color:var(--text); border:1px solid var(--line);
-    }
-    .msg, .typing{
-      padding:8px 10px; border-radius:12px;
-    }
-    .typing{ align-self:flex-start; display:inline-flex; gap:4px; color:var(--muted); }
-    .dot{ width:6px; height:6px; border-radius:50%; background:currentColor; opacity:.7; animation:blink 1.2s infinite ease-in-out; }
-    .dot:nth-child(2){ animation-delay:.15s } .dot:nth-child(3){ animation-delay:.3s }
-    @keyframes blink{ 0%,80%,100%{ opacity:.2 } 40%{ opacity:1 } }
-
-    /* prevent CLS inside chat box */
-    #ps-chat-messages{ contain: content; }
   </style>
 </head>
 <body>
@@ -642,12 +610,6 @@
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 3h16a1 1 0 0 1 1 1v16l-4-3H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.5"/></svg>
               <a href="https://www.linkedin.com/in/pranjal-srivastava07/" target="_blank" rel="noopener">linkedin.com/in/pranjal-srivastava07</a>
             </div>
-
-            <div class="label">Instagram</div>
-            <div class="contact-row">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-              <a href="https://www.instagram.com/pranjal.srivastava.7?igsh=MXYzcXc0MHJxdW13eA==" target="_blank" rel="noopener">@pranjal.srivastava.7</a>
-            </div>
           </div>
 
           <hr style="border:none;border-top:1px solid var(--line);margin:14px 0">
@@ -807,7 +769,7 @@
       document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.removeAttribute('open'); }));
     })();
     
-     (function(){
+    (function(){
       const ATTR_KEY = "ps_attribution_v1";
       const PROFILE_KEY = "ps_form_profile_v1";
 
@@ -859,6 +821,7 @@
         emailEl?.addEventListener(ev, saveProfile);
       });
     })();
+
     // CONTACT FORM AJAX (manual redirect to thanks page)
     (function(){
       const form = document.getElementById('contactForm');
@@ -955,207 +918,215 @@
     })();
   </script>
 
-  <!-- Floating Chat Widget -->
+  <!-- Floating Chat Widget (Max-AI Assistant) -->
   <div id="ps-chat" style="position:fixed;right:16px;bottom:16px;z-index:70;">
-    <button id="ps-chat-toggle" aria-label="Open chat"
-      style="width:56px;height:56px;border-radius:50%;border:1px solid var(--line);
+    <!-- Bigger, noticeable launcher -->
+    <button id="ps-chat-toggle" aria-label="Open Max-AI Assistant"
+      style="width:72px;height:72px;border-radius:20px;border:1px solid var(--line);
              background:linear-gradient(90deg,var(--brand),var(--accent));
-             color:#0b0f17;font-weight:800;box-shadow:0 8px 22px rgba(2,8,23,.35);">
-      AI
+             color:#0b0f17;font-weight:900;box-shadow:0 12px 30px rgba(2,8,23,.45);
+             display:flex;align-items:center;justify-content:center;gap:8px;position:relative;">
+      <span style="font-size:14px;letter-spacing:.3px;">Max-AI</span>
+      <span style="position:absolute;inset:auto;right:-4px;top:-4px;width:14px;height:14px;border-radius:50%;
+                   background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:pulse 1.8s infinite;">
+      </span>
     </button>
 
-    <div id="ps-chat-box" aria-live="polite"
-      style="display:none;position:absolute;right:0;bottom:70px;width:320px;max-height:65vh;overflow:hidden;
-             background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 28px rgba(2,8,23,.35);">
-      <div style="padding:12px 14px;border-bottom:1px solid var(--line);font-weight:700;">Ask about Pranjal</div>
+    <div id="ps-chat-box" aria-live="polite" aria-label="Max-AI Assistant chat"
+      style="display:none;position:absolute;right:0;bottom:84px;width:460px;max-width:90vw;max-height:72vh;overflow:hidden;
+             background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 16px 40px rgba(2,8,23,.45);">
+      <!-- Header -->
+      <div style="padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-weight:800;display:flex;align-items:center;gap:10px;">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" opacity=".6"/>
+            <path d="M8 13h8M10 9h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Max-AI Assistant
+        </div>
+        <button id="ps-chat-close" aria-label="Close chat"
+          style="border:1px solid var(--line);background:transparent;color:var(--text);border-radius:10px;padding:6px 10px;cursor:pointer;">×</button>
+      </div>
 
-      <!-- Quick prompt chips -->
-      <div id="ps-quick-chips" role="toolbar" aria-label="Quick prompts"></div>
-
+      <!-- Messages -->
       <div id="ps-chat-messages"
-           style="padding:12px;display:flex;flex-direction:column;gap:10px;max-height:42vh;overflow:auto;">
-        <div class="msg bot" style="align-self:flex-start;">
-          Hi! I can answer questions about Pranjal’s experience, skills, and projects.
+           style="padding:14px;display:flex;flex-direction:column;gap:12px;max-height:50vh;overflow:auto;">
+        <div style="align-self:flex-start;background:rgba(148,163,184,.12);border:1px solid var(--line);
+                    padding:10px 12px;border-radius:12px;max-width:85%;">
+          Hey! I’m <strong>Max-AI</strong> — happy to chat about Pranjal’s skills, projects, and a few fun personal bits
+          (soccer, movies, Real Madrid!). Fire away.
+        </div>
+
+        <!-- Quick prompt chips -->
+        <div id="ps-chat-chips" style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="ps-chip" data-q="What did you build in the Dog Adoption Portal?">Dog Adoption highlights</button>
+          <button class="ps-chip" data-q="What ServiceNow features have you implemented?">ServiceNow features</button>
+          <button class="ps-chip" data-q="Summarize the DDoS SDN project in 4 lines.">DDoS SDN — 4 lines</button>
+          <button class="ps-chip" data-q="Non-tech: what does Pranjal do for fun?">Beyond work</button>
+          <button class="ps-chip" data-q="Who does Pranjal support in football and why?">Favorite club</button>
+          <button class="ps-chip" data-q="What kind of movies does Pranjal enjoy?">Movie tastes</button>
         </div>
       </div>
 
-      <form id="ps-chat-form" style="display:flex;gap:8px;padding:10px;border-top:1px solid var(--line);align-items:flex-end;">
-        <textarea id="ps-chat-input" name="q" autocomplete="off" rows="1"
-               placeholder="Ask about experience, skills… (Enter to send, Shift+Enter = newline)"
-               style="flex:1;resize:none;background:transparent;border:1px solid var(--line);
-                      border-radius:12px;padding:10px;color:var(--text)"></textarea>
-        <button id="ps-chat-send" style="background:linear-gradient(90deg,var(--brand),var(--accent));
-                       border:none;color:#0b0f17;font-weight:800;padding:10px 12px;border-radius:12px">
+      <!-- Input -->
+      <form id="ps-chat-form" style="display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);">
+        <input id="ps-chat-input" name="q" autocomplete="off"
+               placeholder="Ask about experience, projects, ServiceNow, Java/.NET…"
+               style="flex:1;background:transparent;border:1px solid var(--line);
+                      border-radius:12px;padding:12px 12px;color:var(--text);min-width:0;">
+        <button type="submit" style="background:linear-gradient(90deg,var(--brand),var(--accent));
+                       border:none;color:#0b0f17;font-weight:800;padding:12px 14px;border-radius:12px">
           Send
-        </button>
-        <button id="ps-chat-cancel" type="button" style="display:none;border:1px solid var(--line);background:transparent;color:var(--text);padding:10px 12px;border-radius:12px">
-          Cancel
         </button>
       </form>
     </div>
   </div>
 
+  <!-- Chat UI styles -->
+  <style>
+  /* Pulse for online dot */
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(34,197,94,.6);} 70%{box-shadow:0 0 0 12px rgba(34,197,94,0);} 100%{box-shadow:0 0 0 0 rgba(34,197,94,0);} }
+
+  /* Chips */
+  .ps-chip{
+    border:1px solid var(--line);
+    background:transparent;
+    color:var(--text);
+    padding:6px 10px;
+    border-radius:999px;
+    font-size:12px;
+    cursor:pointer
+  }
+  .ps-chip:hover{ border-color: color-mix(in srgb, var(--brand), #fff 18%); }
+
+  /* Bubbles */
+  .ps-bubble{
+    padding:10px 12px;
+    border-radius:12px;
+    max-width:85%;
+    word-wrap:break-word;
+    white-space:pre-wrap;
+    line-height:1.35
+  }
+  .ps-bubble.user{
+    align-self:flex-end;
+    background:linear-gradient(90deg,var(--brand),var(--accent));
+    color:#0b0f17;
+    border:1px solid transparent
+  }
+  .ps-bubble.bot{
+    align-self:flex-start;
+    background:rgba(148,163,184,.12);
+    border:1px solid var(--line);
+    color:var(--text)
+  }
+
+  /* Typing indicator */
+  .ps-typing{
+    align-self:flex-start;
+    display:flex;
+    gap:6px;
+    padding:8px 10px;
+    border-radius:12px;
+    border:1px solid var(--line);
+    background:rgba(148,163,184,.12)
+  }
+  .ps-typing > span{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--text);opacity:.6;animation:blink 1.2s infinite
+  }
+  .ps-typing > span:nth-child(2){ animation-delay:.2s }
+  .ps-typing > span:nth-child(3){ animation-delay:.4s }
+  @keyframes blink { 0%{opacity:.2} 50%{opacity:1} 100%{opacity:.2} }
+  </style>
+
   <script>
-  // === Deployed API URL ===
-  const CHAT_API_URL = "https://pranjal-chat-api.vercel.app/api/chat";
+    // === Your deployed API URL ===
+    const CHAT_API_URL = "https://pranjal-chat-api.vercel.app/api/chat";
 
-  (function(){
-    const toggle = document.getElementById('ps-chat-toggle');
-    const box = document.getElementById('ps-chat-box');
-    const form = document.getElementById('ps-chat-form');
-    const input = document.getElementById('ps-chat-input');
-    const sendBtn = document.getElementById('ps-chat-send');
-    const cancelBtn = document.getElementById('ps-chat-cancel');
-    const msgs = document.getElementById('ps-chat-messages');
-    const chipsBar = document.getElementById('ps-quick-chips');
+    (function(){
+      const toggle = document.getElementById('ps-chat-toggle');
+      const closeBtn = document.getElementById('ps-chat-close');
+      const box = document.getElementById('ps-chat-box');
+      const form = document.getElementById('ps-chat-form');
+      const input = document.getElementById('ps-chat-input');
+      const msgs = document.getElementById('ps-chat-messages');
 
-    // Quick prompts + recent
-    const QUICK = [
-      "Summarize Pranjal’s projects",
-      "ServiceNow skills and experience",
-      ".NET / C# API experience",
-      "Java & Spring Boot highlights",
-      "What’s the resume link?",
-      "How to contact Pranjal?"
-    ];
-    const RECENT_KEY = "ps-chat-recent-q";
-    function loadRecent(){ try{return JSON.parse(localStorage.getItem(RECENT_KEY)||"[]");}catch{ return [] } }
-    function saveRecent(q){
-      const arr = loadRecent().filter(x => x !== q);
-      arr.unshift(q);
-      localStorage.setItem(RECENT_KEY, JSON.stringify(arr.slice(0,3)));
-    }
-    function renderChips(){
-      chipsBar.innerHTML = "";
-      const recent = loadRecent();
-      [...recent, ...QUICK].slice(0,6).forEach(text => {
-        const b = document.createElement('button');
-        b.type = "button"; b.textContent = text;
-        b.addEventListener('click', () => {
-          input.value = text;
-          // Send immediately on chip click
-          form.dispatchEvent(new Event('submit'));
-        });
-        chipsBar.appendChild(b);
+      function openChat(){
+        box.style.display = 'block';
+        setTimeout(() => input.focus(), 150);
+      }
+      function closeChat(){ box.style.display = 'none'; }
+
+      toggle.addEventListener('click', openChat);
+      closeBtn?.addEventListener('click', closeChat);
+
+      // Close on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && box.style.display !== 'none') closeChat();
       });
-    }
-    renderChips();
 
-    // Open/close
-    toggle.addEventListener('click', () => {
-      const open = box.style.display !== 'none';
-      box.style.display = open ? 'none' : 'block';
-      if (!open) setTimeout(() => input.focus(), 200);
-    });
-
-    // Resize textarea automatically
-    function autoResize(){
-      input.style.height = 'auto';
-      input.style.height = Math.min(120, input.scrollHeight) + 'px';
-    }
-    input.addEventListener('input', autoResize);
-
-    // Keyboard: Enter sends; Shift+Enter = newline
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        form.dispatchEvent(new Event('submit'));
-      }
-    });
-
-    function bubble(text, who){
-      const div = document.createElement('div');
-      div.className = `msg ${who}`;
-      div.textContent = text;
-      msgs.appendChild(div);
-      msgs.scrollTop = msgs.scrollHeight;
-      return div;
-    }
-
-    // Typing indicator
-    let typingEl = null;
-    function showTyping(){
-      if (typingEl) return;
-      typingEl = document.createElement('div');
-      typingEl.className = 'typing';
-      typingEl.setAttribute('aria-live','polite');
-      typingEl.innerHTML = '<span>Pranjal is typing</span> <span class="dot"></span><span class="dot"></span><span class="dot"></span>';
-      msgs.appendChild(typingEl);
-      msgs.scrollTop = msgs.scrollHeight;
-    }
-    function hideTyping(){
-      if (typingEl){ typingEl.remove(); typingEl = null; }
-    }
-
-    // In-flight state
-    let inflight = null; // {controller, id}
-    function setBusy(b){
-      sendBtn.disabled = b;
-      cancelBtn.style.display = b ? 'inline-block' : 'none';
-    }
-
-    // Optimistic user bubble + cancel/ignore late
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const q = input.value.trim();
-      if (!q || inflight) return;
-
-      // optimistic bubble
-      bubble(q, 'user');
-      saveRecent(q); renderChips();
-
-      // prepare request
-      input.value = ''; autoResize();
-      setBusy(true); showTyping();
-      const controller = new AbortController();
-      const reqId = Date.now().toString(36) + Math.random().toString(36).slice(2,6);
-      inflight = { controller, id: reqId };
-
-      // Cancel handler
-      cancelBtn.onclick = () => {
-        try { controller.abort(); } catch {}
-        setBusy(false); hideTyping(); inflight = null;
-      };
-
-      // (Optional) pass brief local history (last 3 exchanges) to server
-      const history = Array.from(msgs.querySelectorAll('.msg')).slice(-6).map(n => ({
-        role: n.classList.contains('user') ? 'user' : 'assistant',
-        content: n.textContent
-      }));
-
-      try{
-        const r = await fetch(CHAT_API_URL, {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({ message: q, history }),
-          signal: controller.signal
+      // Chips → send preset question
+      document.querySelectorAll('.ps-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          input.value = chip.getAttribute('data-q') || '';
+          form.dispatchEvent(new Event('submit', {cancelable:true}));
         });
+      });
 
-        // If another request replaced this one, ignore late response
-        if (!inflight || inflight.id !== reqId) return;
-
-        let data = null;
-        try { data = await r.json(); } catch {}
-        hideTyping();
-        setBusy(false);
-        inflight = null;
-
-        if (r.ok && data && (data.answer || data.error)) {
-          bubble(data.answer || 'Sorry, no answer.', 'bot');
-        } else {
-          bubble('⚠️ Unexpected response. Please try again.', 'bot');
-        }
-      } catch(err){
-        if (err.name === 'AbortError') {
-          // user cancelled: ignore
-        } else {
-          hideTyping(); setBusy(false); inflight = null;
-          bubble('Network error. Please try again.', 'bot');
-        }
+      function bubble(text, who){
+        const div = document.createElement('div');
+        div.className = `ps-bubble ${who === 'user' ? 'user' : 'bot'}`;
+        div.textContent = text;
+        msgs.appendChild(div);
+        msgs.scrollTop = msgs.scrollHeight;
       }
-    });
-  })();
+
+      function typing(show){
+        let t = document.getElementById('ps-typing');
+        if (show){
+          if (t) return;
+          t = document.createElement('div');
+          t.id = 'ps-typing';
+          t.className = 'ps-typing';
+          t.innerHTML = '<span></span><span></span><span></span>';
+          msgs.appendChild(t);
+        } else {
+          t?.remove();
+        }
+        msgs.scrollTop = msgs.scrollHeight;
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const q = (input.value || '').trim();
+        if (!q) return;
+        bubble(q, 'user');
+        input.value = '';
+        typing(true);
+        try{
+          const r = await fetch(CHAT_API_URL, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ message: q })
+          });
+          const data = await r.json().catch(() => ({}));
+          typing(false);
+          if (data && data.answer){
+            bubble(data.answer, 'bot');
+          } else if (data && data.error){
+            bubble(data.error, 'bot');
+          } else {
+            bubble('Sorry, I couldn’t find that. I only answer portfolio-related questions.', 'bot');
+          }
+        } catch(e){
+          typing(false);
+          bubble('Whoops—network hiccup. Mind asking again in a moment?', 'bot');
+        }
+      });
+    })();
   </script>
+
   <script>
   // Register Service Worker (GitHub Pages needs absolute scope matching)
   if ("serviceWorker" in navigator) {
@@ -1163,6 +1134,6 @@
       navigator.serviceWorker.register("/pranjal-portfolio/service-worker.js").catch(() => {});
     });
   }
-</script>
+  </script>
 </body>
 </html>
