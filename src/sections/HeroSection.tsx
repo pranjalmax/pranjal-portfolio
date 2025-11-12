@@ -1,8 +1,5 @@
 // src/sections/HeroSection.tsx
-
-import React from "react";
-// Import the image via Vite so it resolves correctly on GitHub Pages
-import heroImg from "../assets/portfolio_image.png";
+import portfolioImage from "../assets/portfolio_image.png";
 
 const HeroSection = () => {
   return (
@@ -126,7 +123,7 @@ const HeroSection = () => {
               "
             >
               <img
-                src={heroImg}
+                src={portfolioImage}
                 alt="Pranjal Srivastava"
                 className="
                   w-full
@@ -134,8 +131,6 @@ const HeroSection = () => {
                   object-contain
                   bg-slate-900/95
                 "
-                decoding="async"
-                loading="eager"
               />
               {/* Gradient overlay for text legibility */}
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/98 via-black/40 to-transparent" />
