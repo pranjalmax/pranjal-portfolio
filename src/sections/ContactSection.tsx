@@ -310,6 +310,81 @@ const ContactSection: React.FC = () => {
               </div>
             </div>
 
+            {/* === Resumes (PDF) === */}
+            <div className="mt-2 rounded-2xl border border-slate-800/80 bg-slate-950/40 p-3 md:p-4 shadow-[0_18px_45px_rgba(15,23,42,0.70)]">
+              <div className="flex items-center justify-between">
+                <h3 className="text-xs md:text-sm font-semibold text-slate-200">
+                  Resumes
+                </h3>
+                <span className="text-[10px] text-slate-500">PDF</span>
+              </div>
+
+              <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {[
+                  {
+                    label: "Frontend Resume",
+                    file:
+                      "Pranjal_Srivastava_Resume_FrontendEngineer_Multipurpose.pdf",
+                  },
+                  {
+                    label: "AI Engineer Resume",
+                    file:
+                      "Pranjal_Srivastava_Resume_AIEngineer_Multipurpose.pdf",
+                  },
+                  {
+                    label: "FullStack Resume",
+                    file:
+                      "Pranjal_Srivastava_Resume_FullStackEngineer_Multipurpose.pdf",
+                  },
+                  {
+                    label: "Complete Resume",
+                    file:
+                      "Pranjal_Srivastava_Master_Resume_All_Details.pdf",
+                  },
+                ].map((r) => (
+                  <a
+                    key={r.file}
+                    href={`${import.meta.env.BASE_URL}${r.file}`}
+                    target="_blank"
+                    rel="noopener"
+                    className="
+                      group flex items-center justify-between gap-2
+                      rounded-xl border border-slate-800/70
+                      bg-black/40 hover:bg-black/70
+                      text-[10px] md:text-[12px] text-slate-200
+                      px-3 py-2 transition
+                    "
+                    aria-label={`${r.label} (opens PDF)`}
+                  >
+                    <span className="inline-flex items-center gap-2">
+                      {/* tiny PDF icon */}
+                      <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        className="w-3.5 h-3.5 fill-current text-sky-400"
+                      >
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15Z" />
+                      </svg>
+                      {r.label}
+                    </span>
+                    <span
+                      className="
+                        text-[9px] px-2 py-0.5 rounded-full
+                        border border-sky-500/40 text-sky-300
+                        bg-sky-500/10 group-hover:bg-sky-500/20
+                      "
+                    >
+                      Open
+                    </span>
+                  </a>
+                ))}
+              </div>
+
+              <p className="mt-2 text-[9px] text-slate-500">
+                Each opens in a new tab. Links use BASE_URL-safe paths for GitHub Pages.
+              </p>
+            </div>
+
             <p className="mt-1.5 text-[8.5px] text-slate-500">
               I usually respond quickest to concise emails and LinkedIn notes
               that include context, timeline, and how I can help. MAX can help
