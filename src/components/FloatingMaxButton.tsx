@@ -92,56 +92,45 @@ export default function FloatingMaxButton({
     <button
       onClick={onToggle}
       className="
-        fixed right-5 bottom-5 z-50
-        flex flex-col items-center gap-1.5
+        fixed right-4 bottom-4 z-40
+        flex flex-col items-center gap-1
         group
       "
       aria-label="Chat with MAX"
     >
       <div
         className={`
-          w-14 h-14 md:w-16 md:h-16   /* ⬅ bigger button */
+          w-12 h-12 md:w-14 md:h-14
           rounded-full
           bg-gradient-to-tr ${ringClass}
           border
           flex items-center justify-center
-          shadow-[0_0_34px_rgba(56,189,248,0.55)]  /* ⬅ stronger glow */
+          shadow-[0_0_28px_rgba(56,189,248,0.55)]
           group-hover:scale-105
           transition-transform
         `}
-        style={{
-          backgroundImage: "url(/me-minifig.png)", // keep your minifig if present
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        /* Removed background image that caused 404 (me-minifig.png).
+           If you later add an asset, prefer:
+           import me from "../assets/me-minifig.png";
+           style={{ backgroundImage: \`url(\${me})\` }} */
       >
-        {/* Fallback / overlay — emoji reflects current section */}
-        <span
-          className="
-            text-[20px] md:text-[22px]   /* ⬅ bigger emoji */
-            drop-shadow
-            mix-blend-screen
-          "
-        >
+        <span className="text-[18px] md:text-[20px] drop-shadow mix-blend-screen">
           {emoji}
         </span>
       </div>
 
-      {/* Bottom label — slightly larger for readability */}
       <div
         className="
-          px-3 py-1.5 rounded-full             /* ⬅ larger pill */
+          px-2 py-1 rounded-full
           bg-black/90 border border-slate-800/80
-          text-[10px] md:text-xs text-slate-300 /* ⬅ larger text */
-          flex items-center gap-1.5
+          text-[9px] md:text-[10px] text-slate-300
+          flex items-center gap-1
         "
       >
         <span className="text-sky-400/80">
           {label || "MAX"}
         </span>
-        <span className="text-slate-500 hidden sm:inline">
-          · {bubble}
-        </span>
+        <span className="text-slate-500 hidden sm:inline">· {bubble}</span>
       </div>
     </button>
   );
