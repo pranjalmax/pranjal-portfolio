@@ -122,7 +122,7 @@ const HeroSection = () => {
               "
             >
               <img
-                src="/Portfolio_Image.png"
+                src="/portfolio_image.png"
                 alt="Pranjal Srivastava"
                 className="
                   w-full
