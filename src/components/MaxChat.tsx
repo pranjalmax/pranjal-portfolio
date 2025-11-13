@@ -20,6 +20,19 @@ type ApiResponse = {
   error?: string;
 };
 
+// ⬇️ NEW: helper to render long replies as short paragraphs.
+// Splits on blank lines for paragraphs; single newlines become soft breaks.
+function BubbleText({ text }: { text: string }) {
+  const parts = text.trim().split(/\n{2,}/); // paragraphs on double+ newline
+  return (
+    <div className="space-y-1.5 whitespace-pre-line">
+      {parts.map((p, i) => (
+        <p key={i}>{p.trim()}</p>
+      ))}
+    </div>
+  );
+}
+
 export default function MaxChat({ isOpen, onClose }: MaxChatProps) {
   const [messages, setMessages] = useState<MaxMessage[]>([
     {
@@ -174,7 +187,8 @@ export default function MaxChat({ isOpen, onClose }: MaxChatProps) {
                 max-w-[85%]
               `}
             >
-              {m.text}
+              {/* ⬇️ NEW: paragraph-aware rendering */}
+              <BubbleText text={m.text} />
             </div>
           </div>
         ))}
