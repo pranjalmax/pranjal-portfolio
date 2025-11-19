@@ -25,9 +25,9 @@ const GITHUB_LINKS: Record<AiProjectKey, string> = {
   "private-doc-chat":
     "https://github.com/pranjalmax/private-doc-chat",
   vanessa:
-    "https://github.com/pranjalmax/vanessa-voice-agent",
+    "https://github.com/pranjalmax/vanessa-voice-ai",
   max:
-    "https://github.com/pranjalmax/portfolio-max-copilot",
+    "https://github.com/pranjalmax/pranjal-chat-api",
 };
 
 const DEMO_GIFS: Partial<Record<AiProjectKey, string>> = {
