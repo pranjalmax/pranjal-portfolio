@@ -5,7 +5,7 @@ function ExperienceSection() {
     {
       company: "Tinker Tech Logix",
       title: "Software Developer",
-      period: "Apr 2024 – Sept 2025",
+      period: "Apr 2024 – Nov 2025",
       focus:
         "Full-stack engineer on internal & client-facing apps: React/TypeScript, Node APIs, SQL, and CI/CD.",
       highlights: [
