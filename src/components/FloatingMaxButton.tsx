@@ -86,7 +86,7 @@ export default function FloatingMaxButton({
   onToggle,
   section,
 }: FloatingMaxButtonProps) {
-  const { emoji, ringClass, bubble } = getVariant(section, isMaxOpen);
+  const { ringClass, bubble } = getVariant(section, isMaxOpen);
 
   return (
     <button
@@ -98,25 +98,39 @@ export default function FloatingMaxButton({
       "
       aria-label="Chat with MAX"
     >
-      <div
-        className={`
-          w-12 h-12 md:w-14 md:h-14
-          rounded-full
-          bg-gradient-to-tr ${ringClass}
-          border
-          flex items-center justify-center
-          shadow-[0_0_28px_rgba(56,189,248,0.55)]
-          group-hover:scale-105
-          transition-transform
-        `}
-        /* Removed background image that caused 404 (me-minifig.png).
-           If you later add an asset, prefer:
-           import me from "../assets/me-minifig.png";
-           style={{ backgroundImage: \`url(\${me})\` }} */
-      >
-        <span className="text-[18px] md:text-[20px] drop-shadow mix-blend-screen">
-          {emoji}
-        </span>
+      {/* Interaction Hint */}
+      {/* Interaction Hint */}
+      {!isMaxOpen && (
+        <div className="absolute bottom-full mb-3 px-4 py-2 rounded-2xl bg-slate-900/90 border border-sky-500/50 text-sky-100 text-[11px] font-medium shadow-[0_0_20px_rgba(56,189,248,0.4)] animate-bounce whitespace-nowrap backdrop-blur-md">
+          I&apos;m live! Ask me anything. ⚡
+          {/* Arrow */}
+          <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-sky-500/50" />
+        </div>
+      )}
+      <div className="relative w-12 h-12 md:w-14 md:h-14 group-hover:scale-110 transition-transform duration-300">
+        {/* Radiating Light (Outer Pulse) */}
+        <div
+          className={`absolute -inset-4 rounded-full bg-gradient-to-tr ${ringClass} opacity-40 animate-ping blur-xl`}
+        />
+
+        {/* Pulsing Glow Layer (Outer Aura) */}
+        <div
+          className={`absolute inset-0 rounded-full bg-gradient-to-tr ${ringClass} opacity-60 animate-orb-pulse blur-lg`}
+        />
+
+        {/* Core Sphere (Solid Energy) */}
+        <div
+          className={`absolute inset-0 rounded-full bg-gradient-to-br ${ringClass} shadow-[inset_-4px_-4px_10px_rgba(0,0,0,0.6),inset_4px_4px_10px_rgba(255,255,255,0.4)]`}
+        />
+
+        {/* Internal Plasma/Turbulence Effect (Simulated with gradient) */}
+        <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.8),transparent_70%)] opacity-30 mix-blend-overlay animate-pulse" />
+
+        {/* Specular Highlight (Glassy Shine) */}
+        <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.9)_0%,transparent_25%)]" />
+
+        {/* Rim Light (Backlight) */}
+        <div className="absolute inset-0 rounded-full shadow-[inset_0_0_8px_rgba(255,255,255,0.2)]" />
       </div>
 
       <div

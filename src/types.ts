@@ -4,6 +4,9 @@ export type AiProjectKey =
   | "hallucination-guard"
   | "private-doc-chat"
   | "vanessa"
+  | "local-csv-analyst"
+  | "lumina"
+  | "ops-copilot"
   | "max";
 
 export type BuildProjectKey = "dog-portal" | "helpdesk";

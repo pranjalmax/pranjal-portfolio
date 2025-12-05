@@ -1,6 +1,8 @@
 // src/sections/ContactSection.tsx
 
 import React, { useState } from "react";
+import MagneticButton from "../components/MagneticButton";
+import ScrollReveal from "../components/ScrollReveal";
 
 const ContactSection: React.FC = () => {
   const [copiedField, setCopiedField] = useState<string | null>(null);
@@ -15,381 +17,375 @@ const ContactSection: React.FC = () => {
     }
   };
 
-  const CopyBadge: React.FC<{ fieldKey: string }> = ({ fieldKey }) => (
-    <button
-      type="button"
-      className={`ml-2 px-2 py-[3px] rounded-full text-[9px] border transition-all ${
-        copiedField === fieldKey
-          ? "border-emerald-400/80 text-emerald-300 bg-emerald-500/10"
-          : "border-slate-600/80 text-slate-300 hover:border-sky-400 hover:text-sky-300 hover:bg-sky-500/5"
-      }`}
+  const CopyBadge: React.FC<{ fieldKey: string; onClick?: () => void }> = ({
+    fieldKey,
+    onClick,
+  }) => (
+    <MagneticButton
+      onClick={(e) => {
+        e?.stopPropagation();
+        onClick?.();
+      }}
+      className={`ml-2 px-2 py-[3px] rounded-full text-[9px] border transition-all ${copiedField === fieldKey
+        ? "border-emerald-400/80 text-emerald-300 bg-emerald-500/10"
+        : "border-slate-600/80 text-slate-300 hover:border-sky-400 hover:text-sky-300 hover:bg-sky-500/5"
+        }`}
     >
       {copiedField === fieldKey ? "Copied" : "Copy"}
-    </button>
+    </MagneticButton>
   );
 
   return (
     <section id="contact" className="pt-24 pb-20">
       <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-semibold text-slate-50 mb-2">
-          Contact &amp; MAX
-        </h2>
-        <p className="text-[12px] md:text-[13px] text-slate-400 mb-6 max-w-2xl">
-          Best ways to reach me for AI / LLM / full-stack roles, collaborations,
-          or interesting problems. MAX (bottom-right) is live if you&apos;d like
-          a guided tour of my work before you email.
-        </p>
+        <ScrollReveal>
+          <h2 className="text-2xl md:text-3xl font-semibold text-slate-50 mb-2">
+            Contact &amp; MAX
+          </h2>
+          <p className="text-[12px] md:text-[13px] text-slate-400 mb-6 max-w-2xl">
+            Best ways to reach me for AI / LLM / full-stack roles, collaborations,
+            or interesting problems. MAX (bottom-right) is live if you&apos;d like
+            a guided tour of my work before you email.
+          </p>
+        </ScrollReveal>
 
         <div className="grid gap-5 md:grid-cols-2">
           {/* === Contact form (Formspree) === */}
-          <div className="rounded-2xl border border-slate-800/85 bg-slate-950/70 p-4 shadow-[0_18px_38px_rgba(15,23,42,0.9)]">
-            <h3 className="text-sm font-semibold text-slate-100 mb-3">
-              Send a message
-            </h3>
-            <form
-              action="https://formspree.io/f/mnnggnvp"
-              method="POST"
-              className="space-y-3"
-            >
-              {/* Name */}
-              <div>
-                <label className="block text-[9px] font-medium text-slate-400 mb-1">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  placeholder="Your name"
-                  className="w-full rounded-xl bg-slate-950/90 border border-slate-700/80 px-3 py-2 text-[11px] text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-500/70 transition-all"
-                />
-              </div>
-
-              {/* Email */}
-              <div>
-                <label className="block text-[9px] font-medium text-slate-400 mb-1">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  placeholder="you@example.com"
-                  className="w-full rounded-xl bg-slate-950/90 border border-slate-700/80 px-3 py-2 text-[11px] text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-500/70 transition-all"
-                />
-              </div>
-
-              {/* Message */}
-              <div>
-                <label className="block text-[9px] font-medium text-slate-400 mb-1">
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  required
-                  rows={4}
-                  placeholder="Hi Pranjal, we'd like to talk about an opportunity…"
-                  className="w-full rounded-xl bg-slate-950/90 border border-slate-700/80 px-3 py-2 text-[11px] text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-500/70 transition-all resize-none"
-                />
-              </div>
-
-              {/* Submit */}
-              <button
-                type="submit"
-                className="mt-1 inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2 text-[11px] font-medium bg-gradient-to-r from-sky-500 to-cyan-400 text-slate-950 shadow-[0_12px_30px_rgba(56,189,248,0.45)] hover:from-sky-400 hover:to-cyan-300 hover:shadow-[0_16px_40px_rgba(56,189,248,0.55)] transition-all"
+          <ScrollReveal delay={0.1} width="100%">
+            <div className="rounded-2xl border border-slate-800/85 bg-slate-950/70 p-4 shadow-[0_18px_38px_rgba(15,23,42,0.9)]">
+              <h3 className="text-sm font-semibold text-slate-100 mb-3">
+                Send a message
+              </h3>
+              <form
+                action="https://formspree.io/f/mnnggnvp"
+                method="POST"
+                className="space-y-3"
               >
-                Send Message
-                <span className="inline-block">
-                  {/* paper plane icon */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    className="w-3 h-3 fill-current"
-                  >
-                    <path d="M3.4 20.6 21 12 3.4 3.4 3 10l9 2-9 2z" />
-                  </svg>
-                </span>
-              </button>
+                {/* Name */}
+                <div>
+                  <label className="block text-[9px] font-medium text-slate-400 mb-1">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    placeholder="Your name"
+                    className="w-full rounded-xl bg-slate-950/90 border border-slate-700/80 px-3 py-2 text-[11px] text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-500/70 transition-all"
+                  />
+                </div>
 
-              <p className="mt-2 text-[9px] text-slate-500">
-                Or email directly:{" "}
-                <a
-                  href="mailto:pranjal6004@gmail.com"
-                  className="text-sky-400 hover:text-sky-300"
-                >
-                  pranjal6004@gmail.com
-                </a>
-              </p>
-            </form>
-          </div>
+                {/* Email */}
+                <div>
+                  <label className="block text-[9px] font-medium text-slate-400 mb-1">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="you@example.com"
+                    className="w-full rounded-xl bg-slate-950/90 border border-slate-700/80 px-3 py-2 text-[11px] text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-500/70 transition-all"
+                  />
+                </div>
+
+                {/* Message */}
+                <div>
+                  <label className="block text-[9px] font-medium text-slate-400 mb-1">
+                    Message
+                  </label>
+                  <textarea
+                    name="message"
+                    required
+                    rows={4}
+                    placeholder="Hi Pranjal, we'd like to talk about an opportunity…"
+                    className="w-full rounded-xl bg-slate-950/90 border border-slate-700/80 px-3 py-2 text-[11px] text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-500/70 transition-all resize-none"
+                  />
+                </div>
+
+                {/* Submit */}
+                <div className="mt-1 inline-block">
+                  <MagneticButton className="rounded-full">
+                    <button
+                      type="submit"
+                      className="inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2 text-[11px] font-medium bg-gradient-to-r from-sky-500 to-cyan-400 text-slate-950 shadow-[0_12px_30px_rgba(56,189,248,0.45)] hover:from-sky-400 hover:to-cyan-300 hover:shadow-[0_16px_40px_rgba(56,189,248,0.55)] transition-all cursor-pointer"
+                    >
+                      Send Message
+                      <span className="inline-block">
+                        {/* paper plane icon */}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          className="w-3 h-3 fill-current"
+                        >
+                          <path d="M3.4 20.6 21 12 3.4 3.4 3 10l9 2-9 2z" />
+                        </svg>
+                      </span>
+                    </button>
+                  </MagneticButton>
+                </div>
+
+                <p className="mt-2 text-[9px] text-slate-500">
+                  Or email directly:{" "}
+                  <a
+                    href="mailto:pranjal6004@gmail.com"
+                    className="text-sky-400 hover:text-sky-300"
+                  >
+                    pranjal6004@gmail.com
+                  </a>
+                </p>
+              </form>
+            </div>
+          </ScrollReveal>
 
           {/* === Contact details === */}
           <div className="rounded-2xl border border-slate-800/85 bg-slate-950/70 p-4 flex flex-col gap-3">
-            <h3 className="text-sm font-semibold text-slate-100">
-              Contact details
-            </h3>
+            <ScrollReveal delay={0.2}>
+              <h3 className="text-sm font-semibold text-slate-100">
+                Contact details
+              </h3>
+            </ScrollReveal>
 
             {/* Name */}
-            <div>
-              <div className="text-[8px] uppercase tracking-[0.16em] text-slate-500">
-                Name
+            <ScrollReveal delay={0.3}>
+              <div>
+                <div className="text-[8px] uppercase tracking-[0.16em] text-slate-500">
+                  Name
+                </div>
+                <div className="mt-[2px] flex items-center gap-2 text-[11px] text-slate-100">
+                  {/* user icon */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    className="w-3.5 h-3.5 text-sky-400 fill-current"
+                  >
+                    <path d="M12 2a5 5 0 0 0-1 9.9V13H7a5 5 0 0 0-5 5v2h2v-2a3 3 0 0 1 3-3h4v5h2v-5h4a3 3 0 0 1 3 3v2h2v-2a5 5 0 0 0-5-5h-4v-1.1A5 5 0 0 0 12 2Z" />
+                  </svg>
+                  <span>Pranjal Srivastava</span>
+                </div>
               </div>
-              <div className="mt-[2px] flex items-center gap-2 text-[11px] text-slate-100">
-                {/* user icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  className="w-3.5 h-3.5 text-sky-400 fill-current"
-                >
-                  <path d="M12 2a5 5 0 0 0-1 9.9V13H7a5 5 0 0 0-5 5v2h2v-2a3 3 0 0 1 3-3h4v5h2v-5h4a3 3 0 0 1 3 3v2h2v-2a5 5 0 0 0-5-5h-4v-1.1A5 5 0 0 0 12 2Z" />
-                </svg>
-                <span>Pranjal Srivastava</span>
-              </div>
-            </div>
+            </ScrollReveal>
 
             {/* Address */}
-            <div>
-              <div className="text-[8px] uppercase tracking-[0.16em] text-slate-500">
-                Address
+            <ScrollReveal delay={0.4}>
+              <div>
+                <div className="text-[8px] uppercase tracking-[0.16em] text-slate-500">
+                  Address
+                </div>
+                <div className="mt-[2px] flex items-center text-[11px] text-slate-200">
+                  {/* location icon */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    className="w-3.5 h-3.5 text-sky-400 fill-current mr-1.5"
+                  >
+                    <path d="M12 2a7 7 0 0 0-7 7c0 4.1 5.2 10.1 6.4 11.4.3.3.9.3 1.2 0C13.8 19.1 19 13.1 19 9a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" />
+                  </svg>
+                  <span className="leading-snug">
+                    1802 Ennis Joslin Rd, Apt 633, Corpus Christi, Nueces County,
+                    Texas, 78412
+                  </span>
+                  <CopyBadge
+                    fieldKey="address"
+                    onClick={() =>
+                      handleCopy(
+                        "address",
+                        "1802 Ennis Joslin Rd, Apt 633, Corpus Christi, Nueces County, Texas, 78412"
+                      )
+                    }
+                  />
+                </div>
               </div>
-              <div className="mt-[2px] flex items-center text-[11px] text-slate-200">
-                {/* location icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  className="w-3.5 h-3.5 text-sky-400 fill-current mr-1.5"
-                >
-                  <path d="M12 2a7 7 0 0 0-7 7c0 4.1 5.2 10.1 6.4 11.4.3.3.9.3 1.2 0C13.8 19.1 19 13.1 19 9a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" />
-                </svg>
-                <span className="leading-snug">
-                  1802 Ennis Joslin Rd, Apt 633, Corpus Christi, Nueces County,
-                  Texas, 78412
-                </span>
-                <span
-                  onClick={() =>
-                    handleCopy(
-                      "address",
-                      "1802 Ennis Joslin Rd, Apt 633, Corpus Christi, Nueces County, Texas, 78412"
-                    )
-                  }
-                >
-                  <CopyBadge fieldKey="address" />
-                </span>
-              </div>
-            </div>
+            </ScrollReveal>
 
             {/* Email */}
-            <div>
-              <div className="text-[8px] uppercase tracking-[0.16em] text-slate-500">
-                Email
+            <ScrollReveal delay={0.5}>
+              <div>
+                <div className="text-[8px] uppercase tracking-[0.16em] text-slate-500">
+                  Email
+                </div>
+                <div className="mt-[2px] flex items-center text-[11px] text-slate-200">
+                  {/* mail icon */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    className="w-3.5 h-3.5 text-sky-400 fill-current mr-1.5"
+                  >
+                    <path d="M3 4h18a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 2v.2l9 5.3 9-5.3V6H3Zm18 2.9-9 5.3-9-5.3V18h18V8.9Z" />
+                  </svg>
+                  <a
+                    href="mailto:pranjal6004@gmail.com"
+                    className="text-sky-400 hover:text-sky-300"
+                  >
+                    pranjal6004@gmail.com
+                  </a>
+                  <CopyBadge
+                    fieldKey="email"
+                    onClick={() => handleCopy("email", "pranjal6004@gmail.com")}
+                  />
+                </div>
               </div>
-              <div className="mt-[2px] flex items-center text-[11px] text-slate-200">
-                {/* mail icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  className="w-3.5 h-3.5 text-sky-400 fill-current mr-1.5"
-                >
-                  <path d="M3 4h18a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 2v.2l9 5.3 9-5.3V6H3Zm18 2.9-9 5.3-9-5.3V18h18V8.9Z" />
-                </svg>
-                <a
-                  href="mailto:pranjal6004@gmail.com"
-                  className="text-sky-400 hover:text-sky-300"
-                >
-                  pranjal6004@gmail.com
-                </a>
-                <span
-                  onClick={() =>
-                    handleCopy("email", "pranjal6004@gmail.com")
-                  }
-                >
-                  <CopyBadge fieldKey="email" />
-                </span>
-              </div>
-            </div>
+            </ScrollReveal>
 
             {/* Mobile */}
-            <div>
-              <div className="text-[8px] uppercase tracking-[0.16em] text-slate-500">
-                Mobile
+            <ScrollReveal delay={0.6}>
+              <div>
+                <div className="text-[8px] uppercase tracking-[0.16em] text-slate-500">
+                  Mobile
+                </div>
+                <div className="mt-[2px] flex items-center text-[11px] text-slate-200">
+                  {/* phone icon */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    className="w-3.5 h-3.5 text-sky-400 fill-current mr-1.5"
+                  >
+                    <path d="M6.6 2h2.3c.5 0 .9.4 1 .9l.5 3.3c.1.5-.1 1-.5 1.3L8.7 8.7a9.8 9.8 0 0 0 6.6 6.6l1.2-1.2c.3-.4.8-.6 1.3-.5l3.3.5c.5.1.9.5.9 1v2.3c0 .6-.5 1.1-1.1 1.1A17.9 17.9 0 0 1 3 3.1C3 2.5 3.5 2 4.1 2Z" />
+                  </svg>
+                  <a
+                    href="tel:+13463752373"
+                    className="text-slate-200 hover:text-sky-300"
+                  >
+                    +1 (346) 375-2373
+                  </a>
+                  <CopyBadge
+                    fieldKey="mobile"
+                    onClick={() => handleCopy("mobile", "+1 (346) 375-2373")}
+                  />
+                </div>
               </div>
-              <div className="mt-[2px] flex items-center text-[11px] text-slate-200">
-                {/* phone icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  className="w-3.5 h-3.5 text-sky-400 fill-current mr-1.5"
-                >
-                  <path d="M6.6 2h2.3c.5 0 .9.4 1 .9l.5 3.3c.1.5-.1 1-.5 1.3L8.7 8.7a9.8 9.8 0 0 0 6.6 6.6l1.2-1.2c.3-.4.8-.6 1.3-.5l3.3.5c.5.1.9.5.9 1v2.3c0 .6-.5 1.1-1.1 1.1A17.9 17.9 0 0 1 3 3.1C3 2.5 3.5 2 4.1 2Z" />
-                </svg>
-                <a
-                  href="tel:+13463752373"
-                  className="text-slate-200 hover:text-sky-300"
-                >
-                  +1 (346) 375-2373
-                </a>
-                <span
-                  onClick={() =>
-                    handleCopy("mobile", "+1 (346) 375-2373")
-                  }
-                >
-                  <CopyBadge fieldKey="mobile" />
-                </span>
-              </div>
-            </div>
+            </ScrollReveal>
 
             {/* LinkedIn */}
-            <div>
-              <div className="text-[8px] uppercase tracking-[0.16em] text-slate-500">
-                LinkedIn
-              </div>
-              <div className="mt-[2px] flex items-center gap-2 text-[11px] text-slate-200">
-                <a
-                  href="https://www.linkedin.com/in/pranjal-srivastava07"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full border border-sky-500/70 text-sky-300 text-[10px] hover:bg-sky-500/10 hover:text-sky-100 transition-all"
-                >
-                  {/* LinkedIn icon */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    className="w-3.5 h-3.5 fill-current"
+            <ScrollReveal delay={0.7}>
+              <div>
+                <div className="text-[8px] uppercase tracking-[0.16em] text-slate-500">
+                  LinkedIn
+                </div>
+                <div className="mt-[2px] flex items-center gap-2 text-[11px] text-slate-200">
+                  <MagneticButton
+                    href="https://www.linkedin.com/in/pranjal-srivastava07"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-2 py-1 rounded-full border border-sky-500/70 text-sky-300 text-[10px] hover:bg-sky-500/10 hover:text-sky-100 transition-all"
+                    innerClassName="inline-flex items-center gap-1.5"
                   >
-                    <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm.02 5.9H2V21h3V9.4ZM9 9.4H6v11.6h3V15c0-1.6.8-2.6 2.1-2.6 1.3 0 1.9.9 1.9 2.6V21h3v-6.8c0-3-1.6-4.6-3.9-4.6-1.8 0-2.6 1-3.1 1.7h-.1V9.4Z" />
-                  </svg>
-                  <span>linkedin.com/in/pranjal-srivastava07</span>
-                </a>
-                <button
-                  type="button"
-                  onClick={() =>
-                    handleCopy(
-                      "linkedin",
-                      "https://www.linkedin.com/in/pranjal-srivastava07"
-                    )
-                  }
-                >
-                  <CopyBadge fieldKey="linkedin" />
-                </button>
+                    {/* LinkedIn icon */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      className="w-3.5 h-3.5 fill-current"
+                    >
+                      <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm.02 5.9H2V21h3V9.4ZM9 9.4H6v11.6h3V15c0-1.6.8-2.6 2.1-2.6 1.3 0 1.9.9 1.9 2.6V21h3v-6.8c0-3-1.6-4.6-3.9-4.6-1.8 0-2.6 1-3.1 1.7h-.1V9.4Z" />
+                    </svg>
+                    <span>linkedin.com/in/pranjal-srivastava07</span>
+                  </MagneticButton>
+                  <CopyBadge
+                    fieldKey="linkedin"
+                    onClick={() =>
+                      handleCopy(
+                        "linkedin",
+                        "https://www.linkedin.com/in/pranjal-srivastava07"
+                      )
+                    }
+                  />
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
 
             {/* Instagram */}
-            <div>
-              <div className="text-[8px] uppercase tracking-[0.16em] text-slate-500">
-                Instagram
-              </div>
-              <div className="mt-[2px] flex items-center gap-2 text-[11px] text-slate-200">
-                <a
-                  href="https://www.instagram.com/pranjal.srivastava.7"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full border border-fuchsia-400/80 text-fuchsia-300 text-[10px] hover:bg-fuchsia-500/10 hover:text-fuchsia-100 transition-all"
-                >
-                  {/* Instagram icon */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    className="w-3.5 h-3.5 fill-current"
+            <ScrollReveal delay={0.8}>
+              <div>
+                <div className="text-[8px] uppercase tracking-[0.16em] text-slate-500">
+                  Instagram
+                </div>
+                <div className="mt-[2px] flex items-center gap-2 text-[11px] text-slate-200">
+                  <MagneticButton
+                    href="https://www.instagram.com/pranjal.srivastava.7"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-2 py-1 rounded-full border border-fuchsia-400/80 text-fuchsia-300 text-[10px] hover:bg-fuchsia-500/10 hover:text-fuchsia-100 transition-all"
+                    innerClassName="inline-flex items-center gap-1.5"
                   >
-                    <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7Zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3Zm9.8 2.2a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z" />
-                  </svg>
-                  <span>@pranjal.srivastava.7</span>
-                </a>
-                <button
-                  type="button"
-                  onClick={() =>
-                    handleCopy(
-                      "instagram",
-                      "@pranjal.srivastava.7"
-                    )
-                  }
-                >
-                  <CopyBadge fieldKey="instagram" />
-                </button>
+                    {/* Instagram icon */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      className="w-3.5 h-3.5 fill-current"
+                    >
+                      <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7Zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3Zm9.8 2.2a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z" />
+                    </svg>
+                    <span>@pranjal.srivastava.7</span>
+                  </MagneticButton>
+                  <CopyBadge
+                    fieldKey="instagram"
+                    onClick={() =>
+                      handleCopy("instagram", "@pranjal.srivastava.7")
+                    }
+                  />
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
 
             {/* === Resumes (PDF) === */}
-            <div className="mt-2 rounded-2xl border border-slate-800/80 bg-slate-950/40 p-3 md:p-4 shadow-[0_18px_45px_rgba(15,23,42,0.70)]">
-              <div className="flex items-center justify-between">
-                <h3 className="text-xs md:text-sm font-semibold text-slate-200">
-                  Resumes
-                </h3>
-                <span className="text-[10px] text-slate-500">PDF</span>
-              </div>
+            <ScrollReveal delay={0.9}>
+              <div className="mt-2 rounded-2xl border border-slate-800/80 bg-slate-950/40 p-3 md:p-4 shadow-[0_18px_45px_rgba(15,23,42,0.70)]">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xs md:text-sm font-semibold text-slate-200">
+                    Resumes
+                  </h3>
+                  <span className="text-[10px] text-slate-500">PDF</span>
+                </div>
 
-              <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {[
-                  {
-                    label: "Frontend Resume",
-                    file:
-                      "Pranjal_Srivastava_Resume_FrontendEngineer_Multipurpose.pdf",
-                  },
-                  {
-                    label: "AI Engineer Resume",
-                    file:
-                      "Pranjal_Srivastava_Resume_AIEngineer_Multipurpose.pdf",
-                  },
-                  {
-                    label: "FullStack Resume",
-                    file:
-                      "Pranjal_Srivastava_Resume_FullStackEngineer_Multipurpose.pdf",
-                  },
-                  {
-                    label: "Complete Resume",
-                    file:
-                      "Pranjal_Srivastava_Master_Resume_All_Details.pdf",
-                  },
-                ].map((r) => (
-                  <a
-                    key={r.file}
-                    href={`${import.meta.env.BASE_URL}${r.file}`}
+                <div className="mt-2">
+                  <MagneticButton
+                    href={`${import.meta.env.BASE_URL}Pranjal_Srivastava_Resume.pdf`}
                     target="_blank"
                     rel="noopener"
                     className="
-                      group flex items-center justify-between gap-2
-                      rounded-xl border border-slate-800/70
+                      block w-full rounded-xl border border-slate-800/70
                       bg-black/40 hover:bg-black/70
-                      text-[10px] md:text-[12px] text-slate-200
-                      px-3 py-2 transition
+                      text-xs text-slate-200
+                      px-4 py-3 transition
                     "
-                    aria-label={`${r.label} (opens PDF)`}
+                    innerClassName="group flex items-center justify-between gap-2"
                   >
-                    <span className="inline-flex items-center gap-2">
+                    <span className="inline-flex items-center gap-2 font-medium">
                       {/* tiny PDF icon */}
                       <svg
                         viewBox="0 0 24 24"
                         aria-hidden="true"
-                        className="w-3.5 h-3.5 fill-current text-sky-400"
+                        className="w-4 h-4 fill-current text-sky-400"
                       >
                         <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 7V3.5L19.5 9H15Z" />
                       </svg>
-                      {r.label}
+                      Download Resume
                     </span>
                     <span
                       className="
-                        text-[9px] px-2 py-0.5 rounded-full
+                        text-[10px] px-2.5 py-1 rounded-full
                         border border-sky-500/40 text-sky-300
                         bg-sky-500/10 group-hover:bg-sky-500/20
                       "
                     >
-                      Open
+                      Open PDF
                     </span>
-                  </a>
-                ))}
+                  </MagneticButton>
+                </div>
+
+                <p className="mt-2 text-[9px] text-slate-500">
+                  Opens in a new tab.
+                </p>
               </div>
+            </ScrollReveal>
 
-              <p className="mt-2 text-[9px] text-slate-500">
-                Each opens in a new tab. Links use BASE_URL-safe paths for GitHub Pages.
+            <ScrollReveal delay={1.0}>
+              <p className="mt-1.5 text-[8.5px] text-slate-500">
+                I usually respond quickest to concise emails and LinkedIn notes
+                that include context, timeline, and how I can help. MAX can help
+                you draft one.
               </p>
-            </div>
-
-            <p className="mt-1.5 text-[8.5px] text-slate-500">
-              I usually respond quickest to concise emails and LinkedIn notes
-              that include context, timeline, and how I can help. MAX can help
-              you draft one.
-            </p>
+            </ScrollReveal>
           </div>
         </div>
       </div>

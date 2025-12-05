@@ -18,12 +18,20 @@ A production-style portfolio that answers recruiter questions in real time. The 
 
 ## Highlights
 
-- **AI Lab:** Project cards with imagery, labels, summaries, and “view details” expanders.  
-- **MAX (Portfolio Copilot):** Floating button opens an assistant bound to a curated BIO/persona; responses come from a serverless API.  
-- **Resilient backend:** Token-bucket rate limiting, CORS allowlist to the Pages origin, message length caps, URL/spam filters, and model fallback order.  
-- **Polished UI/UX:** Animated “breathing” background, section-aware floating avatar, progress bar, responsive layout.  
-- **Contact that converts:** Formspree form (name, email, message) plus copy-to-clipboard controls for handles.  
-- **Foundations & Experience:** Case-study friendly structure with bullets plus narrative. Education and credentials are included.  
+- **AI Lab:** Expanded with 3 new major projects:
+    - **Local CSV Analyst:** Browser-based data tool (React + DuckDB-wasm).
+    - **Lumina:** Agentic Web Assistant (Chrome Extension).
+    - **Ops Copilot:** Autonomous IT Support Agent.
+- **MAX (Portfolio Copilot):**
+    - **Visuals:** Floating 3D "living" orb with pulsating energy and dynamic lighting.
+    - **Memory:** Updated with detailed knowledge of all new projects and a refined, recruiter-friendly persona.
+    - **Backend:** Serverless API with token-bucket rate limiting, CORS allowlist, and model fallbacks.
+- **Design & UX:**
+    - **Glassmorphism:** Modern, frosted-glass aesthetic for cards and UI elements.
+    - **3D Interactions:** Tilt-aware 3D nodes and magnetic buttons.
+    - **Performance:** Optimized native scrolling (Lenis removed for native feel) and lightweight animations.
+- **Contact that converts:** Formspree form (name, email, message) plus copy-to-clipboard controls for handles.
+- **Foundations & Experience:** Case-study friendly structure with bullets plus narrative. Education and credentials are included.
 - **About section:** Professional bio plus a photo slider (auto-advance, manual controls).
 
 ---
@@ -32,7 +40,7 @@ A production-style portfolio that answers recruiter questions in real time. The 
 
 Client (React + TS + Tailwind) on GitHub Pages
 ├─ Sections: Hero, AI Lab, Build Stack, Foundations, Experience, About, Playground, Contact
-└─ MAX UI: Floating button + chat drawer
+└─ MAX UI: Floating 3D Orb + chat drawer
 └─ POST /api/chat → Vercel Serverless (Node 18+)
 ├─ CORS allowlist (GitHub Pages origin)
 ├─ Rate limit (token bucket)
@@ -46,7 +54,7 @@ Client (React + TS + Tailwind) on GitHub Pages
 
 ## Tech stack
 
-- **Frontend:** React, TypeScript, Tailwind CSS, Vite  
+- **Frontend:** React, TypeScript, Tailwind CSS, Vite, Framer Motion
 - **Backend:** Vercel Serverless Functions (Node 18+), Groq API  
 - **Deploy:** GitHub Pages (client), Vercel (API)  
 - **Forms:** Formspree (contact submissions)
@@ -67,10 +75,10 @@ Client (React + TS + Tailwind) on GitHub Pages
     { "role": "assistant", "content": "Hello! Ask me about projects or skills." }
   ]
 }
+```
 Response (success):
 
-json
-Copy code
+```json
 {
   "assistant": "Max-AI Assistant",
   "answer": "For AI Engineer fit, consider Hallucination Guard and Private Doc Chat..."
@@ -99,19 +107,22 @@ Optional: create .env with VITE_MAX_API_URL to point at a custom API base (for l
 ## Local development
 
 **Client**
+```bash
 npm install
 npm run dev
 # open http://localhost:5173
+```
 
 API (separate repo)
+```bash
 # set env vars in Vercel dashboard or .env.local
 vercel dev
 # exposes /api/chat locally
-
+```
 
 To point the UI at a local API, add .env in the client:
 
-VITE_MAX_API_URL=http://localhost:3000/api/chat
+`VITE_MAX_API_URL=http://localhost:3000/api/chat`
 
 ## Accessibility and performance
 
@@ -125,8 +136,10 @@ Lean markup and lazy images for faster load.
 src/
   assets/                      # images, gifs, icons
   components/
-    FloatingMaxButton.tsx      # floating avatar; section-aware label
+    FloatingMaxButton.tsx      # floating 3D orb; section-aware label
     MaxChat.tsx                # chat drawer UI
+    ThreeDNode.tsx             # interactive 3D elements
+    MagneticButton.tsx         # magnetic UI interactions
   sections/
     HeroSection.tsx
     AiLabSection.tsx

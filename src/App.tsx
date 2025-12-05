@@ -230,14 +230,14 @@ function App() {
         {/* Divider */}
         <div className="h-px w-full bg-gradient-to-r from-transparent via-sky-500/30 to-transparent mb-10" />
 
-       <AiLabSection
-        expandedAi={expandedAi}
-         onToggleAi={toggleAi}
-         onOpenMax={() => {
-           setPingedMAX(true);
-           setIsMaxOpen(true);
-         }}
-       />
+        <AiLabSection
+          expandedAi={expandedAi}
+          onToggleAi={toggleAi}
+          onOpenMax={() => {
+            setPingedMAX(true);
+            setIsMaxOpen(true);
+          }}
+        />
 
 
         {/* Micro interaction strip */}
